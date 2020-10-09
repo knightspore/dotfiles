@@ -116,3 +116,5 @@ if ! shopt -oq posix; then
   fi
 fi
 alias config='/usr/bin/git --git-dir=/home/knightspore/.cfg/ --work-tree=/home/knightspore'
+# Alias config = git for home dir
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
