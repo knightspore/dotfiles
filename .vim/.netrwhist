@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/knightspore/Desktop/dev/jscart'
+let g:netrw_dirhist_4='/home/knightspore'
+let g:netrw_dirhist_3='/home/knightspore/Desktop/dev'
 let g:netrw_dirhist_2='/home/knightspore'
 let g:netrw_dirhist_1='/home/knightspore/Desktop/dev/tailwind-one-page-templates/local-tours-site'
 let g:netrw_dirhist_0='/home/knightspore/Desktop/dev/tailwind-one-page-templates'
@@ -7,6 +10,3 @@ let g:netrw_dirhist_9='/home/knightspore/Desktop/dev/tailwind-one-page-templates
 let g:netrw_dirhist_8='/home/knightspore'
 let g:netrw_dirhist_7='/home/knightspore/Desktop/dev/nuxt/components/global'
 let g:netrw_dirhist_6='/home/knightspore/Desktop/dev/nuxt/components'
-let g:netrw_dirhist_5='/home/knightspore/Desktop/dev/nuxt'
-let g:netrw_dirhist_4='/home/knightspore/Desktop/dev/unredd/_server'
-let g:netrw_dirhist_3='/home/knightspore/Desktop/dev/unredd'
