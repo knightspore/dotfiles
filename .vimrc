@@ -4,7 +4,6 @@ set noerrorbells
 set noswapfile
 set tabstop=4 softtabstop=4
 set shiftwidth=4
-set nowrap
 set expandtab
 set smartindent
 set relativenumber
@@ -17,6 +16,13 @@ set incsearch
 
 set colorcolumn=100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+
+" Set Markdown Files to Wrap
+augroup Markdown
+  autocmd!
+    autocmd FileType markdown set wrap
+    augroup END
 
 call plug#begin('~/.vim/plugged')
 

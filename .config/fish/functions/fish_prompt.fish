@@ -1,1 +1,1 @@
-/home/knightspore/.local/share/omf/themes/default/fish_prompt.fish
+/home/knightspore/.local/share/omf/themes/batman/fish_prompt.fish
