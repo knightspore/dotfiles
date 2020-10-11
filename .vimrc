@@ -4,6 +4,7 @@ set noerrorbells
 set noswapfile
 set tabstop=4 softtabstop=4
 set shiftwidth=4
+set nowrap
 set expandtab
 set smartindent
 set relativenumber
@@ -14,6 +15,7 @@ set undodir=~/.vim/undodir
 set undofile
 set incsearch
 
+set t_Co=256
 set colorcolumn=100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
