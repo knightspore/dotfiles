@@ -27,7 +27,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'
 Plug 'kien/ctrlp.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
+Plug 'iamcco/coc-tailwindcss',  { 'do': 'yarn install --frozen-lockfile && yarn run build' }
+Plug 'neoclide/coc-prettier', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-vetur'
 Plug 'posva/vim-vue'
 Plug 'bling/vim-airline'
@@ -35,13 +36,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
-"User Theme Settings
-colorscheme gruvbox
-set background=dark
-let g:airline_powerline_fonts = 1
-
 "Coc Settings
-let g:coc_global_extensions = ['coc-snippets', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-highlight']
+let g:coc_global_extensions = ['coc-snippets', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-tsserver', 'coc-highlight'] 
 
 "Coc VSC Remaps
 inoremap <silent><expr> <TAB>
@@ -84,4 +80,11 @@ nnoremap <leader>j :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
+
+"User Theme Settings
+let g:gruvbox_termcolors=16
+set t_Co=256
+colorscheme gruvbox
+set background=dark
+let g:airline_powerline_fonts = 1
 
