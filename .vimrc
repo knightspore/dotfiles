@@ -73,6 +73,7 @@ nnoremap <leader>x :exit<CR>
 nnoremap <leader>[ :set background=dark<CR>
 nnoremap <leader>] :set background=light<CR>
 nnoremap <leader>s :w<CR>
+nnoremap <leader>q :q<CR>
 "Window Movements
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
@@ -82,8 +83,6 @@ nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 
 "User Theme Settings
-let g:gruvbox_termcolors=16
-set t_Co=256
 colorscheme gruvbox
 set background=dark
 let g:airline_powerline_fonts = 1
