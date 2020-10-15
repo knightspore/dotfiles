@@ -6,3 +6,5 @@ end
 #
 
 export PATH="$PATH:/opt/yarn-[version]/bin"
+
+set -g theme_color_scheme dark
