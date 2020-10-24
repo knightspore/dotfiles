@@ -18,6 +18,7 @@ set incsearch
 set t_Co=256
 set colorcolumn=100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
+let g:airline_theme='base16_gruvbox_dark_hard'
 
 
 " Set Markdown Files to Wrap
