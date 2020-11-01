@@ -28,6 +28,9 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec terminal
 
+# file manager
+bindsym $mod+f exec pcmanfm 
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -217,17 +220,14 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+f exec ranger
-
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; picom -b
-exec --no-startup-id manjaro-hello
+exec --no-startup-id nitrogen --restore; sleep 1; picom -C -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-# exec --no-startup-id blueman-applet
+exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
