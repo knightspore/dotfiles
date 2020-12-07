@@ -1,10 +1,8 @@
-syntax on
-
 set noerrorbells
 set noswapfile
 set tabstop=4 softtabstop=4
 set shiftwidth=4
-" set nowrap
+set nowrap
 set expandtab
 set smartindent
 set relativenumber
@@ -13,6 +11,7 @@ set linespace=5
 set nobackup
 set undodir=~/.vim/undodir 
 set undofile
+set background=dark
 set incsearch
 
 set t_Co=256
@@ -20,6 +19,7 @@ set colorcolumn=100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 let g:airline_theme='base16_gruvbox_dark_hard'
 
+syntax on
 
 " Set Markdown Files to Wrap
 augroup Markdown
@@ -31,7 +31,9 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'morhetz/gruvbox'
+Plug 'knightspore/pop-n-lock-vim'
 Plug 'jremmen/vim-ripgrep'
+Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'
 Plug 'kien/ctrlp.vim'
@@ -42,6 +44,7 @@ Plug 'neoclide/coc-vetur'
 Plug 'posva/vim-vue'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'MTDL9/vim-log-highlighting'
 
 call plug#end()
 
@@ -92,7 +95,10 @@ nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 
 "User Theme Settings
-colorscheme gruvbox
-set background=dark
+colorscheme popnlock
 let g:airline_powerline_fonts = 1
 
+
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
