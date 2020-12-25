@@ -95,7 +95,7 @@ nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 
 "User Theme Settings
-colorscheme popnlock
+colorscheme gruvbox
 let g:airline_powerline_fonts = 1
 
 

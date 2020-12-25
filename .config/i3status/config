@@ -18,7 +18,7 @@ order += "battery all"
 order += "volume master"
 
 wireless _first_ {
-        format_up = "%essid %quality %ip"
+        format_up = "📶 %essid %quality %ip"
         format_down = ''
 }
 
