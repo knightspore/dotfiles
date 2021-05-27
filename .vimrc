@@ -29,14 +29,12 @@ augroup Markdown
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'morhetz/gruvbox'
-Plug 'knightspore/pop-n-lock-vim'
-Plug 'jremmen/vim-ripgrep'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'
-Plug 'kien/ctrlp.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'iamcco/coc-tailwindcss',  { 'do': 'yarn install --frozen-lockfile && yarn run build' }
 Plug 'neoclide/coc-prettier', { 'do': 'yarn install --frozen-lockfile' }
@@ -86,6 +84,7 @@ nnoremap <leader>[ :set background=dark<CR>
 nnoremap <leader>] :set background=light<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q<CR>
+imap jj <Esc>
 "Window Movements
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
