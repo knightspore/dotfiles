@@ -54,3 +54,4 @@ Public/
 .npm/*
 .openjfx/*
 .CFUserTextEncoding
+.contentfulrc.json
