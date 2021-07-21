@@ -1,23 +1,26 @@
-# URLs
+# Tech News
 http://techcrunch.com/feed/ tech-news
-https://www.wired.com/feed/rss tech-news
-http://www.theverge.com/rss/index.xml tech-news
-https://aws.amazon.com/blogs/aws/feed/ tech-news
-http://feeds.feedburner.com/codinghorror tech-blog
-http://feeds.feedburner.com/design-milk tech-blog
+https://www.wired.com/feed/category/security/latest/rss tech-news 
+https://feeds.arstechnica.com/arstechnica/technology-lab tech-news
 https://news.ycombinator.com/rss tech-news
-https://adamwathan.me/rss/index.xml tech-blog
-https://macwright.com/atom.xml tech-blog
-https://hiddedevries.nl/rss/full/ tech-blog
-https://blog.cleancoder.com/atom.xml tech-blog
-https://blog.openai.com/rss/ tech-news
-http://www.polygon.com/rss/index.xml gaming
-http://feeds.ign.com/ign/all gaming
-https://kotaku.com/rss gaming
-https://www.nasa.gov/rss/dyn/breaking_news.rss news
-http://feeds.nature.com/nature/rss/current news
-https://www.dailymaverick.co.za/dmrss/ news
-http://lesswrong.com/.rss thought
-http://plato.stanford.edu/rss/sep.xml thought
+
+# Coding Blogs etc
+https://blog.cleancoder.com/atom.xml tech-blog coding
+https://timdaub.github.io/atom.xml tech-blog thought crypto
+https://matthewmcateer.me/rss.xml tech-blog ai crypto 
+https://www.joshwcomeau.com/rss.xml tech-blog design uxui javascript
+https://overreacted.io/rss.xml tech-blog javascript coding 
+https://flaviocopes.com/index.xml tech-blog javascript coding
+https://www.emgoto.com/rss.xml tech-blog uxui design
+
+# News
+https://www.dailymaverick.co.za/dmrss/ news poilitics
+
+# Thought / Interest
+http://lesswrong.com/.rss thought philosophy
+http://plato.stanford.edu/rss/sep.xml thought philosophy
 https://jacobinmag.com/feed thought news
-https://timdaub.github.io/atom.xml tech-blog thought
+https://www.bellingcat.com/feed news thought politics
+
+# Test
+http://newsite.indebted.co/rss.xml test

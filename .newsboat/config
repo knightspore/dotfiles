@@ -1,1 +1,9 @@
-browser "open /Applications/Firefox.app %u"
+# Browser OSX
+browser /usr/bin/open -a "/Applications/Brave Browser.app" '%u'
+
+
+# General
+show-read-feeds no
+refresh-on-startup yes
+text-width 50
+reload-threads 10

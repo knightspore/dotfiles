@@ -42,7 +42,7 @@ Plug 'neoclide/coc-vetur'
 Plug 'posva/vim-vue'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'MTDL9/vim-log-highlighting'
+Plug 'mtdl9/vim-log-highlighting'
 
 call plug#end()
 
