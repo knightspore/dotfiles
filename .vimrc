@@ -17,11 +17,11 @@ set incsearch
 set t_Co=256
 set colorcolumn=100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline_theme='base16_gruvbox_dark_soft'
 
 syntax on
 
-" Set Markdown Files to Wrap
+Set Markdown Files to Wrap
 augroup Markdown
   autocmd!
     autocmd FileType markdown set wrap
@@ -32,6 +32,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'morhetz/gruvbox'
+Plug 'ghifarit53/tokyonight-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'
@@ -43,6 +44,7 @@ Plug 'posva/vim-vue'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mtdl9/vim-log-highlighting'
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
@@ -72,7 +74,7 @@ let g:ctrlp_use_caching = 0
 "File Browser
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
-let g:netrw_winsize = 25
+let g:netrw_winsize = 7
 
 ""Remaps
 "Set leader key to Space
@@ -84,7 +86,13 @@ nnoremap <leader>[ :set background=dark<CR>
 nnoremap <leader>] :set background=light<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>p :Prettier<CR>
 imap jj <Esc>
+" Remove annoying searchbox error
+nnoremap q: :q 
+" Comment/Uncomment
+nnoremap <silent> \ :Commentary<CR> 
+
 "Window Movements
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
@@ -94,10 +102,5 @@ nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 
 "User Theme Settings
-colorscheme gruvbox
+colorscheme tokyonight
 let g:airline_powerline_fonts = 1
-
-
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
