@@ -44,11 +44,8 @@ Plug 'posva/vim-vue'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mtdl9/vim-log-highlighting'
-<<<<<<< HEAD
 Plug 'fatih/vim-go'
-=======
 Plug 'tpope/vim-commentary'
->>>>>>> bb47702c0714036aa80c6f28f0346dc17a26e26f
 
 call plug#end()
 
