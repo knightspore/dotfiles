@@ -62,8 +62,8 @@ XTerm*selectToClipboard: true
 Xcursor.theme: Vimix-Black
 Xcursor.size:                     0
 
-URxvt.font:xft:Hasklig-Medium:pixelsize=18
-URxvt.boldfont:xft:Hasklig-Semibold:pixelsize=18
+URxvt.font:xft:Cascadia Code PL:pixelsize=18
+URxvt.boldfont:xft:Cascadia Code PL:pixelsize=18
 
 URxvt.depth:                      32
 URxvt.background:                 #333333
