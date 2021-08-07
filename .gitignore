@@ -55,3 +55,4 @@ Public/
 .openjfx/*
 .CFUserTextEncoding
 .contentfulrc.json
+.config/nvim/init.vim
