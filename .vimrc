@@ -15,13 +15,16 @@ set background=dark
 set incsearch
 
 set t_Co=256
-set colorcolumn=100
+set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
-let g:airline_theme='base16_gruvbox_dark_soft'
+set termguicolors
+let g:tokonight_style = 'night'
+let g:tokonight_enable_italic = 1
+let g:airline_theme = "tokyonight"
 
 syntax on
 
-Set Markdown Files to Wrap
+"Set Markdown Files to Wrap
 augroup Markdown
   autocmd!
     autocmd FileType markdown set wrap
@@ -31,7 +34,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'morhetz/gruvbox'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
@@ -93,6 +95,8 @@ imap jj <Esc>
 nnoremap q: :q 
 " Comment/Uncomment
 nnoremap <silent> \ :Commentary<CR> 
+" Wrap / No Wrap
+nnoremap <leader>z :set wrap!<CR>
 
 "Window Movements
 nnoremap <leader>h :wincmd h<CR>

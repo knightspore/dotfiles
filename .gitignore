@@ -23,6 +23,8 @@ Public/
 
 .config/nvm/*
 .config/yarn/*
+.config/gitui
+.config/gh
 .zsh_history
 .zcompdump
 .yarnrc
