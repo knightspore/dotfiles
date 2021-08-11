@@ -240,9 +240,9 @@ exec_always --no-startup-id fix_xcursor
 # finds out, if available)
 bar {
     status_command i3status
-    separator_symbol " ~ "
-    
-    font pango:Fira Code 11
+    separator_symbol "~~"
+  
+    font pango:Cascadia Code PL 12
     position top
 
     colors {
