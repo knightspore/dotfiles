@@ -54,7 +54,7 @@ XTerm*selectToClipboard: true
 !! /New Colours
 
 
-*fading:                          8
+*fading:                          20
 *fadeColor:                       black
 *pointerColorBackground:          #2B2C2B
 *pointerColorForeground:          #16A085
@@ -70,14 +70,13 @@ URxvt.background:                 #333333
 URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       false
 URxvt*cursorBlink:                true
-URxvt*background:                 black
 URxvt*foreground:                 grey
 URxvt*saveLines:                  5000
 
 ! for 'fake' transparency (without Compton) uncomment the following three lines
 URxvt*inheritPixmap:            true
 URxvt*transparent:              true
-URxvt*shading:                  30
+URxvt*shading:                  10
 
 ! Normal copy-paste keybindings without perls
 URxvt.iso14755:                   false
@@ -217,21 +216,5 @@ URxvt*letterSpace:                -1
 ! URxvt*tab-fg:                     colour
 ! URxvt*tabbar-bg:                  colour
 ! URxvt*tabbar-fg:                  colour
-URxvt*url-launcher:               firefox
-! The Terminus font uses the following X-names:
-! -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1
-! -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1
-! -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
-! -xos4-terminus-medium-r-normal--20-200-72-72-c-100-iso10646-1
-! -xos4-terminus-medium-r-normal--22-220-72-72-c-110-iso10646-1
-! -xos4-terminus-medium-r-normal--24-240-72-72-c-120-iso10646-1
-! -xos4-terminus-medium-r-normal--28-280-72-72-c-140-iso10646-1
-! -xos4-terminus-medium-r-normal--32-320-72-72-c-160-iso10646-1
-! -xos4-terminus-bold-r-normal--12-120-72-72-c-60-iso10646-1
-! -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso10646-1
-! -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
-! -xos4-terminus-bold-r-normal--20-200-72-72-c-100-iso10646-1
-! -xos4-terminus-bold-r-normal--24-240-72-72-c-120-iso10646-1
-! -xos4-terminus-bold-r-normal--28-280-72-72-c-140-iso10646-1
-! -xos4-terminus-bold-r-normal--32-320-72-72-c-160-iso10646-1
+URxvt*url-launcher:               brave-browser
 
