@@ -25,4 +25,14 @@ https://jacobinmag.com/feed thought news
 https://www.bellingcat.com/feed news thought politics
 
 # Test
-http://newsite.indebted.co/rss.xml test
+https://www.indebted.co/rss.xml work indebted
+
+# New Ones
+https://codeopinion.com/feed/ tech-blog coding newlist
+https://enterprisecraftsmanship.com/index.xml tech-blog coding newlist
+https://steve-yegge.blogspot.com/atom.xml tech-blog newlist
+https://twobithistory.org/feed.xml coding history reading newlist
+https://feed.infoq.com/ tech-blog coding newlist
+https://blog.ploeh.dk/rss.xml tech-blog coding newlist
+https://8thlight.com/blog/feed/rss.xml tech-blog coding newlist
+https://jovicailic.org/feed/ tech-blog coding newlist

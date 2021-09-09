@@ -1,4 +1,3 @@
-# Defined via `source`
-function deploynext --wraps='git push;' --wraps='git push' --description 'alias deploynext=git push'
-  git push $argv; 
+function deploynext --wraps='npx next lint && yarn test && git push' --description 'alias deploynext=npx next lint && yarn test && git push'
+  npx next lint && yarn test && git push $argv; 
 end
