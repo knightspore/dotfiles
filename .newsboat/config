@@ -1,6 +1,8 @@
 # Browser OSX
 browser "open -a 'Brave Browser' '%u'"
 
+# browser /usr/bin/open -a "/Applications/Brave Browser.app" '%u'
+
 
 # General
 show-read-feeds no

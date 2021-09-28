@@ -2,7 +2,7 @@ set noerrorbells
 set noswapfile
 set tabstop=2 softtabstop=2
 set shiftwidth=2
-set nowrap
+" set nowrap
 set expandtab
 set smartindent
 set relativenumber

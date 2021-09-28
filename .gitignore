@@ -1,7 +1,7 @@
 # Vim / Git Config
 .cfg
-.vim/plugged/
-.vim/undodir/
+.vim/plugged/*
+.vim/undodir/*
 
 # Etc
 .netlify

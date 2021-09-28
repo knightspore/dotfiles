@@ -260,7 +260,7 @@ bindsym $mod+m bar mode toggle
 client.focused #282828 #282828 #ebdbb2 #ebdbb2 #282828
 client.unfocused #282828 #282828 #4f4f4f #ebdbb2 #282828
 for_window [class=".*"] border pixel 0 
-gaps inner 40
+gaps inner 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
