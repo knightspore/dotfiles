@@ -1,5 +1,5 @@
 # Browser OSX
-browser /usr/bin/open -a "/Applications/Brave Browser.app" '%u'
+browser "open -a 'Brave Browser' '%u'"
 
 
 # General
