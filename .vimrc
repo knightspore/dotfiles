@@ -78,7 +78,7 @@ let g:ctrlp_use_caching = 0
 "File Browser
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
-let g:netrw_winsize = 7
+let g:netrw_winsize = 14
 
 ""Remaps
 "Set leader key to Space
@@ -104,8 +104,8 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>j :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
-nnoremap <silent> <Leader>+ :vertical resize +5<CR>
-nnoremap <silent> <Leader>- :vertical resize -5<CR>
+nnoremap <silent> <Leader>+ :vertical resize +20<CR>
+nnoremap <silent> <Leader>- :vertical resize -20<CR>
 
 "User Theme Settings
 colorscheme tokyonight
