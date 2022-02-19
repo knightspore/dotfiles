@@ -2,7 +2,7 @@ set noerrorbells
 set noswapfile
 set tabstop=2 softtabstop=2
 set shiftwidth=2
-" set nowrap
+set nowrap
 set expandtab
 set smartindent
 set relativenumber
@@ -53,7 +53,16 @@ Plug 'tpope/vim-commentary'
 call plug#end()
 
 "Coc Settings
-let g:coc_global_extensions = ['coc-snippets', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-tsserver', 'coc-highlight'] 
+let g:coc_global_extensions = [
+      \ 'coc-snippets', 
+      \ 'coc-emmet', 
+      \ 'coc-css', 
+      \ 'coc-html', 
+      \ 'coc-json',
+      \ 'coc-tsserver', 
+      \ 'coc-highlight',
+      \ 'coc-eslint'
+      \ ] 
 
 "Coc VSC Remaps
 inoremap <silent><expr> <TAB>
@@ -104,9 +113,26 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>j :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
-nnoremap <silent> <Leader>+ :vertical resize +20<CR>
-nnoremap <silent> <Leader>- :vertical resize -20<CR>
+nnoremap <silent> <Leader>+ :vertical resize +5<CR>
+nnoremap <silent> <Leader>- :vertical resize -5<CR>
+" Tab Movements
+nnoremap <tab> :tabnext<CR>
+nnoremap <S-tab> :tabprevious<CR>
 
 "User Theme Settings
 colorscheme tokyonight
 let g:airline_powerline_fonts = 1
+
+"Modern Javascript Helpers
+"Linting for Next.js Style Projects
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
+"Prettier + ESLint Settings
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
