@@ -113,8 +113,8 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>j :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
-nnoremap <silent> <Leader>+ :vertical resize +5<CR>
-nnoremap <silent> <Leader>- :vertical resize -5<CR>
+nnoremap <silent> <Leader>+ :vertical resize +20<CR>
+nnoremap <silent> <Leader>- :vertical resize -20<CR>
 " Tab Movements
 nnoremap <tab> :tabnext<CR>
 nnoremap <S-tab> :tabprevious<CR>
