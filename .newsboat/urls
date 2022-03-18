@@ -6,14 +6,12 @@ https://news.ycombinator.com/rss tech-news
 https://www.protocol.com/feeds/feed.rss
 
 # Coding Blogs etc
-https://blog.cleancoder.com/atom.xml tech-blog coding
 https://timdaub.github.io/atom.xml tech-blog thought crypto
 https://matthewmcateer.me/rss.xml tech-blog ai crypto 
 https://www.joshwcomeau.com/rss.xml tech-blog design uxui javascript
 https://overreacted.io/rss.xml tech-blog javascript coding 
 https://flaviocopes.com/index.xml tech-blog javascript coding
 https://www.emgoto.com/rss.xml tech-blog uxui design
-https://shanehowearth.com/rss/ tech-blog cqrs go coding
 https://kentcdodds.com/blog/rss.xml tech-blog react coding javascript
 
 # Thought / Interest
@@ -22,9 +20,6 @@ https://jacobinmag.com/feed thought news
 https://www.bellingcat.com/feed news thought politics
 
 # New Ones
-https://codeopinion.com/feed/ tech-blog coding newlist
-https://enterprisecraftsmanship.com/index.xml tech-blog coding newlist
 https://steve-yegge.blogspot.com/atom.xml tech-blog newlist
 https://twobithistory.org/feed.xml coding history reading newlist
-https://8thlight.com/blog/feed/rss.xml tech-blog coding newlist
 https://jovicailic.org/feed/ tech-blog coding newlist

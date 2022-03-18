@@ -116,8 +116,8 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <silent> <Leader>+ :vertical resize +20<CR>
 nnoremap <silent> <Leader>- :vertical resize -20<CR>
 " Tab Movements
-nnoremap <tab> :tabnext<CR>
-nnoremap <S-tab> :tabprevious<CR>
+nnoremap <leader><tab> :tabnext<CR>
+nnoremap <leader><S-tab> :tabprevious<CR>
 
 "User Theme Settings
 colorscheme tokyonight
