@@ -1,0 +1,21 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+# Font configuration
+  font:
+    size: 14
+    offset:
+      x: 0
+      y: 5
+    # Styles
+    normal:
+      family: CascadiaCodePL
+      style: Regular
+    bold:
+      family: CascadiaCodePL
+      style: Bold
+    italic:
+      family: CascadiaCodePLItalic
+      style: Italic
+    bold_italic:
+      family: CascadiaCodePLItalic
+      style: Bold Italic

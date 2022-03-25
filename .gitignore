@@ -9,6 +9,8 @@
 .ScreamingFromSEOSpider
 .bash_history
 .ssh/*
+snap/
+go/
 
 # System Folders
 Desktop/
