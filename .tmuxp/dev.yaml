@@ -1,0 +1,9 @@
+session_name: website_dev
+windows:
+  - window_name: dev window
+    layout: tiled
+    shell_command_before:
+      - cd ~/Desktop/indebted-website && clear
+    panes:
+      - yarn dev
+      - git log --graph --oneline --decorate
