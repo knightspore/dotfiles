@@ -1,25 +1,24 @@
 # Tech News
-http://techcrunch.com/feed/ tech-news
-https://www.wired.com/feed/category/security/latest/rss tech-news 
-https://feeds.arstechnica.com/arstechnica/technology-lab tech-news
-https://news.ycombinator.com/rss tech-news
-https://www.protocol.com/feeds/feed.rss
+http://techcrunch.com/feed/                                   news
+https://www.wired.com/feed/category/backchannel/latest/rss    news thought
+https://feeds.arstechnica.com/arstechnica/technology-lab      news
+https://news.ycombinator.com/rss                              news forum
+https://www.protocol.com/feeds/feed.rss                       news
+https://krebsonsecurity.com/feed/                             news infosec
 
 # Coding Blogs etc
-https://timdaub.github.io/atom.xml tech-blog thought crypto
-https://matthewmcateer.me/rss.xml tech-blog ai crypto 
-https://www.joshwcomeau.com/rss.xml tech-blog design uxui javascript
-https://overreacted.io/rss.xml tech-blog javascript coding 
-https://flaviocopes.com/index.xml tech-blog javascript coding
-https://www.emgoto.com/rss.xml tech-blog uxui design
-https://kentcdodds.com/blog/rss.xml tech-blog react coding javascript
+https://timdaub.github.io/atom.xml                            blog thought crypto
+https://matthewmcateer.me/rss.xml                             blog ai crypto 
+https://www.joshwcomeau.com/rss.xml                           blog design uxui javascript
+https://overreacted.io/rss.xml                                blog javascript coding 
+https://flaviocopes.com/index.xml                             blog javascript coding
+https://www.emgoto.com/rss.xml                                blog uxui design
+https://kentcdodds.com/blog/rss.xml                           blog react coding javascript
+https://steve-yegge.blogspot.com/atom.xml                     blog
+https://jovicailic.org/feed/                                  blog coding
 
 # Thought / Interest
-http://lesswrong.com/.rss thought philosophy
-https://jacobinmag.com/feed thought news
-https://www.bellingcat.com/feed news thought politics
-
-# New Ones
-https://steve-yegge.blogspot.com/atom.xml tech-blog newlist
-https://twobithistory.org/feed.xml coding history reading newlist
-https://jovicailic.org/feed/ tech-blog coding newlist
+http://lesswrong.com/.rss                                     thought philosophy forum
+https://jacobinmag.com/feed                                   thought news
+https://www.bellingcat.com/feed                               news thought politics
+https://twobithistory.org/feed.xml                            coding history reading
