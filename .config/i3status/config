@@ -20,7 +20,7 @@ order += "volume master"
 
 wireless _first_ {
         format_up = "📶 %essid %quality %ip"
-        format_down = ''
+        format_down = 'No Wifi'
 }
 
 disk "/" {
@@ -36,12 +36,13 @@ volume master {
 }
 
 ethernet _first_ {
-        format_up = "E: %ip (%speed)"
-        format_down = ""
+        format_up = "LAN %ip (%speed)"
+        format_down = "No LAN"
 }
 
 battery all {
         format = "%status %percentage %remaining"
+        format_down = ""
         status_bat = "🔋"
         status_chr = "⚡"
         status_unk = "⚡"

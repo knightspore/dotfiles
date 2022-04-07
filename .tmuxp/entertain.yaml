@@ -1,0 +1,9 @@
+session_name: entertainment
+windows:
+- window_name: zone-out
+  layout: even-vertical
+  panes:
+    - shell_command:           # pane no. 1
+        newsboat     
+    - shell_command: 
+        ncspot

@@ -1,0 +1,14 @@
+session_name: idea2-demo
+windows:
+- window_name: main window
+  layout: tiled
+  panes:
+    - shell_command:           # pane no. 1
+        cd ~/Desktop/dev;
+        cd idea-2-bgwork/go-scraper-api;
+        clear;
+        go run .;
+    - cd ~/Desktop/dev;
+      cd idea-2-bgwork;
+      clear;
+      glow notes.md -p; 
