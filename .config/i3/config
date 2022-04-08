@@ -26,7 +26,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
+bindsym $mod+Return exec alacritty
 
 # file manager
 bindsym $mod+f exec pcmanfm 
