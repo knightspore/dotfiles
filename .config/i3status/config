@@ -15,6 +15,7 @@ order += "tztime local"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "disk /"
+order += "disk /home"
 order += "load"
 order += "cpu_usage"
 order += "cpu_temperature 0"
@@ -38,6 +39,11 @@ ethernet _first_ {
 }
 
 disk "/" {
+  format = "%free (%avail) / %total"
+}
+
+
+disk "/home" {
   format = "%free (%avail) / %total"
 }
 
