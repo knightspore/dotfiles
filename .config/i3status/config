@@ -12,43 +12,62 @@ general {
 }
 
 order += "tztime local"
-order += "disk"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery all"
 order += "volume master"
+order += "load"
+order += "cpu_usage"
+order += "cpu_temperature 0"
+order += "memory"
+
+tztime local {
+        format = "%d %h %H:%M"
+}
 
 wireless _first_ {
-        format_up = "📶 %essid %quality %ip"
-        format_down = 'No Wifi'
+        format_up = "WI-FI %quality %ip"
+        format_down = 'No WI-FI'
 }
 
-disk "/" {
-    format = "%avail"
-}
-
-volume master {
-   format = "🔊 %volume"
-   format_muted = "🔇"
-   device = "default"
-   mixer = "Master"
-   mixer_idx = 0
-}
 
 ethernet _first_ {
         format_up = "LAN %ip (%speed)"
         format_down = "No LAN"
 }
 
-battery all {
-        format = "%status %percentage %remaining"
-        format_down = ""
-        status_bat = "🔋"
-        status_chr = "⚡"
-        status_unk = "⚡"
-        status_full = "💯"
+
+volume master {
+   format = "VOL %volume"
+   format_muted = "MUTE"
+   device = "default"
+   mixer = "Master"
+   mixer_idx = 0
 }
 
-tztime local {
-        format = "📅 %d %h %H:%M"
+battery all {
+        format = "BAT %status %percentage %remaining"
+        format_down = ""
+        status_bat = "BAT"
+        status_chr = "CHR"
+        status_unk = "?"
+        status_full = "FULL"
 }
+
+load {
+  format = "LOAD %5min"
+}
+
+cpu_usage {
+  format = "CPU %usage"
+}
+
+cpu_temperature 0 {
+  format = "TMP %degrees °C"
+  path = "/sys/class/thermal/thermal_zone0/temp"
+}
+
+memory {
+  format = "RAM %used / %free"
+}
+
