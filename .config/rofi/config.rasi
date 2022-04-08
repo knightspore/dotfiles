@@ -1,0 +1,15 @@
+configuration {
+  font: "Cascadia Code PL 12";
+  terminal: "alacritty";
+  show-icons: true;
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+}
+
+@theme "purple"

@@ -34,8 +34,9 @@ bindsym $mod+f exec pcmanfm
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -l 10 -sb '#111111' -sf '#ffc0cb' -fn 'Cascadia Code PL-12'
+# start rofi
+# bindsym $mod+d exec dmenu_run -l 10 -sb '#111111' -sf '#ffc0cb' -fn 'Cascadia Code PL-12'
+bindsym $mod+d exec rofi -show run
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
