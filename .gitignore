@@ -27,7 +27,6 @@ Public/
 .config/yarn/*
 .config/gitui
 .config/gh
-.zsh_history
 .zcompdump
 .yarnrc
 .vscode/*
@@ -138,8 +137,6 @@ Public/
 .xsession-errors
 .xsession-errors.old
 .yarn/
-.zhistory
-.zshrc
 pod2htmd.tmp
 snap/
 .dmrc
@@ -174,3 +171,8 @@ snap/
 .viminfz.tmp
 .wget-hsts
 fonts.scale
+.oh-my-zsh/
+.zhistory
+.zsh_history
+.newsboat/cache.db.lock
+.newsboat/history.cmdline
