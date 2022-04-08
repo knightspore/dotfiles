@@ -145,3 +145,5 @@ snap/
 .dmrc
 .dmenurc
 .tmux/plugins
+.icons/
+.fish/
