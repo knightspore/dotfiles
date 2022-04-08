@@ -1,6 +1,6 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
   window:
-    background_opacity: 0.8
+    opacity: .8
 
 # Font configuration
   font:
