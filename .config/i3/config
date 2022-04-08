@@ -2,7 +2,7 @@
 set $mod Mod4
 
 # Window Title Font
-font pango:Fira Code bold 10
+font pango:Cascadia Code PL bold 10
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -35,7 +35,7 @@ bindsym $mod+f exec pcmanfm
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -l 10 -sb '#111111' -sf '#ffc0cb' -fn 'Fira Code-12'
+bindsym $mod+d exec dmenu_run -l 10 -sb '#111111' -sf '#ffc0cb' -fn 'Cascadia Code PL-12'
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -238,7 +238,7 @@ exec_always --no-startup-id fix_xcursor
 bar {
     status_command i3status
     separator_symbol "|"
-    font pango:Cascadia Code PL 12
+    font pango:Cascadia Code PL Medium 12
     position top
 
     colors {
