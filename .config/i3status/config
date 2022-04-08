@@ -23,7 +23,7 @@ order += "volume master"
 order += "battery all"
 
 tztime local {
-        format = "%d %h %H:%M"
+        format = "%d-%m-%y %H:%M"
 }
 
 wireless _first_ {
@@ -38,12 +38,12 @@ ethernet _first_ {
 }
 
 disk "/" {
-  format = "%free (%avail) / %total"
+  format = "%avail / %total"
 }
 
 
 disk "/home" {
-  format = "%free (%avail) / %total"
+  format = "%avail / %total"
 }
 
 cpu_usage {
@@ -68,7 +68,7 @@ volume master {
 }
 
 battery all {
-        format = "%status %percentage %remaining"
+        format = "%status %percentage"
         format_down = ""
         status_bat = "BAT"
         status_chr = "CHR"
