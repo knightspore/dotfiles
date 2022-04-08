@@ -1,5 +1,5 @@
 configuration {
-  font: "Cascadia Code PL 12";
+  font: "Cascadia Code PL 18";
   terminal: "alacritty";
   show-icons: true;
   timeout {
