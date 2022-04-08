@@ -16,7 +16,6 @@ order += "wireless _first_"
 order += "ethernet _first_"
 order += "disk /"
 order += "disk /home"
-order += "load"
 order += "cpu_usage"
 order += "cpu_temperature 0"
 order += "memory"
@@ -45,10 +44,6 @@ disk "/" {
 
 disk "/home" {
   format = "%free (%avail) / %total"
-}
-
-load {
-  format = "LOAD %5min"
 }
 
 cpu_usage {
