@@ -16,10 +16,10 @@
       family: CascadiaCodePL
       style: Bold
     italic:
-      family: CascadiaCodePLItalic
+      family: CascadiaCodePL
       style: Italic
     bold_italic:
-      family: CascadiaCodePLItalic
+      family: CascadiaCodePL
       style: Bold Italic
 
   # Colors (Dracula)

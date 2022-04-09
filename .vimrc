@@ -85,9 +85,11 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 let g:ctrlp_use_caching = 0
 
 "File Browser
-let g:netrw_browse_split = 2
-let g:netrw_banner = 0
-let g:netrw_winsize = 14
+let g:netrw_browse_split = 4
+let g:netrw_banner = 5
+let g:netrw_winsize = 80
+let g:netrw_altv = 1
+let g:netrw_liststyle = 3
 
 ""Remaps
 "Set leader key to Space
