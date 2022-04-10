@@ -183,3 +183,5 @@ VirtualBox VMs/
 .netrc
 .icons/default/index.theme
 .zcompdump-c-arch-lpt-5.8.1
+.zprofile
+.newsboat/history.cmdline
