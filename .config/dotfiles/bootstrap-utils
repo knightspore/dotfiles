@@ -1,0 +1,2 @@
+#!/bin/sh
+sudo pacman -S $(cat util-pkglist.conf| cut -d' ' -f1)
