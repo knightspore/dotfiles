@@ -181,3 +181,4 @@ fonts.scale
 .config/VirtualBox/
 VirtualBox VMs/
 .netrc
+.icons/default/index.theme
