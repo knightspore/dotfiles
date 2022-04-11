@@ -289,9 +289,6 @@ mode "$mode_gaps_outer" {
 # No Focus on Mouseover
 focus_follows_mouse no
 
-# Persist Wallpaper Across Reboots
-exec --no-startup-id ~/.fehbg &
-
 # Custom Keyboard Remappings
 exec --no-startup-id setxkbmap -option caps:escape
 
