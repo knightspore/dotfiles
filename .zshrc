@@ -25,3 +25,4 @@ alias o="xdg-open ."
 alias rf="rm -rf"
 alias sizes="dust -d 1 ."
 alias vim=nvim
+source /usr/share/nvm/init-nvm.sh
