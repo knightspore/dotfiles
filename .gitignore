@@ -80,7 +80,6 @@ Public/
 .config/dconf/
 .config/dlv/
 .config/dmenu-recent/
-.config/dunst/
 .config/epdfview/
 .config/falkon/
 .config/fish/functions/idea2.fish
