@@ -242,7 +242,7 @@ bindsym $mod+m bar mode toggle
 client.focused #444444 #444444 #ffc0cb #ffc0cb #ffc0cb
 client.unfocused #111111 #111111 #444444 #444444 #444444
 for_window [class=".*"] border pixel 0
-gaps inner 0
+gaps inner 20
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)

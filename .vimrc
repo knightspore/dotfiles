@@ -11,16 +11,12 @@ set linespace=5
 set nobackup
 set undodir=~/.vim/undodir 
 set undofile
-set background=dark
 set incsearch
 
 set t_Co=256
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 set termguicolors
-let g:tokonight_style = 'night'
-let g:tokonight_enable_italic = 1
-let g:airline_theme = "tokyonight"
 
 syntax on
 
@@ -31,10 +27,9 @@ augroup Markdown
     augroup END
 
 call plug#begin('~/.vim/plugged')
-
+Plug 'dracula/vim',{'as': 'dracula'}
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ghifarit53/tokyonight-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
@@ -97,8 +92,6 @@ let mapleader = " "
 "Custom Movements
 nnoremap <leader>w :Lexplore<CR>
 nnoremap <leader>x :exit<CR>
-nnoremap <leader>[ :set background=dark<CR>
-nnoremap <leader>] :set background=light<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>p :Prettier<CR>
@@ -122,7 +115,9 @@ nnoremap <leader><tab> :tabnext<CR>
 nnoremap <leader><S-tab> :tabprevious<CR>
 
 "User Theme Settings
-colorscheme tokyonight
+colorscheme dracula
+set background=dark
+
 let g:airline_powerline_fonts = 1
 
 "Modern Javascript Helpers
