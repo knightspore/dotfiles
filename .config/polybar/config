@@ -100,7 +100,6 @@ label-connected = %{F#bd93f9}Wi-Fi%{F-} %local_ip% %{F#6272a4}@%{F-} %netspeed%
 
 [module/eth]
 inherit = network-base
-interface = eno1
 interface-type = wired
 label-connected = %{F#bd93f9}LAN%{F-} %ifname% %signal%% (%local_ip%)
 
