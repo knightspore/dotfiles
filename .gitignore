@@ -23,6 +23,14 @@ Pictures/
 Public/
 .Trash/
 
+.bun-crash/
+.bun/
+.cert/
+.cmake/
+.conda/
+.condarc
+.config/Postman/
+.config/ardour6
 .config/nvm/*
 .config/yarn/*
 .config/gitui
@@ -187,3 +195,17 @@ VirtualBox VMs/
 .zcompdump-c-arch-laptop-5.8.1
 .node/ 
 Videos/
+.config/capacitor
+.config/fancontrol-gui
+.config/fish/
+.config/github-copilot/
+.config/mpv/
+.config/protonvpn/
+.config/simple-update-notifier/
+.android/
+.gradle/
+.java/
+.nv/
+.psql_history
+.zcompdump*
+Bitwig Studio/
