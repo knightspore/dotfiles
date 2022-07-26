@@ -2,27 +2,27 @@
   window:
     opacity: 1
     padding: 
-      x: 16
-      y: 16 
+      x: 12
+      y: 12
 
 # Font configuration
   font:
-    size: 14
+    size: 12
     offset:
       x: 0
       y: 0
     # Styles
     normal:
-      family: CascadiaCodePL
+      family: JetBrainsMono
       style: Regular
     bold:
-      family: CascadiaCodePL
+      family: JetBrainsMono
       style: Bold
     italic:
-      family: CascadiaCodePL
+      family: JetBrainsMono
       style: Italic
     bold_italic:
-      family: CascadiaCodePL
+      family: JetBrainsMono
       style: Bold Italic
 
   # Colors (Dracula)

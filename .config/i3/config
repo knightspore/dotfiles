@@ -8,7 +8,7 @@ for_window [class=".*"] border pixel 0
 smart_borders on
 focus_follows_mouse no
 gaps inner 20
-font pango:Cascadia Code PL bold 10
+font pango:JetBrains Mono bold 10
 
 for_window [title="File Transfer*"] floating enable
 for_window [class="GParted"] floating enable border normal
