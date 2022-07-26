@@ -1,9 +1,0 @@
-session_name: default
-windows:
-- window_name: dev window
-  layout: tiled
-  panes:
-    - shell_command:           # pane no. 1
-        dev     
-    - echo second pane         # pane no. 2
-    - echo third pane          # pane no. 3
