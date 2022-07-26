@@ -44,6 +44,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-commentary'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'hashivim/vim-terraform'
+Plug 'github/copilot.vim'
+Plug 'jxnblk/vim-mdx-js'
 
 call plug#end()
 
@@ -80,9 +85,9 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 let g:ctrlp_use_caching = 0
 
 "File Browser
-let g:netrw_browse_split = 4
-let g:netrw_banner = 5
-let g:netrw_winsize = 80
+let g:netrw_browse_split = 3
+let g:netrw_banner = 0
+let g:netrw_winsize = 30
 let g:netrw_altv = 1
 let g:netrw_liststyle = 3
 
@@ -114,6 +119,9 @@ nnoremap <silent> <Leader>- :vertical resize -20<CR>
 nnoremap <leader><tab> :tabnext<CR>
 nnoremap <leader><S-tab> :tabprevious<CR>
 
+"Fzf
+nnoremap <leader>f :GitFiles<CR>
+
 "User Theme Settings
 colorscheme dracula
 set background=dark
@@ -122,8 +130,8 @@ let g:airline_powerline_fonts = 1
 
 "Modern Javascript Helpers
 "Linting for Next.js Style Projects
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+autocmd BufEnter *.{js,jsx,ts,tsx,mdx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx,mdx} :syntax sync clear
 
 "Prettier + ESLint Settings
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
