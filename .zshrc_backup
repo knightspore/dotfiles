@@ -25,31 +25,6 @@ alias o="xdg-open ."
 alias rf="rm -rf"
 alias sizes="dust -d 1 ."
 alias vim=nvim
-<<<<<<< HEAD
-source /usr/share/nvm/init-nvm.sh
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/c/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/c/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/c/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/c/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
-
-# bun completions
-[ -s "/home/c/.bun/_bun" ] && source "/home/c/.bun/_bun"
-=======
 # source /usr/share/nvm/init-nvm.sh
 
 export NVM_DIR="$HOME/.nvm"
@@ -70,4 +45,3 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 . /usr/local/opt/asdf/libexec/asdf.sh
 
 source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
->>>>>>> db5dd80 (Updates from WS)

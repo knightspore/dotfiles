@@ -227,6 +227,14 @@ Bitwig Studio/
 .terminfo/
 .terraform.d/
 .tool-versions/
-zcompdump*
+.zcompdump*
 .zsh_sessions/
 install.sh
+.amplify/
+.asdf/
+.config/direnv
+.config/github-copilot
+.tool-versions
+.dlv/
+.newsboat/history.search
+tmux-client*

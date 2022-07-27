@@ -2,9 +2,7 @@
 http://techcrunch.com/feed/                                   news
 https://www.wired.com/feed/category/backchannel/latest/rss    news thought
 https://feeds.arstechnica.com/arstechnica/technology-lab      news
-https://news.ycombinator.com/rss                              news forum
 https://www.protocol.com/feeds/feed.rss                       news
-https://krebsonsecurity.com/feed/                             news infosec
 
 # Coding Blogs etc
 https://timdaub.github.io/atom.xml                            blog thought crypto
@@ -16,10 +14,14 @@ https://www.emgoto.com/rss.xml                                blog uxui design
 https://kentcdodds.com/blog/rss.xml                           blog react coding javascript
 https://steve-yegge.blogspot.com/atom.xml                     blog
 https://jovicailic.org/feed/                                  blog coding
+https://machinelearningmastery.com/feed/                      blog ai
 
 # Thought / Interest
 http://lesswrong.com/.rss                                     thought philosophy forum
-https://jacobinmag.com/feed                                   thought news
 https://www.bellingcat.com/feed                               news thought politics
+<<<<<<< HEAD
 https://twobithistory.org/feed.xml                            coding history reading
 https://ciaran.co.za/rss.xml
+=======
+https://news.ycombinator.com/rss                              news forum
+>>>>>>> db5dd80 (Updates from WS)

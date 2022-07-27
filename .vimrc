@@ -48,6 +48,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'github/copilot.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'jparise/vim-graphql'
 Plug 'jxnblk/vim-mdx-js'
 
 call plug#end()
@@ -83,6 +86,8 @@ if executable('rg')
 endif
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_use_caching = 0
+
+nnoremap <leader>f :FZF<CR>
 
 "File Browser
 let g:netrw_browse_split = 3
@@ -124,7 +129,6 @@ nnoremap <leader>f :GitFiles<CR>
 
 "User Theme Settings
 colorscheme dracula
-set background=dark
 
 let g:airline_powerline_fonts = 1
 
