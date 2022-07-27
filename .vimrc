@@ -126,6 +126,7 @@ nnoremap <leader><S-tab> :tabprevious<CR>
 
 "Fzf
 nnoremap <leader>f :GitFiles<CR>
+nnoremap <leader><S-f> :Files<CR>
 
 "User Theme Settings
 colorscheme dracula
