@@ -18,15 +18,16 @@ alias gcom="git add . && git commit -m"
 alias gem="gitmoji -c"
 alias glp="git log --pretty=oneline"
 alias gpo="git push origin"
+alias gdc="git diff HEAD~1"
 alias gst="git status"
 alias l="clear && ls -a"
 alias nvimsetup="ln -s ~/.vimrc ~/.config/nvim/init.vim"
 alias o="xdg-open ."
 alias rf="rm -rf"
 alias sizes="dust -d 1 ."
+
+# NVIM
 alias vim=nvim
-<<<<<<< HEAD
-source /usr/share/nvm/init-nvm.sh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -43,14 +44,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
-
-# bun completions
-[ -s "/home/c/.bun/_bun" ] && source "/home/c/.bun/_bun"
-=======
-# source /usr/share/nvm/init-nvm.sh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -59,15 +54,7 @@ export NVM_DIR="$HOME/.nvm"
 # InDebted auto-generated
 source ~/.aws.zsh
 
-# bun completions
-[ -s "/Users/ciaran/.bun/_bun" ] && source "/Users/ciaran/.bun/_bun"
-
-# Bun
-export BUN_INSTALL="/Users/ciaran/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # ASDF
 . /usr/local/opt/asdf/libexec/asdf.sh
 
 source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
->>>>>>> db5dd80 (Updates from WS)
