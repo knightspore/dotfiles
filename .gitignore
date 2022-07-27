@@ -209,3 +209,24 @@ Videos/
 .psql_history
 .zcompdump*
 Bitwig Studio/
+.aws.zsh
+.aws/
+.bun/
+.config/asdf-direnv/
+.config/pocket_access_token
+.deno/
+.docker/
+.ideavimrc
+.ipython/
+.lpass/
+.mob
+.onboarding/
+.psql_history
+.sqlite_history
+.swiftpm/
+.terminfo/
+.terraform.d/
+.tool-versions/
+zcompdump*
+.zsh_sessions/
+install.sh
