@@ -7,7 +7,7 @@ client.unfocused #111111 #111111 #444444 #444444 #444444
 for_window [class=".*"] border pixel 0
 smart_borders on
 focus_follows_mouse no
-gaps inner 20
+gaps inner 0
 font pango:JetBrains Mono bold 10
 
 for_window [title="File Transfer*"] floating enable
