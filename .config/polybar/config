@@ -108,8 +108,9 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
+mount-1 = /home
 
-label-mounted = %{F#bd93f9}Root%{F-} %used%%{F#6272a4} / %{F-}%total%
+label-mounted = %{F#bd93f9}%mountpoint%%{F-} %used%%{F#6272a4} / %{F-}%total%
 label-unmounted = 
 
 [module/fs-laptop-hdd]
