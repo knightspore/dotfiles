@@ -238,3 +238,16 @@ install.sh
 .dlv/
 .newsboat/history.search
 tmux-client*
+.config/deepin/
+.config/wandb/
+.gem
+.jupyter/
+.lxauth-c
+.lxauth-c=l
+customrepo/
+officesetup
+.lyxauth-c=l
+.lyxauth-c
+.lyxauth-l
+.vagrant.d
+.vagrant.d/
