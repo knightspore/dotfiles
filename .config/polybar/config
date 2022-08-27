@@ -176,7 +176,7 @@ low-at = 10
 battery = BAT0
 adapter = ADP0
 
-label-charging = %{F#bd93f9}BAT%{F- %{F#6272a4} + %{F-}%percentage%%
+label-charging = %{F#bd93f9}BAT%{F-}%{F#6272a4} + %{F-}%percentage%%
 label-discharging = %{F#bd93f9}BAT%{F-}%{F#6272a4} - %{F-}%percentage%%
 label-full = %{F#bd93f9}BAT%{F-}%{F#6272a4} ~ %{F-}%percentage%%
 label-low = %{F#bd93f9}BAT%{F-}%{F#6272a4} ! %{F-}%percentage%%
