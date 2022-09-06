@@ -28,7 +28,6 @@ augroup Markdown
 
 call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim',{'as': 'dracula'}
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -56,14 +55,14 @@ call plug#end()
 
 "Coc Settings
 let g:coc_global_extensions = [
+      \ 'coc-eslint',
       \ 'coc-snippets', 
       \ 'coc-emmet', 
       \ 'coc-css', 
       \ 'coc-html', 
       \ 'coc-json',
       \ 'coc-tsserver', 
-      \ 'coc-highlight',
-      \ 'coc-eslint'
+      \ 'coc-highlight'
       \ ] 
 
 "Coc VSC Remaps
@@ -77,7 +76,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-let g:coc_snippet_next = '<tab>'
 
 "Search
 if executable('rg')
@@ -120,7 +118,7 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <silent> <Leader>+ :vertical resize +20<CR>
 nnoremap <silent> <Leader>- :vertical resize -20<CR>
 " Tab Movements
-nnoremap <leader><tab> :tabnext<CR>
+nnoremap <leader><C-tab> :tabnext<CR>
 nnoremap <leader><S-tab> :tabprevious<CR>
 
 "Fzf
