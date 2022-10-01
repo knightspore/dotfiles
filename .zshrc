@@ -26,6 +26,10 @@ alias o="xdg-open ."
 alias rf="rm -rf"
 alias sizes="dust -d 1 ."
 
+## Drives on Desktop
+alias d1="/run/media/c/Slem1000/"
+alias d2="/run/media/c/Slem2000/"
+
 # NVIM
 alias vim=nvim
 
