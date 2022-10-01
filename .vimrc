@@ -1,3 +1,4 @@
+"VIM Basics
 set noerrorbells
 set noswapfile
 set tabstop=2 softtabstop=2
@@ -12,6 +13,8 @@ set nobackup
 set undodir=~/.vim/undodir 
 set undofile
 set incsearch
+set updatetime=300
+set signcolumn=yes
 
 set t_Co=256
 set colorcolumn=80
@@ -30,14 +33,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim',{'as': 'dracula'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'jparise/vim-graphql'
 Plug 'vim-utils/vim-man'
 Plug 'jiangmiao/auto-pairs'
 Plug 'iamcco/coc-tailwindcss',  { 'do': 'yarn install --frozen-lockfile && yarn run build' }
 Plug 'neoclide/coc-prettier', { 'do': 'yarn install --frozen-lockfile' }
-Plug 'neoclide/coc-vetur'
-Plug 'posva/vim-vue'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mtdl9/vim-log-highlighting'
@@ -48,7 +51,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-Plug 'jparise/vim-graphql'
 Plug 'jxnblk/vim-mdx-js'
 
 call plug#end()
@@ -56,26 +58,51 @@ call plug#end()
 "Coc Settings
 let g:coc_global_extensions = [
       \ 'coc-eslint',
+      \ 'coc-prettier',
       \ 'coc-snippets', 
       \ 'coc-emmet', 
       \ 'coc-css', 
       \ 'coc-html', 
       \ 'coc-json',
       \ 'coc-tsserver', 
-      \ 'coc-highlight'
+      \ 'coc-highlight',
+      \ 'coc-tailwindcss'
       \ ] 
+
+" Remap keys for applying codeAction to the current line.
+nmap <leader>fa  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>ff  <Plug>(coc-fix-current)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 "Coc VSC Remaps
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-function! s:check_back_space() abort
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 "Search
 if executable('rg')

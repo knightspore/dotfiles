@@ -39,7 +39,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # InDebted auto-generated
-[ -s "~/.aws.zsh" ] && \. source ~/.aws.zsh
+source ~/.aws.zsh
 
 # ASDF
-[ -s "/usr/local/opt/asdf" ] && \. . /usr/local/opt/asdf/libexec/asdf.sh && \. source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+. /usr/local/opt/asdf/libexec/asdf.sh 
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"

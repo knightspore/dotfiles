@@ -253,3 +253,7 @@ officesetup
 .vagrant.d/
 Android/
 Applications/
+.serverless/
+.serverlessrc
+.config/memos.json
+.git-commit-template

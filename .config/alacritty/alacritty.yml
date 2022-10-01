@@ -13,19 +13,19 @@
       y: 0
     # Styles
     light: 
-      family: JetBrainsMono
+      family: JetBrains Mono
       style: Light
     normal:
-      family: JetBrainsMono
+      family: JetBrains Mono
       style: Regular
     bold:
-      family: JetBrainsMono
+      family: JetBrains Mono
       style: Bold
     italic:
-      family: JetBrainsMono
+      family: JetBrains Mono
       style: Italic
     bold_italic:
-      family: JetBrainsMono
+      family: JetBrains Mono
       style: Bold Italic
 
   # Colors (Dracula)
