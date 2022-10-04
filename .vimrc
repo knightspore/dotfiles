@@ -35,7 +35,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'peitalin/vim-jsx-typescript'
 Plug 'jparise/vim-graphql'
 Plug 'vim-utils/vim-man'
 Plug 'jiangmiao/auto-pairs'
@@ -92,6 +91,10 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<tab>\<c-r>=coc#on_enter()\<tab>"
+
+
 function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -99,9 +102,9 @@ endfunction
 
 " Use <c-space> to trigger completion.
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+  inoremap <silent><expr> <C-space> coc#refresh()
 else
-  inoremap <silent><expr> <c-@> coc#refresh()
+  inoremap <silent><expr> <C-@> coc#refresh()
 endif
 
 "Search
@@ -145,8 +148,8 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <silent> <Leader>+ :vertical resize +20<CR>
 nnoremap <silent> <Leader>- :vertical resize -20<CR>
 " Tab Movements
-nnoremap <leader><C-tab> :tabnext<CR>
-nnoremap <leader><S-tab> :tabprevious<CR>
+nnoremap <leader>t :tabnext<CR>
+nnoremap <S-t> :tabprevious<CR>
 
 "Fzf
 nnoremap <leader>f :GitFiles<CR>
