@@ -33,8 +33,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim',{'as': 'dracula'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'jparise/vim-graphql'
 Plug 'vim-utils/vim-man'
 Plug 'jiangmiao/auto-pairs'
@@ -94,6 +95,9 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<tab>\<c-r>=coc#on_enter()\<tab>"
 
+" Detect Typescript Files
+" set filetypes as typescriptreact
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 function! CheckBackspace() abort
   let col = col('.') - 1
