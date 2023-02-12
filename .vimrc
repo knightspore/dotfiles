@@ -131,7 +131,7 @@ nnoremap <leader>w :Lexplore<CR>
 nnoremap <leader>x :exit<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q<CR>
-nnoremap <leader>p :Prettier<CR>
+nnoremap <leader>p :CocCommand prettier.formatFile<CR>
 imap jj <Esc>
 " Remove annoying searchbox error
 nnoremap q: :q 
