@@ -23,6 +23,7 @@ alias nvimsetup="ln -s ~/.vimrc ~/.config/nvim/init.vim"
 alias o="xdg-open ."
 alias rf="rm -rf"
 alias sizes="dust -d 1 ."
+alias python=python3
 
 ## Drives on Desktop
 alias d1="/run/media/c/Slem1000/"
