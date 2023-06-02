@@ -1,3 +1,4 @@
+export BROWSER="/usr/bin/brave"
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="dracula"
 plugins=(
@@ -38,4 +39,11 @@ complete -o nospace -C /usr/bin/terraform terraform
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun completions
+[ -s "/home/c/.bun/_bun" ] && source "/home/c/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
