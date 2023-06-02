@@ -15,20 +15,10 @@ set undofile
 set incsearch
 set updatetime=300
 set signcolumn=yes
+"Set leader key to Space
+let mapleader = " "
 
-set t_Co=256
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-set termguicolors
-
-syntax on
-
-"Set Markdown Files to Wrap
-augroup Markdown
-  autocmd!
-    autocmd FileType markdown set wrap
-    augroup END
-
+"Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim',{'as': 'dracula'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -52,10 +42,12 @@ Plug 'hashivim/vim-terraform'
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'jxnblk/vim-mdx-js'
+Plug 'kblin/vim-fountain'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
-"Coc Settings
+"Coc Extensions
 let g:coc_global_extensions = [
       \ 'coc-eslint',
       \ 'coc-prettier',
@@ -66,8 +58,48 @@ let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-tsserver', 
       \ 'coc-highlight',
-      \ 'coc-tailwindcss'
+      \ 'coc-tailwindcss',
+      \ 'coc-rust-analyzer'
       \ ] 
+
+"Color / Theme Settings
+set t_Co=256
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+set termguicolors
+syntax on
+colorscheme dracula
+let g:airline_powerline_fonts = 1
+
+"Set Markdown Files to Wrap
+augroup Markdown
+  autocmd!
+    autocmd FileType markdown set wrap
+    augroup END
+
+"Linting for Next.js Style Projects
+autocmd BufEnter *.{js,jsx,ts,tsx,mdx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx,mdx} :syntax sync clear
+
+"RustFmt on Save
+let g:rustfmt_autosave = 1
+
+"Prettier + ESLint Settings
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
+" Coc - Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<CR>"
+
+inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<tab>"
 
 " Remap keys for applying codeAction to the current line.
 nmap <leader>fa  <Plug>(coc-codeaction)
@@ -111,31 +143,31 @@ else
   inoremap <silent><expr> <C-@> coc#refresh()
 endif
 
-"Search
+"Search / FZF
 if executable('rg')
     let g:rg_derive_root = 'true'
 endif
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_use_caching = 0
 
-nnoremap <leader>f :FZF<CR>
+nnoremap <leader>f :GitFiles<CR>
+nnoremap <leader><S-f> :Files<CR>
 
-"File Browser
+"Netrw File Browser Setup
 let g:netrw_browse_split = 3
 let g:netrw_banner = 0
 let g:netrw_winsize = 30
 let g:netrw_altv = 1
 let g:netrw_liststyle = 3
 
-""Remaps
-"Set leader key to Space
-let mapleader = " "
+
 "Custom Movements
 nnoremap <leader>w :Lexplore<CR>
 nnoremap <leader>x :exit<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>p :CocCommand prettier.formatFile<CR>
+nnoremap <leader>y :GoTest<CR>
 imap jj <Esc>
 " Remove annoying searchbox error
 nnoremap q: :q 
@@ -151,29 +183,7 @@ nnoremap <leader>j :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <silent> <Leader>+ :vertical resize +20<CR>
 nnoremap <silent> <Leader>- :vertical resize -20<CR>
+
 " Tab Movements
 nnoremap <leader>t :tabnext<CR>
 nnoremap <S-t> :tabprevious<CR>
-
-"Fzf
-nnoremap <leader>f :GitFiles<CR>
-nnoremap <leader><S-f> :Files<CR>
-
-"User Theme Settings
-colorscheme dracula
-
-let g:airline_powerline_fonts = 1
-
-"Modern Javascript Helpers
-"Linting for Next.js Style Projects
-autocmd BufEnter *.{js,jsx,ts,tsx,mdx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx,mdx} :syntax sync clear
-
-"Prettier + ESLint Settings
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
-endif
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
-endif
