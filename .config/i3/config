@@ -7,10 +7,11 @@ client.unfocused #111111 #111111 #444444 #444444 #444444
 for_window [class=".*"] border pixel 0
 smart_borders on
 focus_follows_mouse no
-gaps inner 0
+gaps inner 10
 font pango:JetBrains Mono bold 10
 
 for_window [title="File Transfer*"] floating enable
+for_window [title="UniChom*"] floating enable
 for_window [class="GParted"] floating enable border normal
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
@@ -31,6 +32,7 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id xautolock -time 120 -locker blurlock
 exec --no-startup-id killall polybar; polybar -r main
 exec --no-startup-id setxkbmap -option caps:escape
+exec --no-startup-id killall kdeconnect-indicator; kdeconnect-indicator
 
 ##
 ## Key Bindings
@@ -51,11 +53,12 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym $mod+Return exec alacritty
 bindsym $mod+f exec pcmanfm
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec rofi -show run
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot
+bindsym $mod+space exec rofi -show run
+bindsym $mod+p --release exec --no-startup-id i3-scrot -w
+bindsym $mod+Shift+p --release exec --no-startup-id i3-scrot
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+m exec polybar-msg cmd toggle
+bindsym $mod+Ctrl+space exec rofimoji
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
