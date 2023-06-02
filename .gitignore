@@ -6,7 +6,6 @@
 !.gitignore
 !.vimrc
 !.zshrc
-!.zshrc_backup
 
 # Keep Config Dir without Files
 !/.config
