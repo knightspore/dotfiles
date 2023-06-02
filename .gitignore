@@ -29,9 +29,14 @@ Public/
 .cmake/
 .conda/
 .condarc
+.config/Cypress/
+.config/Electron/
+.config/GIMP/
+.config/QtProject/
 .config/Postman/
 .config/ardour6
 .config/nvm/*
+.config/nitrogen/*
 .config/yarn/*
 .config/gitui
 .config/gh
