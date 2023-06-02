@@ -46,6 +46,12 @@
 /.config/rofi/*
 !/.config/rofi/config.rasi
 
+# vimrc
+!/.vim/
+/.vim/*
+!/.vim/autoload/plug.vim
+!/.vim/pack/themes/start/dracula
+
 # Newsboat
 !/.newsboat
 /.newsboat/*
