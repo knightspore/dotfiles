@@ -19,6 +19,20 @@ set signcolumn=yes
 let mapleader = " "
 
 "Plugins
+set t_Co=256
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+set termguicolors
+
+syntax on
+filetype plugin indent on
+
+"Set Markdown Files to Wrap
+augroup Markdown
+  autocmd!
+    autocmd FileType markdown set wrap
+    augroup END
+
 call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim',{'as': 'dracula'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
