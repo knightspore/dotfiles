@@ -7,7 +7,7 @@
 
 # Font configuration
   font:
-    size: 14
+    size: 10
     offset:
       x: 0
       y: 0

@@ -58,6 +58,8 @@ Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'jxnblk/vim-mdx-js'
 Plug 'kblin/vim-fountain'
 Plug 'rust-lang/rust.vim'
+Plug 'stevearc/vim-arduino'
+Plug 'bfrg/vim-cpp-modern'
 
 call plug#end()
 

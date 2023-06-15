@@ -39,6 +39,12 @@
 !/.config/polybar/config
 !/.config/polybar/config.ini
 !/.config/polybar/launch.sh
+!/.config/polybar/scripts
+/.config/polybar/scripts/*
+!/.config/polybar/scripts/env.sh
+!/.config/polybar/scripts/openweathermap.sh
+!/.config/polybar/scripts/player.py
+!/.config/polybar/scripts/redshift.sh
 
 # rofi
 !/.config/rofi
@@ -56,3 +62,8 @@
 /.newsboat/*
 !/.newsboat/config
 !/.newsboat/urls
+
+# Redshift
+!/.config/redshift
+/.config/redshift/*
+!/.config/redshift/redshift.conf
