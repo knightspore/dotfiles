@@ -2,9 +2,9 @@
 ; https://github.com/dracula/dracula-theme#color-palette
 [colors]
 fg = #f8f8f2
-text-fg = ${self.fg}
 bg = #282a36
 base-bg    = ${self.bg:#dd282a36}
+text-fg = ${self.fg}
 text-bg = ${self.bg}
 selection = #44475a
 comment = #6272a4
@@ -37,14 +37,11 @@ padding-left = 0
 padding-right = 1
 module-margin = 1
 
-separator = ::
-separator-foreground = ${colors.green}
 font-0 = JetBrains Mono:weight=regular:fontformat=truetype:size=10:antialias=true;1
-font-1 = Weather Icons:style=regular:size=8;2
-font-2 = Noto Color Emoji:style=regular:scale=12:size=8;3
-modules-left = xworkspaces xwindow mediaplayer 
-modules-center = date openweathermap
-modules-right = wlan eth filesystem filesystem-extra cpu temperature memory pulseaudio battery
+font-1 = Weather Icons:style=regular:size=10;2
+font-2 = Noto Color Emoji:style=regular:scale=8:size=8;3
+modules-left = xworkspaces xwindow
+modules-right = date mediaplayer openweathermap cpu temperature memory wlan eth filesystem Slem1000 Slem2000 Storage pulseaudio battery
 cursor-click = pointer
 cursor-scroll = ns-resize
 enable-ipc = true
@@ -58,13 +55,14 @@ scroll-down = "#i3.next"
 type = internal/xworkspaces
 
 label-active = %name%
-label-active-foreground = ${colors.bg}
-label-active-background = ${colors.primary}
-label-active-underline= ${colors.primary}
+label-active-foreground = ${colors.white}
+label-active-underline= ${colors.purple}
+label-active-background= ${colors.comment}
 label-active-padding = 1
 
 label-occupied = %name%
 label-occupied-padding = 1
+label-occupied-foreground = ${colors.comment}
 
 label-urgent = %name%
 label-urgent-background = ${colors.alert}
@@ -76,34 +74,49 @@ label-empty-padding = 1
 
 [module/xwindow]
 type = internal/xwindow
-label = [%title:0:20:...%]
-
+format-foreground = ${colors.purple}
+label = %title%
+label-maxlen=16
 
 [module/date]
 type = internal/date
 interval = 1
-date = %H:%M %{F#6272a4}%d %b %y%{-F
-label-foreground = ${colors.cyan}
+date = %H:%M %p - %d %b %y
+label-foreground = ${colors.comment}
 
 label = %date%
 
+[module/mediaplayer]
+type = custom/script
+format-foreground= ${colors.pink}
+exec = /home/c/.config/polybar/scripts/player.py -f '{icon} {artist} - {:t20:{title}:} {position}/{fmt-length}'
+tail = true
+click-left = /home/c/.config/polybar/scripts/player.py play-pause &
+click-right = /home/c/.config/polybar/scripts/player.py previous &
+click-middle = /home/c/.config/polybar/scripts/player.py next &
+
+[module/openweathermap]
+type = custom/script
+format-foreground= ${colors.yellow}
+exec = /home/c/.config/polybar/scripts/openweathermap.sh
+interval = 600
+label-font = 2
 
 [network-base]
 type = internal/network
 interval = 5
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
-label-foreground = ${colors.primary}
 
 [module/wlan]
 inherit = network-base
 interface-type = wireless
-label-connected = %{F#bd93f9}WLAN%{F-} %local_ip% %{F#6272a4}@%{F-} %netspeed%
+label-connected = %local_ip% %{F#6272a4}@%{F-} %netspeed%
 
 [module/eth]
 inherit = network-base
 interface-type = wired
-label-connected = %{F#bd93f9}ETH%{F-} %ifname% %signal%% (%local_ip%)
+label-connected = %ifname% %signal%% (%local_ip%)
 
 [module/filesystem]
 type = internal/fs
@@ -112,24 +125,39 @@ interval = 25
 mount-0 = /
 mount-1 = /home
 
-label-mounted = %{F#bd93f9}%mountpoint%%{F-} %free%
+label-mounted = %{F#8be9fd}%mountpoint% %free%%{F-}
 label-unmounted = 
 
-[module/filesystem-extra]
+[module/Slem1000]
 type = internal/fs
 interval = 25
 
 mount-0 = /run/media/c/Slem1000
-mount-1 = /run/media/c/Slem2000
-mount-2 = /run/media/c/Storage
 
-label-mounted = %{F#bd93f9}%mountpoint:12:8%%{F-} %free%
+label-mounted = %{F#bd93f9}Slem1000 %free%%{F-}
+label-unmounted = 
+
+[module/Slem2000]
+type = internal/fs
+interval = 25
+
+mount-2 = /run/media/c/Slem2000
+
+label-mounted = %{F#bd93f9}Slem2000 %free%%{F-}
+label-unmounted = 
+
+[module/Storage]
+type = internal/fs
+interval = 25
+
+mount-0 = /run/media/c/Storage
+
+label-mounted = %{F#bd93f9}Storage%{F-} %free%
 label-unmounted = 
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "CPU"
 format-prefix-foreground = ${colors.primary}
 label = %percentage:2%% 
 
@@ -139,14 +167,13 @@ type = internal/temperature
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "RAM "
 format-prefix-foreground = ${colors.primary}
 label = %gb_free%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume-prefix = "VOL "
+format-volume-prefix = "🔊 "
 format-volume-prefix-foreground = ${colors.primary}
 format-volume = <label-volume>
 
@@ -167,19 +194,7 @@ label-discharging = %{F#bd93f9}BAT%{F-}%{F#6272a4} - %{F-}%percentage%%
 label-full = %{F#bd93f9}BAT%{F-}%{F#6272a4} ~ %{F-}%percentage%%
 label-low = %{F#bd93f9}BAT%{F-}%{F#6272a4} ! %{F-}%percentage%%
 
-[module/openweathermap]
-type = custom/script
-exec = /home/c/.config/polybar/scripts/openweathermap.sh
-interval = 600
-label-font = 2
 
-[module/mediaplayer]
-type = custom/script
-exec = /home/c/.config/polybar/scripts/player.py -f '{icon} {artist} - {:t20:{title}:}'
-tail = true
-click-left = /home/c/.config/polybar/scripts/player.py previous &
-click-right = /home/c/.config/polybar/scripts/player.py next &
-click-middle = /home/c/.config/polybar/scripts/player.py play-pause &
 
 [settings]
 screenchange-reload = true
