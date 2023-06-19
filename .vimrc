@@ -15,17 +15,10 @@ set undofile
 set incsearch
 set updatetime=300
 set signcolumn=yes
-"Set leader key to Space
-let mapleader = " "
-
-"Plugins
-set t_Co=256
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-set termguicolors
-
 syntax on
 filetype plugin indent on
+"Set leader key to Space
+let mapleader = " "
 
 "Set Markdown Files to Wrap
 augroup Markdown
@@ -34,7 +27,7 @@ augroup Markdown
     augroup END
 
 call plug#begin('~/.vim/plugged')
-Plug 'dracula/vim',{'as': 'dracula'}
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -60,6 +53,7 @@ Plug 'kblin/vim-fountain'
 Plug 'rust-lang/rust.vim'
 Plug 'stevearc/vim-arduino'
 Plug 'bfrg/vim-cpp-modern'
+Plug 'norcalli/nvim-colorizer.lua'
 
 call plug#end()
 
@@ -79,13 +73,9 @@ let g:coc_global_extensions = [
       \ ] 
 
 "Color / Theme Settings
-set t_Co=256
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-set termguicolors
-syntax on
-colorscheme dracula
+colorscheme catppuccin-mocha
 let g:airline_powerline_fonts = 1
+let g:airline_theme='catppuccin'
 
 "Set Markdown Files to Wrap
 augroup Markdown

@@ -33,6 +33,11 @@
 /.config/i3status/*
 !/.config/i3status/config
 
+# GTK
+!/.config/gtk-3.0
+/.config/gtk-3.0/*
+!/.config/gtk-3.0/settings.ini
+
 # polybar
 !/.config/polybar
 /.config/polybar/*

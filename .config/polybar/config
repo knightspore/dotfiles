@@ -1,33 +1,43 @@
-; colors have been taken from Dracula colorscheme
-; https://github.com/dracula/dracula-theme#color-palette
 [colors]
-fg = #f8f8f2
-bg = #282a36
-base-bg    = ${self.bg:#dd282a36}
-text-fg = ${self.fg}
-text-bg = ${self.bg}
-selection = #44475a
-comment = #6272a4
-glyph-bg   = ${self.comment}
-module-bg  = ${self.comment}
-cyan  = #8be9fd
-green  = #50fa7b
-orange = #ffb86c
-pink  = #ff79c6
-purple  = #bd93f9
-red  = #ff5555
-white  = #f8f8f2
-yellow  = #f1fa8c
-primary = ${self.purple}
-alert = ${self.yellow}
-disabled = ${self.orange}
+ base = #1e1e2e
+ mantle = #181825
+ crust = #11111b
+
+ text = #cdd6f4
+ subtext0 = #a6adc8
+ subtext1 = #bac2de
+
+ surface0 = #313244
+ surface1 = #45475a
+ surface2 = #585b70
+ 
+ overlay0 = #6c7086
+ overlay1 = #7f849c
+ overlay2 = #9399b2
+ 
+
+ blue = #89b4fa
+ lavender = #b4befe
+ sapphire = #74c7ec
+ sky = #89dceb
+ teal = #94e2d5
+ green = #a6e3a1
+ yellow = #f9e2af
+ peach = #fab387
+ maroon = #eba0ac
+ red = #f38ba8
+ mauve = #cba6f7
+ pink = #f5c2e7
+ flamingo = #f2cdcd
+ rosewater = #f5e0dc
+
+ transparent = #FF00000
 
 [bar/main]
 width = 100%
 height = 16pt
-radius = 0
-background = ${colors.bg}
-foreground = ${colors.fg}
+background = ${colors.base}
+foreground = ${colors.text}
 
 line-size = 2pt
 border-size = 0pt
@@ -55,26 +65,26 @@ scroll-down = "#i3.next"
 type = internal/xworkspaces
 
 label-active = %name%
-label-active-foreground = ${colors.white}
-label-active-underline= ${colors.purple}
-label-active-background= ${colors.comment}
+label-active-foreground = ${colors.lavender}
+label-active-underline= ${colors.lavender}
+label-active-background= ${colors.crust}
 label-active-padding = 1
 
 label-occupied = %name%
 label-occupied-padding = 1
-label-occupied-foreground = ${colors.comment}
+label-occupied-foreground = ${colors.surface2}
 
 label-urgent = %name%
-label-urgent-background = ${colors.alert}
+label-urgent-background = ${colors.peach}
 label-urgent-padding = 1
 
 label-empty = %name%
-label-empty-foreground = ${colors.disabled}
+label-empty-foreground = ${colors.surface2}
 label-empty-padding = 1
 
 [module/xwindow]
 type = internal/xwindow
-format-foreground = ${colors.purple}
+format-foreground = ${colors.lavender}
 label = %title%
 label-maxlen=16
 
@@ -82,13 +92,13 @@ label-maxlen=16
 type = internal/date
 interval = 1
 date = %H:%M %p - %d %b %y
-label-foreground = ${colors.comment}
+label-foreground = ${colors.surface2}
 
 label = %date%
 
 [module/mediaplayer]
 type = custom/script
-format-foreground= ${colors.pink}
+format-foreground= ${colors.blue}
 exec = /home/c/.config/polybar/scripts/player.py -f '{icon} {artist} - {:t20:{title}:} {position}/{fmt-length}'
 tail = true
 click-left = /home/c/.config/polybar/scripts/player.py play-pause &
@@ -97,7 +107,7 @@ click-middle = /home/c/.config/polybar/scripts/player.py next &
 
 [module/openweathermap]
 type = custom/script
-format-foreground= ${colors.yellow}
+format-foreground= ${colors.peach}
 exec = /home/c/.config/polybar/scripts/openweathermap.sh
 interval = 600
 label-font = 2
@@ -111,7 +121,7 @@ format-disconnected = <label-disconnected>
 [module/wlan]
 inherit = network-base
 interface-type = wireless
-label-connected = %local_ip% %{F#6272a4}@%{F-} %netspeed%
+label-connected = %local_ip% %{F#585b70}@%{F-} %netspeed%
 
 [module/eth]
 inherit = network-base
@@ -125,7 +135,7 @@ interval = 25
 mount-0 = /
 mount-1 = /home
 
-label-mounted = %{F#8be9fd}%mountpoint% %free%%{F-}
+label-mounted = %{F#74c7ec}%mountpoint%%{F-} %free%
 label-unmounted = 
 
 [module/Slem1000]
@@ -134,7 +144,7 @@ interval = 25
 
 mount-0 = /run/media/c/Slem1000
 
-label-mounted = %{F#bd93f9}Slem1000 %free%%{F-}
+label-mounted = %{F#cba6f7}Slem1000%{F-} %free%
 label-unmounted = 
 
 [module/Slem2000]
@@ -143,7 +153,7 @@ interval = 25
 
 mount-2 = /run/media/c/Slem2000
 
-label-mounted = %{F#bd93f9}Slem2000 %free%%{F-}
+label-mounted = %{F#cba6f7}Slem2000%{F-} %free%
 label-unmounted = 
 
 [module/Storage]
@@ -152,13 +162,12 @@ interval = 25
 
 mount-0 = /run/media/c/Storage
 
-label-mounted = %{F#bd93f9}Storage%{F-} %free%
+label-mounted = %{F#cba6f7}Storage%{F-} %free%
 label-unmounted = 
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix-foreground = ${colors.primary}
 label = %percentage:2%% 
 
 [module/temperature]
@@ -167,20 +176,18 @@ type = internal/temperature
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix-foreground = ${colors.primary}
 label = %gb_free%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume-prefix = "🔊 "
-format-volume-prefix-foreground = ${colors.primary}
 format-volume = <label-volume>
 
 label-volume = %percentage%%
 
 label-muted = muted
-label-muted-foreground = ${colors.disabled}
+label-muted-foreground = ${colors.maroon}
 
 [module/battery]
 type = internal/battery
@@ -189,10 +196,10 @@ low-at = 10
 battery = BAT0
 adapter = ADP0
 
-label-charging = %{F#bd93f9}BAT%{F-}%{F#6272a4} + %{F-}%percentage%%
-label-discharging = %{F#bd93f9}BAT%{F-}%{F#6272a4} - %{F-}%percentage%%
-label-full = %{F#bd93f9}BAT%{F-}%{F#6272a4} ~ %{F-}%percentage%%
-label-low = %{F#bd93f9}BAT%{F-}%{F#6272a4} ! %{F-}%percentage%%
+label-charging = BAT%{F#585b70} + %{F-}%percentage%%
+label-discharging = BAT%{F#585b70} - %{F-}%percentage%%
+label-full = BAT%{F#585b70} ~ %{F-}%percentage%%
+label-low = BAT%{F#585b70} ! %{F-}%percentage%%
 
 
 
