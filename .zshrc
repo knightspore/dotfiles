@@ -35,6 +35,7 @@ alias sizes="dust -d 1 ."
 alias python=python3
 alias rgf='rg --files | rg'
 alias pa="php artisan"
+alias dev="cd ~/Developer"
 
 ## Drives on Desktop
 alias d1="/run/media/c/Slem1000/"

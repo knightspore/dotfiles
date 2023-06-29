@@ -35,4 +35,3 @@ font:
 # Colors
 import:
   - ~/.config/alacritty/catppuccin-mocha.yml
-
