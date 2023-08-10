@@ -7,7 +7,7 @@ client.unfocused #1e1e2e #1e1e2e #585b70 #585b70 #585b70
 for_window [class=".*"] border pixel 0
 smart_borders on
 focus_follows_mouse no
-gaps inner 10
+gaps inner 0
 smart_gaps on
 font pango:JetBrains Mono bold 10
 
@@ -30,11 +30,12 @@ exec --no-startup-id setxkbmap -option caps:escape
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
-exec --no-startup-id redshift-gtk
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-exec --no-startup-id kdeconnect-indicator
+exec --no-startup-id killall kdeconnect-indicator; kdeconnect-indicator
+exec --no-startup-id tailscale-systray 
 exec --no-startup-id killall polybar; polybar -r main
+
 
 ##
 ## Key Bindings
@@ -56,7 +57,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+f exec pcmanfm
 bindsym $mod+Shift+q kill
 bindsym $mod+space exec rofi -show run
-bindsym $mod+p --release exec --no-startup-id i3-scrot -w
+bindsym $mod+p --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+p --release exec --no-startup-id i3-scrot
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+m exec polybar-msg cmd toggle
