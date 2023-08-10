@@ -18,6 +18,7 @@
 
  blue = #89b4fa
  lavender = #b4befe
+ lavender_dim = #373951
  sapphire = #74c7ec
  sky = #89dceb
  teal = #94e2d5
@@ -57,6 +58,7 @@ cursor-scroll = ns-resize
 enable-ipc = true
 
 wm-restack = i3
+override-redirect = false
 tray-position = right
 scroll-up = "#13.prev"
 scroll-down = "#i3.next"
@@ -66,7 +68,7 @@ type = internal/xworkspaces
 
 label-active = %name%
 label-active-foreground = ${colors.lavender}
-label-active-underline= ${colors.lavender}
+label-active-underline= ${colors.mauve}
 label-active-background= ${colors.crust}
 label-active-padding = 1
 
@@ -84,16 +86,18 @@ label-empty-padding = 1
 
 [module/xwindow]
 type = internal/xwindow
-format-foreground = ${colors.lavender}
+format-foreground = ${colors.white}
+format-background = ${colors.lavender_dim}
+format-underline = ${colors.mauve}
+format-padding = 1
 label = %title%
-label-maxlen=16
+label-maxlen = 32
 
 [module/date]
 type = internal/date
 interval = 1
 date = %H:%M %p - %d %b %y
 label-foreground = ${colors.surface2}
-
 label = %date%
 
 [module/mediaplayer]
