@@ -38,6 +38,23 @@
 /.config/gtk-3.0/*
 !/.config/gtk-3.0/settings.ini
 
+# NVIM
+!/.config/nvim
+/.config/nvim/*
+!/.config/nvim/init.lua
+!/.config/nvim/lua
+/.config/nvim/lua/*
+!/.config/nvim/lua/keybindings.lua
+!/.config/nvim/lua/plugins.lua
+!/.config/nvim/lua/vim.lua
+!/.config/nvim/lua/plugins
+/.config/nvim/lua/plugins/*
+!/.config/nvim/lua/plugins/catpuccin.lua
+!/.config/nvim/lua/plugins/telescope.lua
+!/.config/nvim/lua/plugins/mason.lua
+!/.config/nvim/lua/plugins/treesitter.lua
+!/.config/nvim/lua/plugins/lsp.lua
+
 # polybar
 !/.config/polybar
 /.config/polybar/*
