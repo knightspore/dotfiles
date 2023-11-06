@@ -5,6 +5,7 @@ plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
+  zsh-autocomplete
 )
 source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
@@ -13,12 +14,17 @@ alias c=clear
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias dl="cd ~/Downloads; clear; ls -a"
 alias dsk="cd ~/Desktop/ && l"
+alias dev="cd ~/Developer/ && l"
 alias gcom="git add . && git commit -m"
 alias gem="gitmoji -c"
 alias glp="git log --pretty=oneline"
 alias gpo="git push origin"
 alias gdc="git diff --cached"
+alias gdl="git diff --name-only"
+alias gdt="git difftool --tool=nvimdiff"
 alias gst="git status"
+alias gundo="git reset HEAD~1"
+alias gbhist='git branch --format="%(refname:short) %(committerdate:relative)"'
 alias l="clear && ls -a"
 alias nvimsetup="ln -s ~/.vimrc ~/.config/nvim/init.vim"
 alias o="xdg-open ."
@@ -47,3 +53,21 @@ export NVM_DIR="$HOME/.nvm"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# Tripco TL
+export PATH="/Users/c/Developer/stack/.bin:$PATH"
+
+# Composer
+export PATH="/Users/c/.composer/vendor/bin:$PATH"
+
+# bun completions
+[ -s "/Users/c/.bun/_bun" ] && source "/Users/c/.bun/_bun"
+
+# deno 
+export DENO_INSTALL="/Users/c/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+# phpactor
+export PATH="/Users/c/.local/bin:$PATH"
+
+# rustup
+. "$HOME/.cargo/env"
