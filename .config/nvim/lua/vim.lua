@@ -13,7 +13,7 @@ vim.opt.smartindent = true
 vim.opt.relativenumber = true
 vim.opt.nu = true
 
-vim.opt.undodir = '/home/c/.vim/undodir'
+vim.opt.undodir = '/Users/c/.vim/undodir'
 vim.opt.undofile = true
 
 vim.opt.scrolloff = 12

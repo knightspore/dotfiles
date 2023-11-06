@@ -6,7 +6,7 @@ local silentnoremap = { noremap = true, silent = true }
 
 map('i', 'jj', '<Esc>', silentnoremap)                                            -- JJ -> Esc
 
-map('n', '<leader>w', ':Lexplore<CR>', silentnoremap)                             -- Open NetRW
+map('n', '<leader>w', ':NERDTreeToggle<CR>', silentnoremap)                             -- Open NetRW
 
 map('n', '<leader>s', ':w<CR>', silentnoremap)                                    -- Save File
 map('n', '<leader>q', ':q<CR>', silentnoremap)                                    -- Quit
@@ -19,7 +19,7 @@ map('n', '<leader>k', ':wincmd k<CR>', noremap)                                 
 map('n', '<leader>l', ':wincmd l<CR>', noremap)                                   -- Pane Right
 
 map('n', '<leader>t', ':tabnext<CR>', silentnoremap)                              -- Tab Next
-map('n', '<S-t>', ':tabprevious<CR>', silentnoremap)                              -- Tab Prev
+map('n', '<S-t>', ':tabGrevious<CR>', silentnoremap)                              -- Tab Prev
 
 map('v', "J", ":m '>+1<CR>gv=gv", {})                                             -- Move Selection Up
 map('v', "K", ":m '<-2<CR>gv=gv", {})                                             -- Move Selection Down
@@ -32,3 +32,12 @@ map('v', "<leader>y", "\"+y", {})                                               
 map('n', "<leader>Y", "\"+Y", {})                                                 -- Copy to System Clipboard
 
 map('n', '<leader>%', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {}) -- Replace under cursor
+
+map('n', '<leader>m', ':lua require("harpoon.mark").add_file()<CR>', {})          -- Harpoon: Add File
+map('n', '<leader><S-m>', ':lua require("harpoon.ui").toggle_quick_menu()<CR>', {})  -- Harpoon: File Navigation
+map('n', '<leader>n', ':lua require("harpoon.ui").nav_next()<CR>', {})            -- Next Harpoon
+map('n', '<leader><S-n>', ':lua require("harpoon.ui").nav_prev()<CR>', {})            -- Prev Harpoon
+
+
+map('n', '<leader><S-g>', ':set hlsearch<CR>', {})                                    -- Highlight searches
+map('n', '<leader><S-h>', ':set nohlsearch<CR>', {})                              -- No search highlighting

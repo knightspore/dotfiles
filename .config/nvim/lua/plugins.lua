@@ -32,5 +32,17 @@ return require('packer').startup(function(use)
     }
     use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
     use 'jiangmiao/auto-pairs'
-    use 'adalessa/laravel.nvim'
+    use 'ThePrimeagen/harpoon'
+    use 'preservim/nerdtree'
+    use 'tpope/vim-fugitive'
+    use 'github/copilot.vim'
+    use 'barrett-ruth/import-cost.nvim'
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
+    use 'windwp/nvim-ts-autotag'
+    use 'lukas-reineke/indent-blankline.nvim'
 end)
