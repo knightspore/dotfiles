@@ -8,6 +8,7 @@ require("catppuccin").setup({
         mason = true,
     },
 })
+vim.o.termguicolors = true
 vim.cmd.colorscheme "catppuccin"
 vim.g.airline_powerline_fonts = 1
 vim.g.airline_theme = 'catppuccin'

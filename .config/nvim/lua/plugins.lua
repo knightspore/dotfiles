@@ -45,4 +45,6 @@ return require('packer').startup(function(use)
     }
     use 'windwp/nvim-ts-autotag'
     use 'lukas-reineke/indent-blankline.nvim'
+    use 'adalessa/laravel.nvim'
+    use 'fatih/vim-go'
 end)

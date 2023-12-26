@@ -49,7 +49,7 @@
 !/.config/nvim/lua/vim.lua
 !/.config/nvim/lua/plugins
 /.config/nvim/lua/plugins/*
-!/.config/nvim/lua/plugins/catpuccin.lua
+!/.config/nvim/lua/plugins/catppuccin.lua
 !/.config/nvim/lua/plugins/telescope.lua
 !/.config/nvim/lua/plugins/mason.lua
 !/.config/nvim/lua/plugins/treesitter.lua

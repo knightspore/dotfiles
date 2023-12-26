@@ -176,6 +176,9 @@ label = %percentage:2%%
 
 [module/temperature]
 type = internal/temperature
+interval = 0.5
+label= %temperature-c%
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input
 
 [module/memory]
 type = internal/memory
