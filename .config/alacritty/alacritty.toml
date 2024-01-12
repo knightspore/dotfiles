@@ -1,0 +1,31 @@
+import = ["/Users/c/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+
+[font]
+size = 16
+
+[font.bold]
+family = "MonaspiceNe Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "MonaspiceNe Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "MonaspiceNe Nerd Font Mono"
+style = "Medium Italic"
+
+[font.normal]
+family = "MonaspiceNe Nerd Font Mono"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[window]
+opacity = 1
+
+[window.padding]
+x = 12
+y = 12

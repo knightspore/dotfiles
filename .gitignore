@@ -14,7 +14,7 @@
 # alacritty
 !/.config/alacritty
 /.config/alacritty/*
-!/.config/alacritty/alacritty.yml
+!/.config/alacritty/alacritty.toml
 
 # dotfiles
 !/.config/dotfiles

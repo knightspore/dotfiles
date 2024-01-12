@@ -6,10 +6,12 @@ local silentnoremap = { noremap = true, silent = true }
 
 map('i', 'jj', '<Esc>', silentnoremap)                                            -- JJ -> Esc
 
-map('n', '<leader>w', ':NERDTreeToggle<CR>', silentnoremap)                             -- Open NetRW
+map('n', '<leader><S-w>', ':NERDTreeToggle<CR>', silentnoremap)                             -- Open NERDTree
+map('n', '<leader>w', ':NERDTreeFind<CR>', silentnoremap)                             -- Open NERDTree on current file
 
 map('n', '<leader>s', ':w<CR>', silentnoremap)                                    -- Save File
 map('n', '<leader>q', ':q<CR>', silentnoremap)                                    -- Quit
+map('n', '<leader>x', ':x<CR>', silentnoremap)                                    -- Save and Quit
 
 map('n', '<leader>z', ':set wrap!<CR>', silentnoremap)                            -- Toggle Wrap
 

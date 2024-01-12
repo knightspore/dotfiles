@@ -5,7 +5,12 @@ require("catppuccin").setup({
         comments = { "italic" },
     },
     integrations = {
+        treesitter = true,
         mason = true,
+        harpoon = true,
+        telescope = {
+            enabled = true,
+        },
     },
 })
 vim.o.termguicolors = true
