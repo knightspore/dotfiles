@@ -1,4 +1,5 @@
 export BROWSER="/usr/bin/brave"
+export HOMEBREW_NO_AUTO_UPDATE=1
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="dracula"
 plugins=(
@@ -35,6 +36,7 @@ alias sizes="dust -d 1 ."
 alias python=python3
 alias rgf='rg --files | rg'
 alias pa="php artisan"
+alias dev="cd ~/Developer"
 
 ## Drives on Desktop
 alias d1="/run/media/c/Slem1000/"
