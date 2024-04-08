@@ -1,4 +1,5 @@
 export BROWSER="/usr/bin/brave"
+export HOMEBREW_NO_AUTO_UPDATE=1
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="dracula"
 plugins=(
