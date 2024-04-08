@@ -16,12 +16,14 @@ alias dl="cd ~/Downloads; clear; ls -a"
 alias dsk="cd ~/Desktop/ && l"
 alias dev="cd ~/Developer/ && l"
 alias gcom="git add . && git commit -m"
-alias gem="gitmoji -c"
 alias glp="git log --pretty=oneline"
 alias gpo="git push origin"
 alias gdc="git diff --cached"
 alias gdl="git diff --name-only"
 alias gdt="git difftool --tool=nvimdiff"
+alias gdtc="git difftool --tool=nvimdiff --cached"
+alias gdw="git diff --word-diff"
+alias gdwc="git diff --word-diff --cached"
 alias gst="git status"
 alias gundo="git reset HEAD~1"
 alias gbhist='git branch --format="%(refname:short) %(committerdate:relative)"'
@@ -31,6 +33,8 @@ alias o="xdg-open ."
 alias rf="rm -rf"
 alias sizes="dust -d 1 ."
 alias python=python3
+alias rgf='rg --files | rg'
+alias pa="php artisan"
 
 ## Drives on Desktop
 alias d1="/run/media/c/Slem1000/"
@@ -71,3 +75,6 @@ export PATH="/Users/c/.local/bin:$PATH"
 
 # rustup
 . "$HOME/.cargo/env"
+
+# Ruby
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
