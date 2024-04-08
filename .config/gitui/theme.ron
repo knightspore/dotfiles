@@ -1,0 +1,9 @@
+(
+    // Header
+    selected_tab: Some(Green),
+
+    // Commands
+    command_fg: Some(White),
+    cmdbar_bg: Some(Black),
+    cmdbar_extra_lines_bg: Some(Black),
+)
