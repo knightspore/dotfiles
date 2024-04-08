@@ -12,9 +12,9 @@ end)
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 require('lspconfig').phpactor.setup {
-    on_attach = on_attach,
+    -- on_attach = on_attach,
     init_options = {
-        ["language_server_phpstan.enabled"] = false,
+        ["language_server_phpstan.enabled"] = true,
         ["language_server_psalm.enabled"] = false,
     }
 }

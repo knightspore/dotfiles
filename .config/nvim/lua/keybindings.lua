@@ -6,8 +6,8 @@ local silentnoremap = { noremap = true, silent = true }
 
 map('i', 'jj', '<Esc>', silentnoremap)                                            -- JJ -> Esc
 
-map('n', '<leader><S-w>', ':NERDTreeToggle<CR>', silentnoremap)                             -- Open NERDTree
-map('n', '<leader>w', ':NERDTreeFind<CR>', silentnoremap)                             -- Open NERDTree on current file
+map('n', '<leader>w', ':NERDTreeToggle<CR>', silentnoremap)                             -- Open NERDTree
+map('n', '<leader><S-w>', ':NERDTreeFind<CR>', silentnoremap)                             -- Open NERDTree on current file
 
 map('n', '<leader>s', ':w<CR>', silentnoremap)                                    -- Save File
 map('n', '<leader>q', ':q<CR>', silentnoremap)                                    -- Quit
@@ -21,7 +21,7 @@ map('n', '<leader>k', ':wincmd k<CR>', noremap)                                 
 map('n', '<leader>l', ':wincmd l<CR>', noremap)                                   -- Pane Right
 
 map('n', '<leader>t', ':tabnext<CR>', silentnoremap)                              -- Tab Next
-map('n', '<S-t>', ':tabGrevious<CR>', silentnoremap)                              -- Tab Prev
+map('n', '<S-t>', ':tabPrevious<CR>', silentnoremap)                              -- Tab Prev
 
 map('v', "J", ":m '>+1<CR>gv=gv", {})                                             -- Move Selection Up
 map('v', "K", ":m '<-2<CR>gv=gv", {})                                             -- Move Selection Down
@@ -43,3 +43,5 @@ map('n', '<leader><S-n>', ':lua require("harpoon.ui").nav_prev()<CR>', {})      
 
 map('n', '<leader><S-g>', ':set hlsearch<CR>', {})                                    -- Highlight searches
 map('n', '<leader><S-h>', ':set nohlsearch<CR>', {})                              -- No search highlighting
+
+map('n', '<leader><S-p>', ':MinimapToggle<CR>', {})                               -- Minimap Toggle

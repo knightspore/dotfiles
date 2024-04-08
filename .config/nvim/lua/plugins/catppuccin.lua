@@ -1,5 +1,5 @@
 require("catppuccin").setup({
-    flavour = "mocha",
+    flavour = "macchiato",
     transparent_background = true,
     styles = {
         comments = { "italic" },

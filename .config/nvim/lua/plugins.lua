@@ -47,4 +47,5 @@ return require('packer').startup(function(use)
     use 'lukas-reineke/indent-blankline.nvim'
     use 'adalessa/laravel.nvim'
     use 'fatih/vim-go'
+    use 'wfxr/minimap.vim'
 end)
