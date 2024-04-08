@@ -1,22 +1,23 @@
-import = ["/Users/c/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+import = ["/Users/c/.config/alacritty/catppuccin/catppuccin-frappe.toml"]
 
 [font]
-size = 16
+size = 18
+builtin_box_drawing = true
 
 [font.bold]
-family = "MonaspiceNe Nerd Font Mono"
+family = "Iosevka Nerd Font Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "MonaspiceNe Nerd Font Mono"
+family = "Iosevka Nerd Font Mono"
 style = "Bold Italic"
 
 [font.italic]
-family = "MonaspiceNe Nerd Font Mono"
+family = "Iosevka Nerd Font Mono"
 style = "Medium Italic"
 
 [font.normal]
-family = "MonaspiceNe Nerd Font Mono"
+family = "Iosevka Nerd Font Mono"
 style = "Regular"
 
 [font.offset]
