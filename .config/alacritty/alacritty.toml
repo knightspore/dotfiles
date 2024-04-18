@@ -1,32 +1,33 @@
 import = ["/Users/c/.config/alacritty/catppuccin/catppuccin-frappe.toml"]
 
 [font]
-size = 18
+size = 16
 builtin_box_drawing = true
 
 [font.bold]
-family = "Iosevka Nerd Font Mono"
+family = "MartianMono Nerd Font Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "Iosevka Nerd Font Mono"
+family = "MartianMono Nerd Font Mono"
 style = "Bold Italic"
 
 [font.italic]
-family = "Iosevka Nerd Font Mono"
+family = "MartianMono Nerd Font Mono"
 style = "Medium Italic"
 
 [font.normal]
-family = "Iosevka Nerd Font Mono"
+family = "MartianMono Nerd Font Mono"
 style = "Regular"
 
 [font.offset]
 x = 0
-y = 0
+y = 2
 
 [window]
-opacity = 1
+opacity = 0.8
+decorations = "None"
 
 [window.padding]
-x = 12
-y = 12
+x = 4
+y = 4
