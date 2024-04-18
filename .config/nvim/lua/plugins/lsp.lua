@@ -12,10 +12,17 @@ end)
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 require('lspconfig').phpactor.setup {
-    -- on_attach = on_attach,
+    cmd = { "phpactor", "language-server" },
+    filetypes = { "php" },
+    root_dir = require('lspconfig/util').root_pattern("composer.json", ".git"),
     init_options = {
+        ["language_server_worse_reflection.inlay_hints.enable"] = true,
+        ["language_server_worse_reflection.inlay_hints.params"] = true,
+        ["language_server_worse_reflection.inlay_hints.types"] = true,
+        ["language_server_configuration.auto_config"] = false,
+        ["code_transform.import_globals"] = true,
         ["language_server_phpstan.enabled"] = true,
-        ["language_server_psalm.enabled"] = false,
+        ["language_server_phpstan.bin"] = "phpstan",
     }
 }
 

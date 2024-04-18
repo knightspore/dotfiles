@@ -48,4 +48,5 @@ return require('packer').startup(function(use)
     use 'adalessa/laravel.nvim'
     use 'fatih/vim-go'
     use 'wfxr/minimap.vim'
+    use 'gbprod/php-enhanced-treesitter.nvim'
 end)
