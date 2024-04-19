@@ -23,6 +23,9 @@ return require('packer').startup(function(use)
     use { "catppuccin/nvim", as = "catppuccin" }
     use 'bling/vim-airline'
     use 'vim-airline/vim-airline-themes'
+    use 'norcalli/nvim-colorizer.lua'
+    use 'ryanoasis/vim-devicons'
+    use 'tiagofumo/vim-nerdtree-syntax-highlight'
 
     -- Utilities
     use 'junegunn/fzf'
@@ -36,7 +39,6 @@ return require('packer').startup(function(use)
     use 'preservim/nerdtree'
     use 'tpope/vim-fugitive'
     use 'github/copilot.vim'
-    use 'barrett-ruth/import-cost.nvim'
     use {
         'numToStr/Comment.nvim',
         config = function()
@@ -44,9 +46,8 @@ return require('packer').startup(function(use)
         end
     }
     use 'windwp/nvim-ts-autotag'
-    use 'lukas-reineke/indent-blankline.nvim'
+    use { 'lukas-reineke/indent-blankline.nvim', main = "ibl", opts = {} }
     use 'adalessa/laravel.nvim'
     use 'fatih/vim-go'
-    use 'wfxr/minimap.vim'
     use 'gbprod/php-enhanced-treesitter.nvim'
 end)

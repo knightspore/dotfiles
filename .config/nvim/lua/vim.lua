@@ -1,5 +1,4 @@
 -- VIM Settings
-
 vim.g.mapleader = " "
 
 vim.opt.tabstop = 4
@@ -17,21 +16,11 @@ vim.opt.undodir = os.getenv("HOME") .. '/.vim/undodir'
 vim.opt.undofile = true
 
 vim.opt.scrolloff = 12
--- vim.opt.hlsearch = false
+vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.opt.updatetime = 50
+vim.opt.updatetime = 250
 vim.opt.signcolumn = "yes"
-
-vim.g.netrw_browse_split = 3
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 30
-vim.g.netrw_altv = 1
-vim.g.netrw_liststyle = 3
-
--- Minimap
-vim.g.minimap_auto_start = 0
-vim.g.minimap_width = 10
 
 -- Wrap Markdown
 vim.cmd([[
