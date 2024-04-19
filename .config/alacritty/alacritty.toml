@@ -22,12 +22,13 @@ style = "Regular"
 
 [font.offset]
 x = 0
-y = 2
+y = 0
 
 [window]
-opacity = 0.8
+opacity = 0.9
 decorations = "None"
+blur = true
 
 [window.padding]
-x = 4
-y = 4
+x = 12
+y = 12
