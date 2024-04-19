@@ -98,5 +98,8 @@
 /.config/redshift/*
 !/.config/redshift/redshift.conf
 
-
+# .zsh/
+!/.zsh/
+/.zsh/*
+!/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
