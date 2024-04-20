@@ -41,7 +41,6 @@ cmp.setup({
 vim.g.copilot_assume_mapped = true
 
 -- Etc. Plugins after LSP
-require('import-cost').setup({})
 require('nvim-ts-autotag').setup({
     filetypes = { 'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'twig', 'xml' }
 })
