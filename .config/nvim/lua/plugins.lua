@@ -24,16 +24,17 @@ return require('packer').startup(function(use)
     use 'bling/vim-airline'
     use 'vim-airline/vim-airline-themes'
     use 'norcalli/nvim-colorizer.lua'
-    use 'ryanoasis/vim-devicons'
+    use 'kyazdani42/nvim-web-devicons'
+    use 'yamatsum/nvim-nonicons'
     use 'tiagofumo/vim-nerdtree-syntax-highlight'
 
     -- Utilities
     use 'junegunn/fzf'
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.2',
-        requires = { { 'nvim-lua/plenary.nvim' } }
-    }
+    use "nvim-lua/plenary.nvim"
+    use { 'nvim-telescope/telescope.nvim', tag = '0.1.2' }
     use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
+    use "nvim-treesitter/nvim-treesitter-textobjects"
+    use "nvim-treesitter/nvim-treesitter-context"
     use 'jiangmiao/auto-pairs'
     use 'ThePrimeagen/harpoon'
     use 'preservim/nerdtree'

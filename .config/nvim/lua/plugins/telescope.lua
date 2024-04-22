@@ -1,3 +1,13 @@
+local icons = require("nvim-nonicons")
+icons.setup({})
+require('telescope').setup({
+    defaults = {
+        prompt_prefix = "  " .. icons.get("telescope") .. "  ",
+        selection_caret = " ❯ ",
+        entry_prefix = "   ",
+    }
+})
+
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>f', telescope.git_files, {})
 vim.keymap.set('n', '<leader><S-f>', telescope.find_files, {})
