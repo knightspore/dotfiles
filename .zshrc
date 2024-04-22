@@ -49,6 +49,9 @@ alias d2="/run/media/c/Slem2000/"
 alias vim=nvim
 alias pa="php artisan"
 alias lastupdated="db 'SELECT lastUpdated FROM bookingThreads LIMIT 1'"
+alias vimcnf="nvim ~/.config/nvim/init.lua"
+alias zshcnf="nvim ~/.zshrc"
+alias alacnf="nvim ~/.config/alacritty/alacritty.toml"
 
 ## Git
 
