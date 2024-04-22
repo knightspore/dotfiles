@@ -41,6 +41,8 @@ truncation_symbol = "…/"
 "Music" = " "
 "Pictures" = " "
 "Developer" = " "
+"stack" = " "
+"lavender" = "󰧰 "
 
 [bun]
 symbol = "🍔"
@@ -62,7 +64,7 @@ style = "fg:#ef9f76	bg:#303446"
 format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
-symbol = " "
+symbol = ""
 style = "fg:#BABBF1 bg:#51576d"
 format = '[ $symbol ($version) ]($style)'
 
