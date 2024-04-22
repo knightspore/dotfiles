@@ -1,8 +1,8 @@
 import = ["/Users/c/.config/alacritty/catppuccin/catppuccin-frappe.toml"]
 
 [font]
-size = 18
-builtin_box_drawing = true
+size = 16
+builtin_box_drawing = false
 
 [font.bold]
 family = "SpaceMono Nerd Font Mono"
