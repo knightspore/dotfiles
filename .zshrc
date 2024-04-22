@@ -3,7 +3,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 plugins=(
   git
