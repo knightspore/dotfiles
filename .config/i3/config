@@ -9,7 +9,7 @@ smart_borders on
 focus_follows_mouse no
 gaps inner 0
 smart_gaps on
-font pango:JetBrains Mono bold 10
+font pango:SpaceMono Nerd Font Mono bold 10
 
 for_window [title="File Transfer*"] floating enable
 for_window [title="UniChom*"] floating enable
@@ -23,6 +23,7 @@ for_window [class="(?i)System-config-printer.py"] floating enable border normal
 ## Autostart
 ##
 
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id xautolock -time 120 -locker blurlock
 exec --no-startup-id nitrogen --restore; sleep 1; picom -C -b

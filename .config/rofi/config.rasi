@@ -1,5 +1,5 @@
 configuration{
-    font: "Jetbrains Mono 12";
+    font: "SpaceMono Nerd Font Mono 12";
     modi: "run,drun,window";
     icon-theme: "Oranchelo";
     show-icons: true;
