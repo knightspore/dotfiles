@@ -57,6 +57,7 @@ alias alacnf="nvim ~/.config/alacritty/alacritty.toml"
 
 alias gcom="git add . && git commit -m"
 alias glp="git log --pretty=oneline"
+alias glt='git log --pretty=format:"%h%x09%an%x09%ad%x09%s"'
 alias gpo="git push origin"
 alias gdc="git diff --cached"
 alias gdl="git diff --name-only"
@@ -113,6 +114,10 @@ export PATH="/Users/c/.local/bin:$PATH"
 ## Ruby
 
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+## FZF
+
+eval "$(fzf --zsh)"
 
 # ---
 

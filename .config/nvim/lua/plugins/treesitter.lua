@@ -12,20 +12,34 @@ require 'nvim-treesitter.configs'.setup {
             enable = true,
             lookahead = true,
             keymaps = {
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
+                -- function
+                ["af"] = "@call.outer",
+                ["if"] = "@call.inner",
+                ["am"] = "@function.outer",
+                ["im"] = "@function.inner",
+                -- class
                 ["ac"] = "@class.outer",
                 ["ic"] = "@class.inner",
+                -- block
                 ["ab"] = "@block.outer",
                 ["ib"] = "@block.inner",
+                -- loop
                 ["al"] = "@loop.outer",
                 ["il"] = "@loop.inner",
+                -- parameter
                 ["ap"] = "@parameter.outer",
                 ["ip"] = "@parameter.inner",
+                -- statement
                 ["as"] = "@statement.outer",
                 ["is"] = "@statement.inner",
+                -- comment
                 ["aa"] = "@comment.outer",
                 ["ia"] = "@comment.inner",
+                -- assignment
+                ["a="] = "@assignment.outer",
+                ["i="] = "@assignment.inner",
+                ["l="] = "@assignment.lhs",
+                ["r="] = "@assignment.rhs",
             },
             selection_modes = {
                 ['@function.inner'] = 'v',

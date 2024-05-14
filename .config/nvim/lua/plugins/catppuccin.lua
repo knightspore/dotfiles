@@ -29,3 +29,8 @@ vim.g.NERDTreePatternMatchHighlightFullName = 1
 
 vim.g.NERDTreeHighlightFolders = 1
 vim.g.NERDTreeHighlightFoldersFullName = 1
+
+-- color higlight
+require('nvim-highlight-colors').setup({
+    enable_tailwind = false,
+})

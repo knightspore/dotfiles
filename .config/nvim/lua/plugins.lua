@@ -23,7 +23,7 @@ return require('packer').startup(function(use)
     use { "catppuccin/nvim", as = "catppuccin" }
     use 'bling/vim-airline'
     use 'vim-airline/vim-airline-themes'
-    use 'norcalli/nvim-colorizer.lua'
+    use 'brenoprata10/nvim-highlight-colors'
     use 'kyazdani42/nvim-web-devicons'
     use 'yamatsum/nvim-nonicons'
     use 'tiagofumo/vim-nerdtree-syntax-highlight'

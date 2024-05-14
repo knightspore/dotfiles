@@ -25,6 +25,7 @@ vim.opt.updatetime = 250
 vim.opt.signcolumn = "yes"
 
 vim.opt.cursorline = true
+vim.opt.termguicolors = true
 
 -- Wrap Markdown
 vim.cmd([[
