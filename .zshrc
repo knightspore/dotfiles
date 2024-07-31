@@ -73,11 +73,6 @@ alias gbhist='git branch --format="%(refname:short) %(committerdate:relative)"'
 
 # Path / Software Setup
 
-## Terraform
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
-
 ## Node Version Manager
 
 export NVM_DIR="$HOME/.nvm"
@@ -118,6 +113,12 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 ## FZF
 
 eval "$(fzf --zsh)"
+
+## Exec into nomad
+
+function nomad-exec() {
+    nomad alloc exec -i -t -task mysql $1 /bin/bash
+}
 
 # ---
 
