@@ -19,7 +19,7 @@ vim.g.airline_powerline_fonts = 1
 vim.g.airline_theme = 'catppuccin'
 
 -- vim-nerdtree-syntax-highlight
---
+
 vim.g.WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
 vim.g.WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
 

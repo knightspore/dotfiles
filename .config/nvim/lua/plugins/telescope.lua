@@ -3,8 +3,8 @@ icons.setup({})
 require('telescope').setup({
     defaults = {
         prompt_prefix = "  " .. icons.get("telescope") .. "  ",
-        selection_caret = " ❯ ",
-        entry_prefix = "   ",
+        selection_caret = "❯ ",
+        entry_prefix = "  ",
     }
 })
 

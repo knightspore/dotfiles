@@ -24,7 +24,6 @@ require('mason-lspconfig').setup({
         function(server_name)
             require('lspconfig')[server_name].setup({})
         end,
-
     }
 })
 
@@ -93,5 +92,3 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
         update_in_insert = false,
     }
 )
-
-require("ibl").setup()

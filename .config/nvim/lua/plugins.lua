@@ -35,7 +35,6 @@ return require('packer').startup(function(use)
     use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use "nvim-treesitter/nvim-treesitter-context"
-    use 'jiangmiao/auto-pairs'
     use 'ThePrimeagen/harpoon'
     use 'preservim/nerdtree'
     use 'tpope/vim-fugitive'
@@ -47,9 +46,6 @@ return require('packer').startup(function(use)
         end
     }
     use 'windwp/nvim-ts-autotag'
-    use { 'lukas-reineke/indent-blankline.nvim', main = "ibl", opts = {} }
-    use 'adalessa/laravel.nvim'
     use 'fatih/vim-go'
     use 'akinsho/git-conflict.nvim'
-    -- use 'gbprod/php-enhanced-treesitter.nvim'
 end)
