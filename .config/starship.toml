@@ -86,3 +86,9 @@ symbol = ""
 style = "fg:#BABBF1 bg:#51576d"
 format = '[ $symbol ($version) ]($style)'
 
+[custom.tl]
+command = "tl"
+symbol = ""
+style = "fg:#BABBF1 bg:#51576d"
+format = '[ $symbol ($version) ]($style)'
+ignore_timeout = true
