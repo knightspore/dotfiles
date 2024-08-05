@@ -50,5 +50,6 @@ return require('packer').startup(function(use)
     use { 'lukas-reineke/indent-blankline.nvim', main = "ibl", opts = {} }
     use 'adalessa/laravel.nvim'
     use 'fatih/vim-go'
-    use 'gbprod/php-enhanced-treesitter.nvim'
+    use 'akinsho/git-conflict.nvim'
+    -- use 'gbprod/php-enhanced-treesitter.nvim'
 end)

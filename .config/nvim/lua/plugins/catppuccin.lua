@@ -1,5 +1,5 @@
 require("catppuccin").setup({
-    flavour = "macchiato",
+    flavour = "frappe",
     transparent_background = true,
     styles = {
         comments = { "italic" },
@@ -32,5 +32,5 @@ vim.g.NERDTreeHighlightFoldersFullName = 1
 
 -- color higlight
 require('nvim-highlight-colors').setup({
-    enable_tailwind = false,
+    enable_tailwind = true,
 })

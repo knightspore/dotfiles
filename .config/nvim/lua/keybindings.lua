@@ -43,5 +43,4 @@ map('n', '<leader><S-n>', ':lua require("harpoon.ui").nav_prev()<CR>', {})      
 map('n', '<leader><S-g>', ':set hlsearch<CR>', {})                                  -- Highlight searches
 map('n', '<leader><S-h>', ':set nohlsearch<CR>', {})                                -- No search highlighting
 
-map('n', '<leader><S-p>', ':MinimapToggle<CR>', {})                                 -- Minimap Toggle
 map('n', '<leader><S-g>', ':G ', {})                                                -- Git open command
