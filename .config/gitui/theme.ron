@@ -1,7 +1,7 @@
 (
     // Catppuccin Frappe
     selected_tab: Some(Reset),
-    command_fg: Some(Rgb(198, 208, 245)),
+    command_fg: Some(Rgb(100, 208, 245)),
     selection_bg: Some(Rgb(98, 104, 128)),
     selection_fg: Some(Rgb(198, 208, 245)),
     cmdbar_bg: Some(Rgb(41, 44, 60)),
