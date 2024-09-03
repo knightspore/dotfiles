@@ -3,6 +3,7 @@ require('vim')
 
 -- Plugins
 require('plugins')
+require('plugins/gen')
 require('plugins/lsp')
 require('plugins/treesitter')
 require('plugins/telescope')

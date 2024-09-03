@@ -5,9 +5,10 @@ require('telescope').setup({
         prompt_prefix = "  " .. icons.get("telescope") .. "  ",
         selection_caret = "❯ ",
         entry_prefix = "  ",
-    }
+        sorting_strategy = "descending",
+    },
 })
-
+require('telescope').load_extension('ui-select')
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>f', telescope.git_files, {})
 vim.keymap.set('n', '<leader><S-f>', telescope.find_files, {})

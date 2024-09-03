@@ -44,3 +44,5 @@ map('n', '<leader><S-g>', ':set hlsearch<CR>', {})                              
 map('n', '<leader><S-h>', ':set nohlsearch<CR>', {})                                -- No search highlighting
 
 map('n', '<leader><S-g>', ':G ', {})                                                -- Git open command
+
+map('n', '<leader>g', ':Gen ', {})                                                -- Git open command

@@ -54,10 +54,6 @@ cmp.setup({
         { name = 'luasnip', keyword_length = 2 },
         { name = 'buffer',  keyword_length = 3 },
     },
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-    },
     snippet = {
         expand = function(args)
             require('luasnip').lsp_expand(args.body)
@@ -67,6 +63,8 @@ cmp.setup({
         -- Autocompletion
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
         -- navigate between snippet placeholders
         ['<C-f>'] = cmp_action.luasnip_jump_forward(),
         ['<C-b>'] = cmp_action.luasnip_jump_backward(),
@@ -76,11 +74,6 @@ cmp.setup({
 
 -- Copilot stuff (rebind tab)
 vim.g.copilot_assume_mapped = true
-
--- Etc. Plugins after LSP
-require('nvim-ts-autotag').setup({
-    filetypes = { 'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'twig', 'xml' }
-})
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
