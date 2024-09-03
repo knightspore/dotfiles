@@ -120,8 +120,15 @@ function nomad-exec() {
     nomad alloc exec -i -t -task mysql $1 /bin/bash
 }
 
+## brew util-linux
+export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
+export PATH="/opt/homebrew/opt/util-linux/sbin:$PATH"
+
 # ---
 
 # Starship Shell Prompt
 
 eval "$(starship init zsh)"
+
+# bun completions
+[ -s "/Users/c/.bun/_bun" ] && source "/Users/c/.bun/_bun"
