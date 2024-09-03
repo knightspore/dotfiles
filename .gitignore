@@ -59,6 +59,7 @@
 !/.config/nvim/lua/plugins/mason.lua
 !/.config/nvim/lua/plugins/treesitter.lua
 !/.config/nvim/lua/plugins/lsp.lua
+!/.config/nvim/lua/plugins/gen.lua
 
 # polybar
 !/.config/polybar
