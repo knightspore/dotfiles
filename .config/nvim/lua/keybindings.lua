@@ -11,7 +11,6 @@ map('n', '<leader><S-w>', ':NERDTreeFind<CR>', silentnoremap)                   
 
 map('n', '<leader>s', ':w<CR>', silentnoremap)                                      -- Save File
 map('n', '<leader>q', ':q<CR>', silentnoremap)                                      -- Quit
-map('n', '<leader>x', ':x<CR>', silentnoremap)                                      -- Save and Quit
 
 map('n', '<leader>z', ':set wrap!<CR>', silentnoremap)                              -- Toggle Wrap
 
@@ -45,4 +44,4 @@ map('n', '<leader><S-h>', ':set nohlsearch<CR>', {})                            
 
 map('n', '<leader><S-g>', ':G ', {})                                                -- Git open command
 
-map('n', '<leader>g', ':Gen ', {})                                                -- Git open command
+map('n', '<leader>g', ':Gen ', {})                                                  -- Git open command

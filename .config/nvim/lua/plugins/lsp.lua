@@ -75,13 +75,15 @@ cmp.setup({
 -- Copilot stuff (rebind tab)
 vim.g.copilot_assume_mapped = true
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        underline = true,
-        virtual_text = {
-            spacing = 5,
-            severity = { min = vim.diagnostic.severity.WARN }
-        },
-        update_in_insert = false,
-    }
-)
+vim.diagnostic.config({
+    underline = true,
+    virtual_text = false,     -- Disable virtual text
+    update_in_insert = false,
+})
+
+-- Show diagnostics in a floating window on hover
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+    callback = function()
+        vim.diagnostic.open_float(nil, { focusable = false })
+    end,
+})

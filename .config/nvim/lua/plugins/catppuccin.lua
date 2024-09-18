@@ -5,9 +5,15 @@ require("catppuccin").setup({
         comments = { "italic" },
     },
     integrations = {
-        treesitter = true,
-        mason = true,
+        cmp = true,
+        fzf = true,
+        gitsigns = true,
         harpoon = true,
+        markdown = true,
+        mason = true,
+        notify = true,
+        treesitter = true,
+        lsp_trouble = true,
         telescope = {
             enabled = true,
         },

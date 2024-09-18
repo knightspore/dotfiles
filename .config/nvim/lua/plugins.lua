@@ -49,4 +49,18 @@ return require('packer').startup(function(use)
     use 'fatih/vim-go'
     use 'akinsho/git-conflict.nvim'
     use 'David-Kunz/gen.nvim'
+    use {
+        'fei6409/log-highlight.nvim',
+        config = function()
+            require('log-highlight').setup {
+                extension = "log"
+            }
+        end,
+    }
+    use {
+        'folke/trouble.nvim',
+        config = function()
+            require('trouble').setup {}
+        end
+    }
 end)
