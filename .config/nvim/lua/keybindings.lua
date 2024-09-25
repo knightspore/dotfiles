@@ -45,3 +45,6 @@ map('n', '<leader><S-h>', ':set nohlsearch<CR>', {})                            
 map('n', '<leader><S-g>', ':G ', {})                                                -- Git open command
 
 map('n', '<leader>g', ':Gen ', {})                                                  -- Git open command
+
+map('n', '<leader><S-a><S-i>', ':Copilot enable<CR>', {})                           -- Copilot Enable
+map('n', '<leader>ai', ':Copilot disable<CR>', {})                                  -- Copilot Disable

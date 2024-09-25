@@ -79,9 +79,6 @@
 /.config/rofi/*
 !/.config/rofi/config.rasi
 
-# starship
-!/.config/starship.toml
-
 # vimrc
 !/.vim/
 /.vim/*

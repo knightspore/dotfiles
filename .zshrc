@@ -7,12 +7,17 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 plugins=(
   git
+  git-prompt
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-autocomplete
 )
 
 source $ZSH/oh-my-zsh.sh
+
+## Prompt
+
+PROMPT='%F{blue}[%T]%f %F{magenta}%n%F{blue}@%f%F{magenta}%~%f %F{green}❯%f '
 
 # ---
 
@@ -125,10 +130,6 @@ export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
 export PATH="/opt/homebrew/opt/util-linux/sbin:$PATH"
 
 # ---
-
-# Starship Shell Prompt
-
-eval "$(starship init zsh)"
 
 # bun completions
 [ -s "/Users/c/.bun/_bun" ] && source "/Users/c/.bun/_bun"
