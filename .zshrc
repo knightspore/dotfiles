@@ -3,7 +3,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 plugins=(
   git
@@ -94,6 +93,7 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="/Users/c/.bun/bin:$PATH"
 
 ## Tripco TL
 
@@ -129,7 +129,3 @@ function nomad-exec() {
 export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
 export PATH="/opt/homebrew/opt/util-linux/sbin:$PATH"
 
-# ---
-
-# bun completions
-[ -s "/Users/c/.bun/_bun" ] && source "/Users/c/.bun/_bun"

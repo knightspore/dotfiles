@@ -46,7 +46,7 @@ return require('packer').startup(function(use)
             require('Comment').setup()
         end
     }
-    use 'fatih/vim-go'
+    use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
     use 'akinsho/git-conflict.nvim'
     use 'David-Kunz/gen.nvim'
     use {

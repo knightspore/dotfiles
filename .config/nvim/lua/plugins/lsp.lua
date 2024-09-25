@@ -9,10 +9,10 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 
 lsp_zero.set_sign_icons({
-    error = '✘',
-    warn = '▲',
-    hint = '⚑',
-    info = '»'
+    error = ' ✘',
+    warn = ' ⚠',
+    hint = ' ⚑',
+    info = ' »'
 })
 
 require('lspconfig').lua_ls.setup({})
