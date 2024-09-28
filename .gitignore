@@ -14,7 +14,12 @@
 # alacritty
 !/.config/alacritty
 /.config/alacritty/*
-!/.config/alacritty/alacritty.toml
+!/.config/alacritty/*.toml
+
+# bat
+!/.config/bat
+/.config/bat/*
+!/.config/bat/themes
 
 # dotfiles
 !/.config/dotfiles
