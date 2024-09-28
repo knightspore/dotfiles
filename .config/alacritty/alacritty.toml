@@ -8,19 +8,19 @@ size = 14
 builtin_box_drawing = false
 
 [font.bold]
-family = "SpaceMono Nerd Font Mono"
+family = "Iosevka Nerd Font Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "SpaceMono Nerd Font Mono"
+family = "Iosevka Nerd Font Mono"
 style = "Bold Italic"
 
 [font.italic]
-family = "SpaceMono Nerd Font Mono"
+family = "Iosevka Nerd Font Mono"
 style = "Medium Italic"
 
 [font.normal]
-family = "SpaceMono Nerd Font Mono"
+family = "Iosevka Nerd Font Mono"
 style = "Regular"
 
 [window]
