@@ -1,9 +1,9 @@
 require('gen').setup({
-    model = "llama3.1",
+    model = "llama3.2",
     display_mode = "split",
 })
 
 require('gen').prompts['Convert_Language'] = {
-    prompt = "Convert this code to another language: $input.\nHere is the code\n: $text",
+    prompt = "Convert this code to: $input.\nHere is the code\n: $text",
     replace = false,
 }

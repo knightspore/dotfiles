@@ -63,4 +63,5 @@ return require('packer').startup(function(use)
             require('trouble').setup {}
         end
     }
+    use 'tikhomirov/vim-glsl'
 end)

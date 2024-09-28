@@ -34,3 +34,11 @@ augroup Markdown
     autocmd FileType markdown set wrap
     augroup END
 ]])
+
+-- Associate .vs, .fs with .glsl
+vim.cmd([[
+augroup GLSL
+    autocmd!
+    autocmd BufNewFile,BufRead *.vs,*.fs set ft=glsl
+    augroup END
+]])
