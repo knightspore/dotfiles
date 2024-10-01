@@ -1,5 +1,5 @@
 require('gen').setup({
-    model = "llama3.2",
+    model = "mistral-nemo",
     display_mode = "split",
 })
 

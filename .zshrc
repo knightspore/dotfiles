@@ -64,6 +64,7 @@ alias glp="git log --pretty=oneline"
 alias glt='git log --pretty=format:"%h%x09%an%x09%ad%x09%s"'
 alias gpo="git push origin"
 alias gdc="git diff --cached"
+alias gdm="git diff --diff-filter=M"
 alias gdl="git diff --name-only"
 alias gdt="git difftool --tool=nvimdiff"
 alias gdtc="git difftool --tool=nvimdiff --cached"
