@@ -111,11 +111,7 @@ export PATH="/Users/c/.composer/vendor/bin:$PATH"
 
 ## PHPActor
 
-export PATH="/Users/c/.local/bin:$PATH"
-
-## Rust
-
-. "$HOME/.cargo/env"
+# export PATH="/Users/c/.local/bin:$PATH"
 
 ## Ruby
 

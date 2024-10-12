@@ -52,7 +52,7 @@ font-0 = SpaceMono Nerd Font Mono:weight=regular:fontformat=opentype:size=11:ant
 font-1 = Weather Icons:style=regular:size=10;2
 font-2 = Noto Color Emoji:style=regular:scale=8:size=8;3
 modules-left = xworkspaces xwindow
-modules-right = date mediaplayer openweathermap cpu temperature memory wlan eth filesystem Slem1000 Slem2000 Storage pulseaudio battery
+modules-right = date mediaplayer openweathermap cpu temperature memory wlan eth filesystem Slem1000 Slem2000 Storage pulseaudio battery powermenu
 cursor-click = pointer
 cursor-scroll = ns-resize
 enable-ipc = true
@@ -208,7 +208,56 @@ label-discharging = BAT%{F#585b70} - %{F-}%percentage%%
 label-full = BAT%{F#585b70} ~ %{F-}%percentage%%
 label-low = BAT%{F#585b70} ! %{F-}%percentage%%
 
+[module/powermenu]
+type = custom/menu
 
+expand-right = true
+
+format-spacing = 1
+
+label-open = ""
+label-open-foreground = ${colors.urgent}
+label-close = [ cancel]
+label-close-foreground = ${colors.success}
+label-separator = |
+label-separator-foreground = ${colors.foreground}
+
+;Powermenu
+menu-0-0 = "[Reboot] "
+menu-0-0-exec = menu-open-1
+menu-0-0-foreground = ${colors.urgent}
+
+menu-0-1 = "[Power Off]"
+menu-0-1-exec = menu-open-2
+menu-0-1-foreground = ${colors.urgent}
+
+menu-0-2 = "[Hibernate]"
+menu-0-2-exec = menu-open-3
+menu-0-2-foreground = ${colors.warning}
+
+;Reboot
+menu-1-0 = "[Cancel] "
+menu-1-0-exec = menu-open-0
+menu-1-0-foreground = ${colors.success}
+menu-1-1 = "Reboot"
+menu-1-1-exec = systemctl reboot
+menu-1-1-foreground = ${colors.urgent}
+
+;Shutdown
+menu-2-0 = "Power off"
+menu-2-0-exec = systemctl poweroff
+menu-2-0-foreground = ${colors.urgent}
+menu-2-1 = "Cancel "
+menu-2-1-exec = menu-open-0
+menu-2-1-foreground = ${colors.success}
+
+;Hibernate
+menu-3-0 = "Hibernate "
+menu-3-0-exec = systemctl hibernate
+menu-3-0-foreground = ${colors.urgent}
+menu-3-1 = "Cancel"
+menu-3-1-exec = menu-open-0
+menu-3-1-foreground = ${colors.success}
 
 [settings]
 screenchange-reload = true
