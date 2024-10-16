@@ -27,6 +27,10 @@ vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
 
+vim.cmd(":set list")
+-- tab, space, eol, trail
+vim.cmd(":set listchars=tab:»·,trail:-,space:·,")
+
 -- Wrap Markdown
 vim.cmd([[
 augroup Markdown
