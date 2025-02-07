@@ -1,9 +1,6 @@
 require('gen').setup({
-    model = "mistral-nemo",
+    model = "deepseek-r1:8b",
     display_mode = "split",
+    show_model = true,
+    no_auto_close = true,
 })
-
-require('gen').prompts['Convert_Language'] = {
-    prompt = "Convert this code to: $input.\nHere is the code\n: $text",
-    replace = false,
-}
