@@ -1,28 +1,18 @@
+[general]
 import = ["~/.config/alacritty/catppuccin-mocha.toml"]
+
+[window]
+opacity = 0.9
+decorations = "None"
 
 [env]
 TERM = "xterm-256color"
 
 [font]
 size = 14
+normal = { family = "DepartureMono Nerd Font Mono", style = "Regular" }
+bold = { family = "DepartureMono Nerd Font Mono", style = "Bold" }
+italic = { family = "DepartureMono Nerd Font Mono", style = "Medium Italic" }
+bold_italic = { family = "DepartureMono Nerd Font Mono", style = "Bold Italic" }
 builtin_box_drawing = false
 
-[font.bold]
-family = "Iosevka Nerd Font Mono"
-style = "Bold"
-
-[font.bold_italic]
-family = "Iosevka Nerd Font Mono"
-style = "Bold Italic"
-
-[font.italic]
-family = "Iosevka Nerd Font Mono"
-style = "Medium Italic"
-
-[font.normal]
-family = "Iosevka Nerd Font Mono"
-style = "Regular"
-
-[window]
-opacity = 0.9
-decorations = "None"
