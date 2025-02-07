@@ -5,11 +5,11 @@ export ZSH="$HOME/.oh-my-zsh"
 source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
 plugins=(
-  git
-  git-prompt
+  zsh-autocomplete
   zsh-autosuggestions
   zsh-syntax-highlighting
-  zsh-autocomplete
+  git
+  git-prompt
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -56,6 +56,8 @@ alias lastupdated="db 'SELECT lastUpdated FROM bookingThreads LIMIT 1'"
 alias vimcnf="nvim ~/.config/nvim/init.lua"
 alias zshcnf="nvim ~/.zshrc"
 alias alacnf="nvim ~/.config/alacritty/alacritty.toml"
+alias nvm="fnm"
+alias tl="sudo -v && tl"
 
 ## Git
 
@@ -78,12 +80,15 @@ alias gbhist='git branch --format="%(refname:short) %(committerdate:relative)"'
 
 # Path / Software Setup
 
+## FNM - Fast Node Manager
+
+eval "$(fnm env --use-on-cd --shell zsh)"
+
 ## Node Version Manager
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+#
 ## Deno
 
 export DENO_INSTALL="/Users/c/.deno"
@@ -116,6 +121,8 @@ export PATH="/Users/c/.local/bin:$PATH"
 
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
+export PATH="/opt/homebrew/bin:$PATH"
+
 ## FZF
 
 eval "$(fzf --zsh)"
@@ -129,4 +136,3 @@ function nomad-exec() {
 ## brew util-linux
 export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
 export PATH="/opt/homebrew/opt/util-linux/sbin:$PATH"
-
