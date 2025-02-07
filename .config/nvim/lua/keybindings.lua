@@ -19,6 +19,11 @@ map('n', '<leader>j', ':wincmd j<CR>', noremap)                                 
 map('n', '<leader>k', ':wincmd k<CR>', noremap)                                     -- Pane Up
 map('n', '<leader>l', ':wincmd l<CR>', noremap)                                     -- Pane Right
 
+map('n', '<C-Up>', ':resize +2<CR>', silentnoremap)                                 -- Pane Up
+map('n', '<C-Down>', ':resize -2<CR>', silentnoremap)                               -- Pane Down
+map('n', '<C-Left>', ':vertical resize +2<CR>', silentnoremap)                      -- Pane Left
+map('n', '<C-Right>', ':vertical resize -2<CR>', silentnoremap)                     -- Pane Right
+
 map('n', '<leader>t', ':tabnext<CR>', silentnoremap)                                -- Tab Next
 map('n', '<S-t>', ':tabPrevious<CR>', silentnoremap)                                -- Tab Prev
 
