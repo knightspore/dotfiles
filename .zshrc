@@ -80,10 +80,6 @@ alias gbhist='git branch --format="%(refname:short) %(committerdate:relative)"'
 
 # Path / Software Setup
 
-## FNM - Fast Node Manager
-
-eval "$(fnm env --use-on-cd --shell zsh)"
-
 ## Node Version Manager
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -132,3 +128,10 @@ function nomad-exec() {
 ## brew util-linux
 export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
 export PATH="/opt/homebrew/opt/util-linux/sbin:$PATH"
+
+# fnm
+FNM_PATH="/home/c/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/c/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
