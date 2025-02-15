@@ -9,7 +9,7 @@ smart_borders on
 focus_follows_mouse no
 gaps inner 0
 smart_gaps on
-font pango:SpaceMono Nerd Font Mono bold 10
+font pango:DepartureMonoNerdFontMono bold 10
 
 for_window [title="File Transfer*"] floating enable
 for_window [title="UniChom*"] floating enable
