@@ -40,6 +40,7 @@ fi
 ## General Purpose / Navigation
 
 alias c=clear
+alias cat="bat"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias dl="cd ~/Downloads; clear; ls -a"
 alias dsk="cd ~/Desktop/ && l"
@@ -52,22 +53,17 @@ alias d1="/run/media/c/Slem1000/"
 alias d2="/run/media/c/Slem2000/"
 alias vim=nvim
 alias pa="php artisan"
-alias lastupdated="db 'SELECT lastUpdated FROM bookingThreads LIMIT 1'"
+alias lastupdated="db 'SELECT lastUpdated FROM travel.bookingThreads LIMIT 1'"
 alias vimcnf="nvim ~/.config/nvim/init.lua"
 alias zshcnf="nvim ~/.zshrc"
 alias alacnf="nvim ~/.config/alacritty/alacritty.toml"
+alias ghocnf="nvim ~/.config/ghostty/config"
 alias nvm="fnm"
-alias tl="sudo -v && tl"
 
 ## Git
 
-alias gcom="git add . && git commit -m"
 alias glp="git log --pretty=oneline"
-alias glt='git log --pretty=format:"%h%x09%an%x09%ad%x09%s"'
-alias gpo="git push origin"
 alias gdc="git diff --cached"
-alias gdm="git diff --diff-filter=M"
-alias gdl="git diff --name-only"
 alias gdt="git difftool --tool=nvimdiff"
 alias gdtc="git difftool --tool=nvimdiff --cached"
 alias gdw="git diff --word-diff"
@@ -78,13 +74,6 @@ alias gbhist='git branch --format="%(refname:short) %(committerdate:relative)"'
 
 # ---
 
-# Path / Software Setup
-
-## Node Version Manager
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-#
 ## Deno
 
 export DENO_INSTALL="/Users/c/.deno"
