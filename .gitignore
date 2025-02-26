@@ -29,6 +29,16 @@
 /.config/dunst/*
 !/.config/dunst/dunstrc
 
+# ghostty
+!/.config/ghostty
+/.config/ghostty/*
+!/.config/ghostty/config
+
+# GTK
+!/.config/gtk-3.0
+/.config/gtk-3.0/*
+!/.config/gtk-3.0/settings.ini
+
 # i3
 !/.config/i3
 /.config/i3/*
@@ -37,11 +47,6 @@
 !/.config/i3status
 /.config/i3status/*
 !/.config/i3status/config
-
-# GTK
-!/.config/gtk-3.0
-/.config/gtk-3.0/*
-!/.config/gtk-3.0/settings.ini
 
 # NVIM
 !/.config/nvim
