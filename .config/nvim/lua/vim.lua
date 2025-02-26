@@ -78,3 +78,10 @@ vim.cmd([[
     highlight NormalFloat guibg=#1f2335
     highlight FloatBorder guifg=#737aa2 guibg=#1f2335
 ]])
+
+-- Set the *.blade.php file to be filetype of blade
+vim.cmd([[
+augroup BladeFiltypeRelated
+  au BufNewFile,BufRead *.blade.php set ft=blade
+augroup END
+]])

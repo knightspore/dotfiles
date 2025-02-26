@@ -5,6 +5,7 @@ local noremap = { noremap = true }
 local silentnoremap = { noremap = true, silent = true }
 
 map('i', 'jj', '<Esc>', silentnoremap)                                              -- JJ -> Esc
+map('t', 'jj', '<C-\\><C-n>', silentnoremap)                                        -- JJ -> Esc in Terminal
 
 map('n', '<leader>w', ':NERDTreeToggle<CR>', silentnoremap)                         -- Open NERDTree
 map('n', '<leader><S-w>', ':NERDTreeFind<CR>', silentnoremap)                       -- Open NERDTree on current file
