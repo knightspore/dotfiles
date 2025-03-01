@@ -79,9 +79,9 @@ vim.cmd([[
     highlight FloatBorder guifg=#737aa2 guibg=#1f2335
 ]])
 
--- Set the *.blade.php file to be filetype of blade
-vim.cmd([[
-augroup BladeFiltypeRelated
-  au BufNewFile,BufRead *.blade.php set ft=blade
-augroup END
-]])
+-- Set the *.blade.php file to be filetype of html
+vim.api.nvim_create_autocmd('BufEnter', {
+    desc = 'Convert blade filetype to html',
+    pattern = '*.blade.php',
+    command = 'set filetype=html',
+})
