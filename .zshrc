@@ -119,8 +119,7 @@ export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
 export PATH="/opt/homebrew/opt/util-linux/sbin:$PATH"
 
 # fnm
-FNM_PATH="/home/c/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/c/.local/share/fnm:$PATH"
-  eval "`fnm env`"
+if [ -d "$HOME/.local/share/fnm" ]; then
+  export PATH="$HOME/.local/share/fnm:$PATH"
+  eval "$(fnm env)"
 fi
