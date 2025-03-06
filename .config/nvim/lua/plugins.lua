@@ -7,7 +7,7 @@ return require('packer').startup(function(use)
         requires = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim', opts = { ensure_installed = { "gopls" } } },
+            { 'williamboman/mason.nvim',          opts = { ensure_installed = { "gopls" } } },
             { 'williamboman/mason-lspconfig.nvim' },
             -- Autocompletion
             { 'hrsh7th/nvim-cmp' },
@@ -66,4 +66,23 @@ return require('packer').startup(function(use)
         end
     }
     use 'tikhomirov/vim-glsl'
+    -- Debug Adapter Protocol
+    use "mfussenegger/nvim-dap"
+    use { 'jay-babu/mason-nvim-dap.nvim', opts = {
+        handlers = {},
+        automatic_installation = { exclude = { "delve" } },
+        ensure_installed = { "bash", "codelldb", "php", "python", "node", "typescript" },
+        requires = { "mfussenegger/nvim-dap", "williamboman/mason.nvim" }
+    } }
+    use { 'theHamsta/nvim-dap-virtual-text', requires = { 'mfussenegger/nvim-dap' } }
+    use {
+        "rcarriga/nvim-dap-ui",
+        requires = {
+            "jay-babu/mason-nvim-dap.nvim",
+            "leoluz/nvim-dap-go",
+            "mfussenegger/nvim-dap-python",
+            "nvim-neotest/nvim-nio",
+            "theHamsta/nvim-dap-virtual-text",
+        },
+    }
 end)

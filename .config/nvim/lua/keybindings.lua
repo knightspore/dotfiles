@@ -54,3 +54,9 @@ map('n', '<leader>g', ':Gen ', {})                                              
 
 map('n', '<leader><S-a><S-i>', ':Copilot enable<CR>', {})                           -- Copilot Enable
 map('n', '<leader>ai', ':Copilot disable<CR>', {})                                  -- Copilot Disable
+
+map('n', '<leader>db' , ':lua require("dap").toggle_breakpoint()<CR>', {})          -- DAP: Toggle Breakpoint
+map('n', '<leader>dc' , ':lua require("dap").continue()<CR>', {})                   -- DAP: Continue
+map('n', '<leader>dC' , ':lua require("dap").run_to_cursor()<CR>', {})              -- DAP: Run to Cursor
+map('n', '<leader>dT' , ':lua require("dap").terminate()<CR>', {})                  -- DAP: Terminate
+map('n', '<leader>du' , ':lua require("dapui").toggle()<CR>', {})                   -- DAP: Toggle UI

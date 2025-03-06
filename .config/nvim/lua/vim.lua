@@ -85,3 +85,10 @@ vim.api.nvim_create_autocmd('BufEnter', {
     pattern = '*.blade.php',
     command = 'set filetype=html',
 })
+
+-- Set filetype to nginx if path is `*/server_config/*`
+vim.api.nvim_create_autocmd('BufEnter', {
+    desc = 'Set filetype to nginx',
+    pattern = '*/server_config/*',
+    command = 'set filetype=nginx',
+})
