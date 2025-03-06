@@ -65,6 +65,7 @@
 !/.config/nvim/lua/plugins/treesitter.lua
 !/.config/nvim/lua/plugins/lsp.lua
 !/.config/nvim/lua/plugins/gen.lua
+!/.config/nvim/lua/plugins/dap.lua
 
 # polybar
 !/.config/polybar
