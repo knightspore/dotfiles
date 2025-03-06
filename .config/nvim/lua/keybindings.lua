@@ -60,3 +60,8 @@ map('n', '<leader>dc' , ':lua require("dap").continue()<CR>', {})               
 map('n', '<leader>dC' , ':lua require("dap").run_to_cursor()<CR>', {})              -- DAP: Run to Cursor
 map('n', '<leader>dT' , ':lua require("dap").terminate()<CR>', {})                  -- DAP: Terminate
 map('n', '<leader>du' , ':lua require("dapui").toggle()<CR>', {})                   -- DAP: Toggle UI
+
+map('n', '<leader>b', ":copen<CR>", {})                                                     -- Open Quickfix
+map('n', '<leader>B', ":cclose<CR>", {})                                                    -- Close Quickfix
+map('n', '[e', ":cp<CR>", {})                                                       -- Next Error
+map('n', ']e', ":cn<CR>", {})                                                       -- Prev Error

@@ -66,6 +66,7 @@ return require('packer').startup(function(use)
         end
     }
     use 'tikhomirov/vim-glsl'
+    use 'jremmen/vim-ripgrep'
     -- Debug Adapter Protocol
     use "mfussenegger/nvim-dap"
     use { 'jay-babu/mason-nvim-dap.nvim', opts = {
