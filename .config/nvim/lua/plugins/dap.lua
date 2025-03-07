@@ -34,7 +34,7 @@ dap.configurations.javascriptreact = { -- change this to javascript if needed
     }
 }
 
-dap.configurations.typescriptreact = { -- change to typescript if needed
+dap.configurations.typescript = { -- change to typescript if needed
     {
         type = "chrome",
         request = "attach",
