@@ -1,10 +1,21 @@
-local icons = require("nvim-nonicons")
-icons.setup({})
+-- local icons = require("nvim-nonicons")
+-- icons.setup({})
+local open_with_trouble = require('trouble.sources.telescope').open
+local add_to_trouble = require("trouble.sources.telescope").add
 require('telescope').setup({
     defaults = {
-        prompt_prefix = "  " .. icons.get("telescope") .. "  ",
+        mappings = {
+            i = {
+                ["<C-b>"] = open_with_trouble,
+                ["<C-B>"] = add_to_trouble,
+            },
+            n = {
+                ["<C-b>"] = open_with_trouble,
+                ["<C-B>"] = add_to_trouble,
+            },
+        },
+        -- prompt_prefix = "  " .. icons.get("telescope") .. "  ",
         selection_caret = "❯ ",
-        entry_prefix = "  ",
         sorting_strategy = "descending",
     },
 })
