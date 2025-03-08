@@ -16,7 +16,10 @@ source $ZSH/oh-my-zsh.sh
 
 ## Prompt
 
-PROMPT='%F{blue}[%T]%f %F{magenta}%n%F{blue}@%f%F{magenta}%~%f %F{green}❯%f '
+PT='%(?.%F{blue}[%T].%F{magenta}[%T])%f' # Time
+PD='%F{magenta}%~%f' # Directory
+PS='%(?.%F{green}$.%F{magenta}$)%f' # Formatted Prompt
+PROMPT='${PT} ${PD} ${PS} '
 
 # ---
 
@@ -93,16 +96,6 @@ export PATH="/Users/c/Developer/stack/.bin:$PATH"
 ## Composer
 
 export PATH="/Users/c/.composer/vendor/bin:$PATH"
-
-## PHPActor
-
-# export PATH="/Users/c/.local/bin:$PATH"
-
-## Ruby
-
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-
-export PATH="/opt/homebrew/bin:$PATH"
 
 ## FZF
 
