@@ -42,6 +42,7 @@ fi
 alias c=clear
 alias cat="bat"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias cfg="config"
 alias dl="cd ~/Downloads; clear; ls -a"
 alias dsk="cd ~/Desktop/ && l"
 alias dev="cd ~/Developer/ && l"
@@ -123,3 +124,6 @@ if [ -d "$HOME/.local/share/fnm" ]; then
   export PATH="$HOME/.local/share/fnm:$PATH"
   eval "$(fnm env)"
 fi
+
+# bun completions
+[ -s "/Users/c/.bun/_bun" ] && source "/Users/c/.bun/_bun"

@@ -7,6 +7,7 @@ font-size = 14
 cursor-style = block
 background-opacity = 0.9
 window-decoration = none
+window-step-resize = true
 # adjust-cell-height = 50%
 
 # Catppuccin
