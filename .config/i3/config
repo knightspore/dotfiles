@@ -9,7 +9,7 @@ smart_borders on
 focus_follows_mouse no
 gaps inner 0
 smart_gaps on
-font pango:DepartureMonoNerdFontMono bold 10
+font pango:VictorMonoNerdFontMono bold 10
 
 for_window [title="File Transfer*"] floating enable
 for_window [title="UniChom*"] floating enable
@@ -38,7 +38,6 @@ exec --no-startup-id killall kdeconnect-indicator; kdeconnect-indicator
 exec --no-startup-id tailscale-systray 
 exec --no-startup-id killall polybar; polybar -r main
 
-
 ##
 ## Key Bindings
 ##
@@ -55,7 +54,7 @@ bindsym $mod+minus exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec ghostty
 bindsym $mod+f exec pcmanfm
 bindsym $mod+Shift+q kill
 bindsym $mod+space exec rofi -show run

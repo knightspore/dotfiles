@@ -36,23 +36,26 @@
 
 [bar/main]
 width = 100%
-height = 16pt
-background = ${colors.base}
+height = 14pt
+background = ${colors.crust}
 foreground = ${colors.text}
 
 line-size = 2pt
 border-size = 0pt
-border-color = #00000000
 
 padding-left = 0
+padding-top = 1
 padding-right = 1
 module-margin = 1
 
-font-0 = DepartureMonoNerdFontMono:weight=regular:fontformat=opentype:size=11:antialias=true;1
+separator = "%{F#313244}┊%{F-}"
+
+font-0 = VictorMonoNerdFontPropo:weight=regular:fontformat=opentype:scale=1.2:size=12:antialias=true;2
 font-1 = Weather Icons:style=regular:size=10;2
-font-2 = Noto Color Emoji:style=regular:scale=8:size=8;3
+
 modules-left = xworkspaces xwindow
-modules-right = date mediaplayer openweathermap cpu temperature memory wlan eth filesystem Slem1000 Slem2000 Storage pulseaudio battery powermenu
+modules-right = date openweathermap mediaplayer cpu memory wlan eth filesystem Slem1000 Slem2000 Storage pulseaudio battery powermenu
+
 cursor-click = pointer
 cursor-scroll = ns-resize
 enable-ipc = true
@@ -68,42 +71,36 @@ type = internal/xworkspaces
 
 label-active = %name%
 label-active-foreground = ${colors.lavender}
-label-active-underline= ${colors.mauve}
-label-active-background= ${colors.crust}
+label-active-background= ${colors.base}
 label-active-padding = 1
 
 label-occupied = %name%
 label-occupied-padding = 1
-label-occupied-foreground = ${colors.surface2}
+label-occupied-foreground = ${colors.surface0}
 
 label-urgent = %name%
 label-urgent-background = ${colors.peach}
 label-urgent-padding = 1
 
-label-empty = %name%
-label-empty-foreground = ${colors.surface2}
-label-empty-padding = 1
-
 [module/xwindow]
 type = internal/xwindow
-format-foreground = ${colors.white}
-format-background = ${colors.lavender_dim}
-format-underline = ${colors.mauve}
+format-foreground = ${colors.text}
+format-background = ${colors.mantle}
 format-padding = 1
-label = %title%
+label = %instance%
 label-maxlen = 32
 
 [module/date]
 type = internal/date
 interval = 1
-date = %H:%M %p - %d %b %y
-label-foreground = ${colors.surface2}
+date = %H:%M %d/%m/%Y
+label-foreground = ${colors.text}
 label = %date%
 
 [module/mediaplayer]
 type = custom/script
 format-foreground= ${colors.blue}
-exec = /home/c/.config/polybar/scripts/player.py -f '{icon} {artist} - {:t20:{title}:} {position}/{fmt-length}'
+exec = /home/c/.config/polybar/scripts/player.py -f '{icon} {artist} - {:t8:{title}:} {position}/{fmt-length}'
 tail = true
 click-left = /home/c/.config/polybar/scripts/player.py play-pause &
 click-right = /home/c/.config/polybar/scripts/player.py previous &
@@ -125,12 +122,12 @@ format-disconnected = <label-disconnected>
 [module/wlan]
 inherit = network-base
 interface-type = wireless
-label-connected = %local_ip% %{F#585b70}@%{F-} %netspeed%
+label-connected =  %essid% %{F#313244}@%{F-}  %upspeed%  %downspeed% 
 
 [module/eth]
 inherit = network-base
 interface-type = wired
-label-connected = %ifname% %signal%% (%local_ip%)
+label-connected = 󰈀 %ifname% %signal%% (%local_ip%)
 
 [module/filesystem]
 type = internal/fs
@@ -148,7 +145,7 @@ interval = 25
 
 mount-0 = /run/media/c/Slem1000
 
-label-mounted = %{F#cba6f7}Slem1000%{F-} %free%
+label-mounted = %{F#cba6f7}S1K%{F-} %free%
 label-unmounted = 
 
 [module/Slem2000]
@@ -157,7 +154,7 @@ interval = 25
 
 mount-2 = /run/media/c/Slem2000
 
-label-mounted = %{F#cba6f7}Slem2000%{F-} %free%
+label-mounted = %{F#cba6f7}S2K%{F-} %free%
 label-unmounted = 
 
 [module/Storage]
@@ -172,28 +169,22 @@ label-unmounted =
 [module/cpu]
 type = internal/cpu
 interval = 2
-label = %percentage:2%% 
-
-[module/temperature]
-type = internal/temperature
-interval = 0.5
-label= %temperature-c%
-hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input
+label =  %percentage:2%% 
 
 [module/memory]
 type = internal/memory
 interval = 2
-label = %gb_free%
+label =  %gb_used%/%gb_total%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume-prefix = "🔊 "
+format-volume-prefix = " "
 format-volume = <label-volume>
 
 label-volume = %percentage%%
 
-label-muted = muted
+label-muted = 
 label-muted-foreground = ${colors.maroon}
 
 [module/battery]
@@ -210,57 +201,20 @@ label-low = BAT%{F#585b70} ! %{F-}%percentage%%
 
 [module/powermenu]
 type = custom/menu
-
 expand-right = true
-
 format-spacing = 1
-
 label-open = ""
-label-open-foreground = ${colors.urgent}
-label-close = [ cancel]
-label-close-foreground = ${colors.success}
-label-separator = |
-label-separator-foreground = ${colors.foreground}
+label-close = 
 
 ;Powermenu
-menu-0-0 = "[Reboot] "
-menu-0-0-exec = menu-open-1
-menu-0-0-foreground = ${colors.urgent}
+menu-0-0 = "󰜉 Reboot"
+menu-0-0-exec = systemctl reboot
+menu-0-0-foreground = ${colors.peach}
 
-menu-0-1 = "[Power Off]"
-menu-0-1-exec = menu-open-2
-menu-0-1-foreground = ${colors.urgent}
-
-menu-0-2 = "[Hibernate]"
-menu-0-2-exec = menu-open-3
-menu-0-2-foreground = ${colors.warning}
-
-;Reboot
-menu-1-0 = "[Cancel] "
-menu-1-0-exec = menu-open-0
-menu-1-0-foreground = ${colors.success}
-menu-1-1 = "Reboot"
-menu-1-1-exec = systemctl reboot
-menu-1-1-foreground = ${colors.urgent}
-
-;Shutdown
-menu-2-0 = "Power off"
-menu-2-0-exec = systemctl poweroff
-menu-2-0-foreground = ${colors.urgent}
-menu-2-1 = "Cancel "
-menu-2-1-exec = menu-open-0
-menu-2-1-foreground = ${colors.success}
-
-;Hibernate
-menu-3-0 = "Hibernate "
-menu-3-0-exec = systemctl hibernate
-menu-3-0-foreground = ${colors.urgent}
-menu-3-1 = "Cancel"
-menu-3-1-exec = menu-open-0
-menu-3-1-foreground = ${colors.success}
+menu-0-1 = "⏻ Power Off"
+menu-0-1-exec = systemctl poweroff
+menu-0-1-foreground = ${colors.red}
 
 [settings]
 screenchange-reload = true
 pseudo-transparency = true
-
-; vim:ft=dosini
