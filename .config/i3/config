@@ -26,7 +26,8 @@ for_window [class="(?i)System-config-printer.py"] floating enable border normal
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id xautolock -time 120 -locker blurlock
-exec --no-startup-id nitrogen --restore; sleep 1; picom -C -b
+exec --no-startup-id nitrogen --restore; 
+exec --no-startup-id picom -b;
 exec --no-startup-id setxkbmap -option caps:escape
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nm-applet
