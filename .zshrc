@@ -85,7 +85,6 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="/Users/c/.bun/bin:$PATH"
 
 ## Tripco TL
 
@@ -125,5 +124,3 @@ if [ -d "$HOME/.local/share/fnm" ]; then
   eval "$(fnm env)"
 fi
 
-# bun completions
-[ -s "/Users/c/.bun/_bun" ] && source "/Users/c/.bun/_bun"
