@@ -1,9 +1,8 @@
 -- VIM Settings
 vim.g.mapleader = " "
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+-- Grouped settings 
+
 vim.cmd(":set nowrap")
 
 vim.opt.expandtab = true
@@ -16,9 +15,9 @@ vim.opt.numberwidth = 1
 
 vim.opt.undodir = os.getenv("HOME") .. '/.vim/undodir'
 vim.opt.undofile = true
+vim.opt.undolevels = 5000
 
 vim.opt.scrolloff = 8
-vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.updatetime = 250
@@ -31,64 +30,18 @@ vim.cmd(":set list")
 -- tab, space, eol, trail
 vim.cmd(":set listchars=tab:»·,trail:-,space:·,")
 
--- Wrap Markdown
-vim.cmd([[
-augroup Markdown
-  autocmd!
-    autocmd FileType markdown set wrap
-    augroup END
-]])
+-- Autocommands for file association
+local autocmds = {
+    { 'Markdown', '*.md', 'set wrap' },
+    { 'GLSL', '*.vs,*.fs', 'set ft=glsl' },
+    { 'Blade', '*.blade.php', 'set ft=html' },
+    { 'Nginx', '*/server_config/*', 'set ft=nginx' },
+}
 
--- Associate .vs, .fs with .glsl
-vim.cmd([[
-augroup GLSL
-    autocmd!
-    autocmd BufNewFile,BufRead *.vs,*.fs set ft=glsl
-    augroup END
-]])
-
--- Function to open a Telescope-like floating terminal
-function _G.open_floating_terminal()
-    local width = 100
-    local height = 30
-    local col = math.floor((vim.o.columns - width) / 2)
-    local row = math.floor((vim.o.lines - height) / 2)
-
-    local buf = vim.api.nvim_create_buf(false, true)
-    local win = vim.api.nvim_open_win(buf, true, {
-        relative = 'editor',
-        width = width,
-        height = height,
-        col = col,
-        row = row,
-        style = 'minimal',
-        border = 'rounded',
+for _, autocmd in ipairs(autocmds) do
+    vim.api.nvim_create_autocmd('BufEnter', {
+        desc = 'Set filetype to ' .. autocmd[1],
+        pattern = autocmd[2],
+        command = autocmd[3],
     })
-
-    -- vim.api.nvim_win_set_option(win, 'winhl', 'NormalFloat:NormalFloat,BorderFloat:FloatBorder')
-    vim.api.nvim_command('terminal')
-    vim.api.nvim_command('startinsert')
 end
-
--- Map <leader>t to open the floating terminal
-vim.api.nvim_set_keymap('n', '<leader><S-t>', ':lua open_floating_terminal()<CR>', { noremap = true, silent = true })
-
--- Set up highlight groups for the floating window
-vim.cmd([[
-    highlight NormalFloat guibg=#1f2335
-    highlight FloatBorder guifg=#737aa2 guibg=#1f2335
-]])
-
--- Set the *.blade.php file to be filetype of html
-vim.api.nvim_create_autocmd('BufEnter', {
-    desc = 'Convert blade filetype to html',
-    pattern = '*.blade.php',
-    command = 'set filetype=html',
-})
-
--- Set filetype to nginx if path is `*/server_config/*`
-vim.api.nvim_create_autocmd('BufEnter', {
-    desc = 'Set filetype to nginx',
-    pattern = '*/server_config/*',
-    command = 'set filetype=nginx',
-})
