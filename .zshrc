@@ -62,6 +62,7 @@ alias vimcnf="nvim ~/.config/nvim/init.lua"
 alias zshcnf="nvim ~/.zshrc"
 alias alacnf="nvim ~/.config/alacritty/alacritty.toml"
 alias ghocnf="nvim ~/.config/ghostty/config"
+alias tmucnf="nvim ~/.tmux.conf"
 alias nvm="fnm"
 
 ## Git
