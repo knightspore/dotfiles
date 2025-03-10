@@ -1,5 +1,5 @@
--- local icons = require("nvim-nonicons")
--- icons.setup({})
+local icons = require("nvim-nonicons")
+icons.setup({})
 local open_with_trouble = require('trouble.sources.telescope').open
 local add_to_trouble = require("trouble.sources.telescope").add
 require('telescope').setup({
