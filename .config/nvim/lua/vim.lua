@@ -4,6 +4,9 @@ vim.g.mapleader = " "
 -- Grouped settings 
 
 vim.cmd(":set nowrap")
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 
 vim.opt.expandtab = true
 vim.opt.autoindent = true
