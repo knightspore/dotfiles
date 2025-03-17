@@ -1,3 +1,4 @@
+# zmodload zsh/zprof;
 # ZSH Config
 
 export ZSH="$HOME/.oh-my-zsh"
@@ -11,6 +12,9 @@ plugins=(
   git
   git-prompt
 )
+
+# Autocomplete
+zstyle ':autocomplete:*' min-input 3
 
 source $ZSH/oh-my-zsh.sh
 
@@ -47,11 +51,8 @@ alias cat="bat"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias cfg="config"
 alias dl="cd ~/Downloads; clear; ls -a"
-alias dsk="cd ~/Desktop/ && l"
-alias dev="cd ~/Developer/ && l"
+alias dsk="cd ~/Desktop/"
 alias dev="cd ~/Developer"
-alias l="clear && ls -a"
-alias sizes="dust -d 1 ."
 alias rgf='rg --files | rg'
 alias d1="/run/media/c/Slem1000/"
 alias d2="/run/media/c/Slem2000/"
@@ -68,15 +69,9 @@ alias sys="sudo systemctl"
 
 ## Git
 
-alias glp="git log --pretty=oneline"
-alias gdc="git diff --cached"
 alias gdt="git difftool --tool=nvimdiff"
 alias gdtc="git difftool --tool=nvimdiff --cached"
-alias gdw="git diff --word-diff"
-alias gdwc="git diff --word-diff --cached"
-alias gst="git status"
 alias gundo="git reset HEAD~1"
-alias gbhist='git branch --format="%(refname:short) %(committerdate:relative)"'
 
 # ---
 
@@ -119,3 +114,4 @@ if [ -d "$HOME/.local/share/fnm" ]; then
   eval "$(fnm env)"
 fi
 
+# zprof
