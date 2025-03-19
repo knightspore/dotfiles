@@ -85,6 +85,11 @@
 /.config/rofi/*
 !/.config/rofi/config.rasi
 
+# skhd
+!/.config/skhd
+/.config/skhd/*
+!/.config/skhd/skhdrc
+
 # vimrc
 !/.vim/
 /.vim/*
@@ -101,6 +106,11 @@
 !/.config/redshift
 /.config/redshift/*
 !/.config/redshift/redshift.conf
+
+# yabai
+!/.config/yabai
+/.config/yabai/*
+!/.config/yabai/yabairc
 
 # .zsh/
 !/.zsh/

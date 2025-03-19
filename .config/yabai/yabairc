@@ -1,0 +1,40 @@
+# Variables
+
+# Layout
+yabai -m config layout bsp
+
+# Set all padding and gaps to 20pt (default: 0)
+yabai -m config top_padding    10
+yabai -m config bottom_padding 10
+yabai -m config left_padding   10
+yabai -m config right_padding  10
+yabai -m config window_gap     10
+
+# Key Bindings
+yabai -m config mouse_modifier cmd
+
+# Window behavior
+yabai -m config window_placement second_child   # New windows spawn to the right/bottom
+yabai -m config window_topmost off              # Don't make windows always on top
+yabai -m config window_shadow on                # Show window shadows
+yabai -m config window_opacity off              # Set window opacity
+yabai -m config window_opacity_duration 0.0     # Duration of opacity change
+yabai -m config active_window_opacity 1.0       # Opacity of focused window
+yabai -m config normal_window_opacity 0.9       # Opacity of unfocused window
+yabai -m config window_border on               # Window borders
+yabai -m config window_border_width 2           # Border width
+yabai -m config active_window_border_color 0xff89b4fa  # Catppuccin blue color for active window
+yabai -m config normal_window_border_color 0xff1e1e2e  # Border for inactive windows
+
+# Mouse functionality
+yabai -m config mouse_follows_focus off         # Mouse doesn't follow focus
+yabai -m config focus_follows_mouse off         # Focus doesn't follow mouse
+yabai -m config mouse_action1 move              # Drag with cmd to move
+yabai -m config mouse_action2 resize            # Drag with cmd+shift to resize
+yabai -m config mouse_drop_action swap          # Dropping swaps windows
+
+# App exclusions (apps to ignore)
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^System Information$" manage=off

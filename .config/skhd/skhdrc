@@ -1,0 +1,28 @@
+# Resize focused window with Shift+Alt+{h,j,k,l}
+shift + alt - h : yabai -m window --resize left:-20:0 || yabai -m window --resize right:-20:0
+shift + alt - j : yabai -m window --resize bottom:0:20 || yabai -m window --resize top:0:20
+shift + alt - k : yabai -m window --resize top:0:-20 || yabai -m window --resize bottom:0:-20
+shift + alt - l : yabai -m window --resize right:20:0 || yabai -m window --resize left:20:0
+
+# Focus windows
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+# Swap window positions with Ctrl+Shift+Alt+{h,j,k,l}
+ctrl + shift + alt - h : yabai -m window --swap west
+ctrl + shift + alt - j : yabai -m window --swap south
+ctrl + shift + alt - k : yabai -m window --swap north
+ctrl + shift + alt - l : yabai -m window --swap east
+
+# Cycle through layouts (bsp, stack, float)
+shift + alt - space : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" elif .type == "stack" then "float" else "bsp" end')
+
+# Predefined layouts
+shift + alt - b : yabai -m space --layout bsp
+shift + alt - s : yabai -m space --layout stack
+shift + alt - f : yabai -m space --layout float
+
+# Restart yabai
+shift + alt + cmd - r : yabai --restart-service
