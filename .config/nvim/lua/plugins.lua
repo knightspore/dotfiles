@@ -85,4 +85,6 @@ return require('packer').startup(function(use)
             "theHamsta/nvim-dap-virtual-text",
         },
     }
+    use "folke/which-key.nvim"
+    use "tpope/vim-surround"
 end)

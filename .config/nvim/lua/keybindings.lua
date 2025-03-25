@@ -28,8 +28,8 @@ map('n', '<C-j>', ':resize -2<CR>', silentnoremap)                              
 map('n', '<C-h>', ':vertical resize +2<CR>', silentnoremap)                         -- Pane Left
 map('n', '<C-l>', ':vertical resize -2<CR>', silentnoremap)                         -- Pane Right
 
-map('n', '[t', ':tabnext<CR>', silentnoremap)                                       -- Tab Next
-map('n', ']t', ':tabprev<CR>', silentnoremap)                                       -- Tab Prev
+map('n', ']t', ':tabnext<CR>', silentnoremap)                                       -- Tab Next
+map('n', '[t', ':tabprev<CR>', silentnoremap)                                       -- Tab Prev
 
 map('v', "J", ":m '>+1<CR>gv=gv", {})                                               -- Move Selection Up
 map('v', "K", ":m '<-2<CR>gv=gv", {})                                               -- Move Selection Down
@@ -42,7 +42,9 @@ map('v', "<leader>y", "\"+y", {})                                               
 map('n', "<leader>Y", "\"+Y", {})                                                   -- Copy to System Clipboard
 
 map('n', 'gr', ":Trouble lsp_references<CR>", {})                                   -- LSP References
+map('n', 'gd', ":Trouble lsp_definitions<CR>", {})                                  -- LSP Definitions
 map('n', 'gD', ":Trouble diagnostics<CR>", {})                                      -- LSP Diagnostics
+map('n', '<leader>t', ":Trouble ", {})                                              -- Trouble open command
 
 map('n', '<leader><S-g>', ':G ', {})                                                -- Git open command
 
