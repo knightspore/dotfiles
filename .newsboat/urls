@@ -1,26 +1,18 @@
 # Tech News
-http://techcrunch.com/feed/                                   news
-https://www.wired.com/feed/category/backchannel/latest/rss    news thought
-https://feeds.arstechnica.com/arstechnica/technology-lab      news
-https://www.404media.co/rss/
+https://www.wired.com/feed/category/backchannel/latest/rss  news 
+https://www.404media.co/rss/                                news
+https://www.bellingcat.com/feed                             news
+https://www.theverge.com/rss/index.xml                      news
+https://rss.iol.io/extended/iol/news                        news
+https://groundup.org.za/sitenews/atom_full/                 news
+https://www.sars.gov.za/feed/?post_type=latest_news         news
 
 # Coding Blogs etc
-https://timdaub.github.io/atom.xml                            blog thought crypto
-https://matthewmcateer.me/rss.xml                             blog ai crypto 
-https://levels.io/rss/                                        blog coding thought
-https://www.joshwcomeau.com/rss.xml                           blog design uxui javascript
-https://overreacted.io/rss.xml                                blog javascript coding 
-https://flaviocopes.com/index.xml                             blog javascript coding
-https://www.emgoto.com/rss.xml                                blog uxui design
-https://kentcdodds.com/blog/rss.xml                           blog react coding javascript
-https://steve-yegge.blogspot.com/atom.xml                     blog
-https://jovicailic.org/feed/                                  blog coding
-https://machinelearningmastery.com/feed/                      blog ai
-https://whitep4nth3r.com/feed.xml                             blog coding uxui
-
-# Thought / Interest
-http://lesswrong.com/.rss                                     thought philosophy forum
-https://www.bellingcat.com/feed                               news thought politics
-https://twobithistory.org/feed.xml                            coding history reading
-https://ciaran.co.za/rss.xml
-https://news.ycombinator.com/rss                              news forum
+https://www.joshwcomeau.com/rss.xml                         blog
+https://flaviocopes.com/index.xml                           blog
+https://www.emgoto.com/rss.xml                              blog
+https://kentcdodds.com/blog/rss.xml                         blog
+https://jovicailic.org/feed/                                blog
+https://whitep4nth3r.com/feed.xml                           blog
+https://ciaran.co.za/rss.xml                                blog
+https://rachelbythebay.com/w/atom.xml                       blog
