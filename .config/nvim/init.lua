@@ -21,76 +21,102 @@ vim.opt.cursorline = true
 vim.opt.termguicolors = true
 vim.optlist = true
 vim.opt.listchars = { tab = "»·", trail = "-", space = "·", eol = "$" }
+vim.o.termguicolors = true
+vim.g.airline_powerline_fonts = 1
+vim.g.airline_theme = 'catppuccin'
+
+vim.keymap.set('i', 'jj', '<Esc>')                             -- JJ -> Esc
+vim.keymap.set('n', '<leader>s', ':w<CR>')                     -- Save file
+vim.keymap.set('n', '<leader>q', ':q<CR>')                     -- Quit
+vim.keymap.set('n', '<leader>z', ':set wrap!<CR>')             -- Toggle Wrap
+vim.keymap.set('n', ']t', ':tabnext<CR>')                      -- Tab Next
+vim.keymap.set('n', '[t', ':tabprev<CR>')                      -- Tab Prev
+vim.keymap.set('n', "n", "nzzzv")                              -- Center Next Search
+vim.keymap.set('n', "N", "Nzzzv")                              -- Center Prev Search
+vim.keymap.set('n', '<leader>b', ":Trouble qflist toggle<CR>") -- Open Quickfix
+vim.keymap.set('n', '[e', ":cp<CR>")                           -- Next Error
+vim.keymap.set('n', ']e', ":cn<CR>")                           -- Prev Error
+vim.keymap.set('n', "<leader>y", "\"+y")                       -- Copy to System Clipboard
+vim.keymap.set('v', "<leader>y", "\"+y")                       -- Copy to System Clipboard
+vim.keymap.set('n', "<leader>Y", "\"+Y")                       -- Copy to System Clipboard
 
 -- PLUGINS
 require('packer').startup(function(use)
     -- Base
     use 'wbthomason/packer.nvim'
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        requires = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim',          opts = { ensure_installed = { "gopls" } } },
-            { 'williamboman/mason-lspconfig.nvim' },
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-            { 'L3MON4D3/LuaSnip' },
-            { 'rafamadriz/friendly-snippets' },
-        }
-    }
+    use { 'VonHeikemen/lsp-zero.nvim', branch = 'v2.x', requires = {
+        -- LSP Support
+        { 'neovim/nvim-lspconfig' },
+        { 'williamboman/mason.nvim',          opts = { ensure_installed = { "gopls" } } },
+        { 'williamboman/mason-lspconfig.nvim' },
+        -- Autocompletion
+        { 'hrsh7th/nvim-cmp' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' },
+        { 'saadparwaiz1/cmp_luasnip' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-nvim-lua' },
+        { 'L3MON4D3/LuaSnip' },
+        { 'rafamadriz/friendly-snippets' },
+    } }
 
     -- Visual
-    use { "catppuccin/nvim", as = "catppuccin" }
+    use { "catppuccin/nvim", as = "catppuccin", config = function()
+        require("catppuccin").setup({
+            flavour = "mocha",
+            transparent_background = true,
+            styles = { comments = { "italic" } },
+            integrations = {
+                cmp = true,
+                fzf = true,
+                gitsigns = true,
+                markdown = true,
+                mason = true,
+                treesitter = true,
+                lsp_trouble = true,
+                telescope = { enabled = true },
+            },
+        })
+        vim.cmd.colorscheme "catppuccin"
+    end }
     use 'bling/vim-airline'
     use 'vim-airline/vim-airline-themes'
-    use 'brenoprata10/nvim-highlight-colors'
-    use 'kyazdani42/nvim-web-devicons'
-    use 'yamatsum/nvim-nonicons'
-    use 'tiagofumo/vim-nerdtree-syntax-highlight'
+    use { 'brenoprata10/nvim-highlight-colors', config = function() require('nvim-highlight-colors').setup({ enable_tailwind = true }) end }
 
     -- Utilities
-    use 'junegunn/fzf'
     use "nvim-lua/plenary.nvim"
-    use { 'nvim-telescope/telescope.nvim', tag = '0.1.2' }
-    use { 'nvim-telescope/telescope-ui-select.nvim' }
+    use 'jremmen/vim-ripgrep'
+    use "folke/which-key.nvim"
+    use "tpope/vim-surround"
+    use { 'nvim-telescope/telescope.nvim', tag = '0.1.8' }
+    use 'nvim-telescope/telescope-ui-select.nvim'
     use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use "nvim-treesitter/nvim-treesitter-context"
-    use 'preservim/nerdtree'
-    use 'tpope/vim-fugitive'
-    use 'github/copilot.vim'
-    use {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end
-    }
+    use { 'preservim/nerdtree', config = function()
+        vim.keymap.set('n', '<leader>w', ':NERDTreeToggle<CR>', {})   -- Open NERDTree
+        vim.keymap.set('n', '<leader><S-w>', ':NERDTreeFind<CR>', {}) -- Open NERDTree on current file
+    end }
+    use { 'tpope/vim-fugitive', config = function() vim.keymap.set('n', '<leader><S-g>', ':G ', {}) end }
+    use { 'github/copilot.vim', config = function()
+        vim.g.copilot_assume_mapped = true
+        vim.keymap.set('n', '<leader>ai', ':Copilot disable<CR>', {})        -- Copilot Disable
+        vim.keymap.set('n', '<leader><S-a><S-i>', ':Copilot enable<CR>', {}) -- Copilot Enable
+    end }
+    use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
     use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
-    use 'akinsho/git-conflict.nvim'
-    use 'David-Kunz/gen.nvim'
-    use {
-        'fei6409/log-highlight.nvim',
-        config = function()
-            require('log-highlight').setup {
-                extension = "log"
-            }
-        end,
-    }
-    use {
-        'folke/trouble.nvim',
-        config = function()
-            require('trouble').setup {}
-        end
-    }
-    use 'tikhomirov/vim-glsl'
-    use 'jremmen/vim-ripgrep'
+    use { 'David-Kunz/gen.nvim', config = function()
+        require('gen').setup({
+            model = "deepseek-r1:8b",
+            display_mode = "split",
+            show_model = true,
+            show_prompt = true,
+            no_auto_close = true,
+        })
+        vim.keymap.set('n', '<leader>g', ':Gen ', {}) -- Launch Gen LLM
+    end }
+    use { 'fei6409/log-highlight.nvim', config = function() require('log-highlight').setup { extension = "log" } end }
+    use { 'folke/trouble.nvim', config = function() require('trouble').setup {} end }
     -- Debug Adapter Protocol
     use "mfussenegger/nvim-dap"
     use { 'jay-babu/mason-nvim-dap.nvim', opts = {
@@ -100,28 +126,14 @@ require('packer').startup(function(use)
         requires = { "mfussenegger/nvim-dap", "williamboman/mason.nvim" }
     } }
     use { 'theHamsta/nvim-dap-virtual-text', requires = { 'mfussenegger/nvim-dap' } }
-    use {
-        "rcarriga/nvim-dap-ui",
-        requires = {
-            "jay-babu/mason-nvim-dap.nvim",
-            "leoluz/nvim-dap-go",
-            "mfussenegger/nvim-dap-python",
-            "nvim-neotest/nvim-nio",
-            "theHamsta/nvim-dap-virtual-text",
-        },
-    }
-    use "folke/which-key.nvim"
-    use "tpope/vim-surround"
+    use { "rcarriga/nvim-dap-ui", requires = {
+        "jay-babu/mason-nvim-dap.nvim",
+        "leoluz/nvim-dap-go",
+        "mfussenegger/nvim-dap-python",
+        "nvim-neotest/nvim-nio",
+        "theHamsta/nvim-dap-virtual-text",
+    } }
 end)
-
--- GEN
-require('gen').setup({
-    model = "deepseek-r1:8b",
-    display_mode = "split",
-    show_model = true,
-    show_prompt = true,
-    no_auto_close = true,
-})
 
 -- LSP
 local lsp_zero = require('lsp-zero')
@@ -149,9 +161,6 @@ lsp_zero.on_attach(function(client, bufnr)
                     vim.cmd("!php-cs-fixer fix --config=" .. config .. " " .. filepath)
                 end
             end,
-            json = function()
-                vim.cmd("!jq . " .. filepath .. " > " .. filepath)
-            end,
         }
 
         if commands[ft] then
@@ -168,8 +177,6 @@ lsp_zero.set_sign_icons({
     hint = ' ⚑',
     info = ' »'
 })
-
-require('lspconfig').lua_ls.setup({})
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
@@ -200,12 +207,9 @@ require('lspconfig').lua_ls.setup {
     settings = {
         Lua = {
             runtime = {
-                -- Tell the language server which version of Lua you're using
-                -- (most likely LuaJIT in the case of Neovim)
                 version = 'LuaJIT',
             },
             diagnostics = {
-                -- Get the language server to recognize the `vim` global
                 globals = {
                     'vim',
                     'require'
@@ -215,18 +219,19 @@ require('lspconfig').lua_ls.setup {
                 -- Make the server aware of Neovim runtime files
                 library = vim.api.nvim_get_runtime_file("", true),
             },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-                enable = false,
-            },
         },
     },
 }
 
 lsp_zero.setup()
 
+vim.keymap.set('n', 'gr', ':Trouble lsp_references<CR>', {})      -- LSP References
+vim.keymap.set('n', 'gd', ':Trouble lsp_definitions<CR>', {})     -- LSP Definitions
+vim.keymap.set('n', 'gD', ':Trouble diagnostics<CR>', {})         -- LSP Diagnostics
+vim.keymap.set('n', 'gI', ':Trouble lsp_implementations<CR>', {}) -- LSP Implementations
+vim.keymap.set('n', '<leader>t', ':Trouble', {})                  -- Trouble open command
+
 local cmp = require('cmp')
-local cmp_action = lsp_zero.cmp_action()
 
 cmp.setup({
     sources = {
@@ -250,12 +255,9 @@ cmp.setup({
     formatting = lsp_zero.cmp_format({ details = true }),
 })
 
--- Copilot stuff (rebind tab)
-vim.g.copilot_assume_mapped = true
 
 vim.diagnostic.config({
     underline = true,
-    virtual_text = false, -- Disable virtual text
     update_in_insert = false,
     severity_sort = true,
     float = {
@@ -324,7 +326,7 @@ dap.configurations.c = {
 dap.adapters.php = {
     type = 'executable',
     command = 'node',
-    args = { '/Users/c/Developer/tools/vscode-php-debug/out/phpDebug.js' }
+    args = { os.getenv("HOME") .. '/Developer/tools/vscode-php-debug/out/phpDebug.js' }
 }
 
 dap.configurations.php = {
@@ -339,7 +341,7 @@ dap.configurations.php = {
 dap.adapters.chrome = {
     type = "executable",
     command = "node",
-    args = {os.getenv("HOME") .. "/path/to/vscode-chrome-debug/out/src/chromeDebug.js"} -- TODO adjust
+    args = { os.getenv("HOME") .. "/path/to/vscode-chrome-debug/out/src/chromeDebug.js" } -- TODO adjust
 }
 
 dap.configurations.javascriptreact = { -- change this to javascript if needed
@@ -369,13 +371,11 @@ dap.configurations.typescript = { -- change to typescript if needed
 }
 
 require("nvim-dap-virtual-text").setup()
-
 require("mason-nvim-dap").setup()
 
-require("dapui").setup({
-    library = { "nvim-dap-ui" },
-})
+require("dapui").setup({ library = { "nvim-dap-ui" } })
 
+vim.keymap.set('n', '<leader>d', ":Dap", {}) -- DAP... prompt
 
 -- TREESITTER
 require 'nvim-treesitter.configs'.setup {
@@ -463,8 +463,6 @@ require 'nvim-treesitter.configs'.setup {
 }
 
 -- TELESCOPE
-local icons = require("nvim-nonicons")
-icons.setup({})
 local open_with_trouble = require('trouble.sources.telescope').open
 local add_to_trouble = require("trouble.sources.telescope").add
 require('telescope').setup({
@@ -479,7 +477,6 @@ require('telescope').setup({
                 ["<C-B>"] = add_to_trouble,
             },
         },
-        -- prompt_prefix = "  " .. icons.get("telescope") .. "  ",
         selection_caret = "❯ ",
         sorting_strategy = "descending",
     },
@@ -492,112 +489,3 @@ vim.keymap.set('n', '<leader>fg', telescope.live_grep, {})
 vim.keymap.set('n', '<leader>fb', telescope.buffers, {})
 vim.keymap.set('n', '<leader>fd', telescope.diagnostics, {})
 vim.keymap.set('n', '<leader>hi', telescope.oldfiles, {})
-
--- CATPPUCCIN
-require("catppuccin").setup({
-    flavour = "mocha",
-    transparent_background = true,
-    styles = {
-        comments = { "italic" },
-    },
-    integrations = {
-        cmp = true,
-        fzf = true,
-        gitsigns = true,
-        harpoon = true,
-        markdown = true,
-        mason = true,
-        notify = true,
-        treesitter = true,
-        lsp_trouble = true,
-        telescope = {
-            enabled = true,
-        },
-    },
-})
-vim.o.termguicolors = true
-vim.cmd.colorscheme "catppuccin"
-vim.g.airline_powerline_fonts = 1
-vim.g.airline_theme = 'catppuccin'
-
--- vim-nerdtree-syntax-highlight
-
-vim.g.WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
-vim.g.WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
-
-vim.g.NERDTreeFileExtensionHighlightFullName = 1
-vim.g.NERDTreeExactMatchHighlightFullName = 1
-vim.g.NERDTreePatternMatchHighlightFullName = 1
-
-vim.g.NERDTreeHighlightFolders = 1
-vim.g.NERDTreeHighlightFoldersFullName = 1
-
--- color higlight
-require('nvim-highlight-colors').setup({
-    enable_tailwind = true,
-})
-
--- KEYBINDINGS
-local function map(kind, lhs, rhs, opts)
-    vim.api.nvim_set_keymap(kind, lhs, rhs, opts)
-end
-local noremap = { noremap = true }
-local silentnoremap = { noremap = true, silent = true }
-
-map('i', 'jj', '<Esc>', silentnoremap)                                     -- JJ -> Esc
-map('t', 'jj', '<C-\\><C-n>', silentnoremap)                               -- JJ -> Esc in Terminal
-
-map('n', '<leader>w', ':NERDTreeToggle<CR>', silentnoremap)                -- Open NERDTree
-map('n', '<leader><S-w>', ':NERDTreeFind<CR>', silentnoremap)              -- Open NERDTree on current file
-
-map('n', '<leader>s', ':w<CR>', silentnoremap)                             -- Save File
-map('n', '<leader>q', ':q<CR>', silentnoremap)                             -- Quit
-map('n', '<leader>z', ':set wrap!<CR>', silentnoremap)                     -- Toggle Wrap
-
-map('n', '<leader>h', ':wincmd h<CR>', noremap)                            -- Pane Left
-map('n', '<leader>j', ':wincmd j<CR>', noremap)                            -- Pane Down
-map('n', '<leader>k', ':wincmd k<CR>', noremap)                            -- Pane Up
-map('n', '<leader>l', ':wincmd l<CR>', noremap)                            -- Pane Right
-
-map('n', '<C-Up>', ':resize +2<CR>', silentnoremap)                        -- Pane Up
-map('n', '<C-Down>', ':resize -2<CR>', silentnoremap)                      -- Pane Down
-map('n', '<C-Left>', ':vertical resize +2<CR>', silentnoremap)             -- Pane Left
-map('n', '<C-Right>', ':vertical resize -2<CR>', silentnoremap)            -- Pane Right
-map('n', '<C-k>', ':resize +2<CR>', silentnoremap)                         -- Pane Up
-map('n', '<C-j>', ':resize -2<CR>', silentnoremap)                         -- Pane Down
-map('n', '<C-h>', ':vertical resize +2<CR>', silentnoremap)                -- Pane Left
-map('n', '<C-l>', ':vertical resize -2<CR>', silentnoremap)                -- Pane Right
-
-map('n', ']t', ':tabnext<CR>', silentnoremap)                              -- Tab Next
-map('n', '[t', ':tabprev<CR>', silentnoremap)                              -- Tab Prev
-
-map('v', "J", ":m '>+1<CR>gv=gv", {})                                      -- Move Selection Up
-map('v', "K", ":m '<-2<CR>gv=gv", {})                                      -- Move Selection Down
-
-map('n', "n", "nzzzv", {})                                                 -- Center Next Search
-map('n', "N", "Nzzzv", {})                                                 -- Center Prev Search
-
-map('n', "<leader>y", "\"+y", {})                                          -- Copy to System Clipboard
-map('v', "<leader>y", "\"+y", {})                                          -- Copy to System Clipboard
-map('n', "<leader>Y", "\"+Y", {})                                          -- Copy to System Clipboard
-
-map('n', 'gr', ":Trouble lsp_references<CR>", {})                          -- LSP References
-map('n', 'gd', ":Trouble lsp_definitions<CR>", {})                         -- LSP Definitions
-map('n', 'gD', ":Trouble diagnostics<CR>", {})                             -- LSP Diagnostics
-map('n', '<leader>t', ":Trouble ", {})                                     -- Trouble open command
-
-map('n', '<leader><S-g>', ':G ', {})                                       -- Git open command
-
-map('n', '<leader>g', ':Gen ', {})                                         -- Launch Gen LLM
-map('n', '<leader><S-a><S-i>', ':Copilot enable<CR>', {})                  -- Copilot Enable
-map('n', '<leader>ai', ':Copilot disable<CR>', {})                         -- Copilot Disable
-
-map('n', '<leader>db', ':lua require("dap").toggle_breakpoint()<CR>', {})  -- DAP: Toggle Breakpoint
-map('n', '<leader>dc', ':lua require("dap").continue()<CR>', {})           -- DAP: Continue
-map('n', '<leader>dC', ':lua require("dap").run_to_cursor()<CR>', {})      -- DAP: Run to Cursor
-map('n', '<leader>dT', ':lua require("dap").terminate()<CR>', {})          -- DAP: Terminate
-map('n', '<leader>du', ':lua require("dapui").toggle()<CR>', {})           -- DAP: Toggle UI
-
-map('n', '<leader>b', ":Trouble qflist toggle<CR>", {})                    -- Open Quickfix
-map('n', '[e', ":cp<CR>", {})                                              -- Next Error
-map('n', ']e', ":cn<CR>", {})                                              -- Prev Error
