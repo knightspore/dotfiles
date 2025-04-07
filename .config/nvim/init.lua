@@ -22,6 +22,7 @@ vim.opt.termguicolors = true
 vim.optlist = true
 vim.opt.listchars = { tab = "»·", trail = "-", space = "·", eol = "$" }
 vim.o.termguicolors = true
+vim.o.hlsearch = false
 vim.g.airline_powerline_fonts = 1
 vim.g.airline_theme = 'catppuccin'
 
@@ -158,7 +159,7 @@ lsp_zero.on_attach(function(client, bufnr)
                     -- Travel - PHP-CS-Fixer
                     local config = os.getenv("HOME") ..
                         "/Developer/stack/utilities/php-cs-fixer/.php-cs-fixer.dist.php"
-                    vim.cmd("!php-cs-fixer fix --config=" .. config .. " " .. filepath)
+                    vim.cmd("!PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --config=" .. config .. " " .. filepath)
                 end
             end,
         }
