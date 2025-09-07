@@ -22,7 +22,7 @@ vim.opt.termguicolors = true
 vim.optlist = true
 vim.opt.listchars = { tab = "»·", trail = "-", space = "·", eol = "$" }
 vim.o.termguicolors = true
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 vim.g.airline_powerline_fonts = 1
 vim.g.airline_theme = 'catppuccin'
 
@@ -40,6 +40,8 @@ vim.keymap.set('n', ']e', ":cn<CR>")                           -- Prev Error
 vim.keymap.set('n', "<leader>y", "\"+y")                       -- Copy to System Clipboard
 vim.keymap.set('v', "<leader>y", "\"+y")                       -- Copy to System Clipboard
 vim.keymap.set('n', "<leader>Y", "\"+Y")                       -- Copy to System Clipboard
+vim.keymap.set('n', "<leader>J", ":cn<CR>")                    -- Next Quickfix
+vim.keymap.set('n', "<leader>K", ":cp<CR>")                    -- Prev Quickfix
 
 -- PLUGINS
 require('packer').startup(function(use)
@@ -64,7 +66,7 @@ require('packer').startup(function(use)
     -- Visual
     use { "catppuccin/nvim", as = "catppuccin", config = function()
         require("catppuccin").setup({
-            flavour = "mocha",
+            flavour = "frappe",
             transparent_background = true,
             styles = { comments = { "italic" } },
             integrations = {
@@ -99,11 +101,11 @@ require('packer').startup(function(use)
         vim.keymap.set('n', '<leader><S-w>', ':NERDTreeFind<CR>', {}) -- Open NERDTree on current file
     end }
     use { 'tpope/vim-fugitive', config = function() vim.keymap.set('n', '<leader><S-g>', ':G ', {}) end }
-    use { 'github/copilot.vim', config = function()
-        vim.g.copilot_assume_mapped = true
-        vim.keymap.set('n', '<leader>ai', ':Copilot disable<CR>', {})        -- Copilot Disable
-        vim.keymap.set('n', '<leader><S-a><S-i>', ':Copilot enable<CR>', {}) -- Copilot Enable
-    end }
+    -- use { 'github/copilot.vim', config = function()
+    --     vim.g.copilot_assume_mapped = true
+    --     vim.keymap.set('n', '<leader>ai', ':Copilot disable<CR>', {})        -- Copilot Disable
+    --     vim.keymap.set('n', '<leader><S-a><S-i>', ':Copilot enable<CR>', {}) -- Copilot Enable
+    -- end }
     use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
     use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
     use { 'David-Kunz/gen.nvim', config = function()
@@ -188,6 +190,12 @@ require('mason-lspconfig').setup({
     }
 })
 
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('emmet_ls')
+vim.lsp.enable('cssls')
+vim.lsp.enable('tailwindcss')
+vim.lsp.enable('bashls')
+
 require('lspconfig').phpactor.setup {
     cmd = { "phpactor", "language-server" },
     filetypes = { "php" },
@@ -230,7 +238,7 @@ vim.keymap.set('n', 'gr', ':Trouble lsp_references<CR>', {})      -- LSP Referen
 vim.keymap.set('n', 'gd', ':Trouble lsp_definitions<CR>', {})     -- LSP Definitions
 vim.keymap.set('n', 'gD', ':Trouble diagnostics<CR>', {})         -- LSP Diagnostics
 vim.keymap.set('n', 'gI', ':Trouble lsp_implementations<CR>', {}) -- LSP Implementations
-vim.keymap.set('n', '<leader>t', ':Trouble', {})                  -- Trouble open command
+vim.keymap.set('n', '<leader>t', ':Trouble<CR>', {})                  -- Trouble open command
 
 local cmp = require('cmp')
 
@@ -256,7 +264,6 @@ cmp.setup({
     formatting = lsp_zero.cmp_format({ details = true }),
 })
 
-
 vim.diagnostic.config({
     underline = true,
     update_in_insert = false,
@@ -277,99 +284,7 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 -- DAP
 local dap = require('dap');
 
-dap.adapters.gdb = {
-        id = 'gdb',
-        type = 'executable',
-        command = 'gdb',
-        args = { "--interpreter=dap", "--quiet"}
-}
-
-dap.configurations.c = {
-        {
-                name = "Run executable (GDB)",
-                type = "gdb",
-                request = "launch",
-                program = function()
-                        local path = vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-                        return (path and path ~= '') and path or dap.ABORT
-                end,
-        },
-        {
-                name = 'Run executable with arguments (GDB)',
-                type = 'gdb',
-                request = 'launch',
-                -- This requires special handling of 'run_last', see
-                -- https://github.com/mfussenegger/nvim-dap/issues/1025#issuecomment-1695852355
-                program = function()
-                        local path = vim.fn.input({
-                                prompt = 'Path to executable: ',
-                                default = vim.fn.getcwd() .. '/',
-                                completion = 'file',
-                        })
-
-                        return (path and path ~= '') and path or dap.ABORT
-                end,
-                args = function()
-                        local args_str = vim.fn.input({
-                                prompt = 'Arguments: ',
-                        })
-                        return vim.split(args_str, ' +')
-                end,
-        },
-        {
-                name = 'Attach to process (GDB)',
-                type = 'gdb',
-                request = 'attach',
-                processId = require('dap.utils').pick_process,
-        }
-}
-
-dap.adapters.php = {
-    type = 'executable',
-    command = 'node',
-    args = { os.getenv("HOME") .. '/Developer/tools/vscode-php-debug/out/phpDebug.js' }
-}
-
-dap.configurations.php = {
-    {
-        type = 'php',
-        request = 'launch',
-        name = 'Listen for Xdebug',
-        port = 9003,
-    }
-}
-
-dap.adapters.chrome = {
-    type = "executable",
-    command = "node",
-    args = { os.getenv("HOME") .. "/path/to/vscode-chrome-debug/out/src/chromeDebug.js" } -- TODO adjust
-}
-
-dap.configurations.javascriptreact = { -- change this to javascript if needed
-    {
-        type = "chrome",
-        request = "attach",
-        program = "${file}",
-        cwd = vim.fn.getcwd(),
-        sourceMaps = true,
-        protocol = "inspector",
-        port = 9222,
-        webRoot = "${workspaceFolder}"
-    }
-}
-
-dap.configurations.typescript = { -- change to typescript if needed
-    {
-        type = "chrome",
-        request = "attach",
-        program = "${file}",
-        cwd = vim.fn.getcwd(),
-        sourceMaps = true,
-        protocol = "inspector",
-        port = 9222,
-        webRoot = "${workspaceFolder}"
-    }
-}
+-- Removed configs here
 
 require("nvim-dap-virtual-text").setup()
 require("mason-nvim-dap").setup()
