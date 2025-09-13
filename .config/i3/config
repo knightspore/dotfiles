@@ -63,7 +63,7 @@ exec --no-startup-id xautolock -time 120 -locker blurlock
 exec --no-startup-id nitrogen --restore; 
 exec --no-startup-id picom -b;
 exec --no-startup-id setxkbmap -option caps:escape
-exec --no-startup-id xfce4-power-manager
+# exec --no-startup-id xfce4-power-manager
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id pamac-tray
