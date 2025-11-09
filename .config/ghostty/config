@@ -13,3 +13,5 @@ window-decoration = none
 window-step-resize = true
 adjust-cell-height = 10%
 theme = dark:catppuccin-macchiato.conf,light:catppuccin-latte.conf
+window-vsync = true
+
