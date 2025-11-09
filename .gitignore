@@ -33,6 +33,7 @@
 !/.config/ghostty
 /.config/ghostty/*
 !/.config/ghostty/config
+!/.config/ghostty/themes/
 
 # GTK
 !/.config/gtk-3.0

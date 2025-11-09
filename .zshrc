@@ -115,3 +115,9 @@ if [ -d "$HOME/.local/share/fnm" ]; then
 fi
 
 # zprof
+
+# bun completions
+[ -s "/Users/c/.bun/_bun" ] && source "/Users/c/.bun/_bun"
+
+# opencode
+export PATH=/Users/c/.opencode/bin:$PATH

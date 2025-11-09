@@ -19,8 +19,6 @@ vim.opt.updatetime = 200
 vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
-vim.optlist = true
-vim.opt.listchars = { tab = "»·", trail = "-", space = "·", eol = "$" }
 vim.o.termguicolors = true
 vim.o.hlsearch = true
 vim.g.airline_powerline_fonts = 1
@@ -66,7 +64,7 @@ require('packer').startup(function(use)
     -- Visual
     use { "catppuccin/nvim", as = "catppuccin", config = function()
         require("catppuccin").setup({
-            flavour = "frappe",
+            flavour = "latte",
             transparent_background = true,
             styles = { comments = { "italic" } },
             integrations = {
@@ -93,6 +91,7 @@ require('packer').startup(function(use)
     use "tpope/vim-surround"
     use { 'nvim-telescope/telescope.nvim', tag = '0.1.8' }
     use 'nvim-telescope/telescope-ui-select.nvim'
+    use 'nvim-telescope/telescope-dap.nvim'
     use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use "nvim-treesitter/nvim-treesitter-context"
@@ -182,55 +181,69 @@ lsp_zero.set_sign_icons({
 })
 
 require('mason').setup({})
-require('mason-lspconfig').setup({
-    handlers = {
-        function(server_name)
-            require('lspconfig')[server_name].setup({})
-        end,
-    }
-})
+-- require('mason-lspconfig').setup({
+--     handlers = {
+--         function(server_name)
+--             require('lspconfig')[server_name].setup({})
+--         end,
+--     }
+-- })
 
-vim.lsp.enable('ts_ls')
-vim.lsp.enable('emmet_ls')
-vim.lsp.enable('cssls')
-vim.lsp.enable('tailwindcss')
-vim.lsp.enable('bashls')
+-- === NATIVE LSP ===
 
-require('lspconfig').phpactor.setup {
-    cmd = { "phpactor", "language-server" },
-    filetypes = { "php" },
-    root_dir = require('lspconfig/util').root_pattern("composer.json", ".git"),
-    init_options = {
-        ["language_server_worse_reflection.inlay_hints.enable"] = true,
-        ["language_server_worse_reflection.inlay_hints.types"] = true,
-        ["language_server_configuration.auto_config"] = false,
-        ["code_transform.import_globals"] = true,
-        ["language_server_php_cs_fixer.enabled"] = true,
-        ["language_server_php_cs_fixer.bin"] = "/opt/homebrew/bin/php-cs-fixer",
-        ["language_server_php_cs_fixer.config"] = os.getenv("HOME") .. "/Developer/stack/utilities/php-cs-fixer/.php-cs-fixer.dist.php",
-        ["symfony.enabled"] = true,
-    }
-}
-
-require('lspconfig').lua_ls.setup {
-    settings = {
-        Lua = {
-            runtime = {
-                version = 'LuaJIT',
-            },
-            diagnostics = {
-                globals = {
-                    'vim',
-                    'require'
+local lsps = {
+    { "ts_ls" },
+    { "eslint" },
+    { "phpactor",
+        {
+            filetypes = { "php", "blade" },
+            -- root_dir = require('lspconfig/util').root_pattern("composer.json", ".git"),
+            -- init_options = {
+            --     ["language_server_worse_reflection.inlay_hints.enable"] = true,
+            --     ["language_server_worse_reflection.inlay_hints.types"] = true,
+            --     ["language_server_configuration.auto_config"] = false,
+            --     ["code_transform.import_globals"] = true,
+            --     ["language_server_php_cs_fixer.enabled"] = true,
+            --     ["language_server_php_cs_fixer.bin"] = "/opt/homebrew/bin/php-cs-fixer",
+            --     ["language_server_php_cs_fixer.config"] = os.getenv("HOME") .. "/Developer/stack/utilities/php-cs-fixer/.php-cs-fixer.dist.php",
+            --     ["symfony.enabled"] = true,
+            -- }
+        }
+    },
+    { "emmet_ls" },
+    { "cssls" },
+    { "tailwindcss" },
+    { "bashls" },
+    { "lua_ls",
+        {
+            settings = {
+                Lua = {
+                    runtime = {
+                        version = 'LuaJIT',
+                    },
+                    diagnostics = {
+                        globals = {
+                            'vim',
+                            'require'
+                        },
+                    },
+                    workspace = {
+                        -- Make the server aware of Neovim runtime files
+                        library = vim.api.nvim_get_runtime_file("", true),
+                    },
                 },
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-            },
-        },
+            }
+        }
     },
 }
+
+for _, lsp in pairs(lsps) do
+    local name, config = lsp[1], lsp[2]
+    vim.lsp.enable(name)
+    if config then
+        vim.lsp.config(name, config)
+    end
+end
 
 lsp_zero.setup()
 
@@ -238,7 +251,7 @@ vim.keymap.set('n', 'gr', ':Trouble lsp_references<CR>', {})      -- LSP Referen
 vim.keymap.set('n', 'gd', ':Trouble lsp_definitions<CR>', {})     -- LSP Definitions
 vim.keymap.set('n', 'gD', ':Trouble diagnostics<CR>', {})         -- LSP Diagnostics
 vim.keymap.set('n', 'gI', ':Trouble lsp_implementations<CR>', {}) -- LSP Implementations
-vim.keymap.set('n', '<leader>t', ':Trouble<CR>', {})                  -- Trouble open command
+vim.keymap.set('n', '<leader>t', ':Trouble<CR>', {})              -- Trouble open command
 
 local cmp = require('cmp')
 
@@ -292,6 +305,22 @@ require("mason-nvim-dap").setup()
 require("dapui").setup({ library = { "nvim-dap-ui" } })
 
 vim.keymap.set('n', '<leader>d', ":Dap", {}) -- DAP... prompt
+
+
+dap.adapters.php = {
+    type = "executable",
+    command = "node",
+    args = { os.getenv('HOME') .. '/Developer/tools/vscode-php-debug/out/phpDebug.js' },
+}
+
+dap.configurations.php = {
+    {
+        type = "php",
+        request = "launch",
+        name = "Listen for Xdebug",
+        port = 9004
+    }
+}
 
 -- TREESITTER
 require 'nvim-treesitter.configs'.setup {
