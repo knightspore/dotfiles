@@ -121,3 +121,4 @@ fi
 
 # opencode
 export PATH=/Users/c/.opencode/bin:$PATH
+export PATH=/home/c/.opencode/bin:$PATH
