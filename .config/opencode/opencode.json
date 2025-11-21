@@ -13,6 +13,7 @@
             "type": "local",
             "command": [
                 "bunx",
+                "-y",
                 "@modelcontextprotocol/server-sequential-thinking"
             ],
             "enabled": true
@@ -22,6 +23,44 @@
             "command": [
                 "bunx",
                 "@allpepper/memory-bank-mcp@latest"
+            ],
+            "enabled": true
+        },
+        "linear": {
+            "type": "local",
+            "command": [
+                "bunx",
+                "-y",
+                "mcp-remote",
+                "https://mcp.linear.app/mcp"
+            ],
+            "enabled": true
+        },
+        "figma": {
+            "type": "local",
+            "command": [
+                "bunx",
+                "-y",
+                "mcp-remote",
+                "http://127.0.0.1:3845/mcp"
+            ],
+            "enabled": true
+        },
+        "sentry": {
+            "type": "local",
+            "command": [
+                "bunx",
+                "-y",
+                "mcp-remote",
+                "https://mcp.sentry.dev/mcp"
+            ],
+            "enabled": true
+        },
+        "quibbler": {
+            "type": "local",
+            "command": [
+                "quibbler",
+                "mcp"
             ],
             "enabled": true
         }
@@ -42,6 +81,16 @@
                 "bash": true
             },
             "prompt": "Generate conventional commit messages using this format: `{type}({mainFilePath}): {description}`\n\nAllowed commit types:\n- **feat**: New features\n- **refactor**: Code restructuring\n- **fix**: Bug fixes\n- **chore**: Maintenance tasks, config changes\n- **deps**: Dependency updates\n- **wip**: Work in progress\n\nKeep file paths short and readable."
+        },
+        "news-agent": {
+            "description": "Gets the latest news from the web on a variety of topics",
+            "mode": "subagent",
+            "prompt": "Find the top headlines for the last 3-5 days for the requested topics, providing an overview of each relevant story that can be summarized. If no topics are provided, you can default to: World News, Tech News, Africa / South Africa, Music and Philosophy."
+        },
+        "documenter": {
+            "description": "Writes documentation snippets by searching codebases",
+            "mode": "subagent",
+            "prompt": "Write a documentation topic relevant to the question as if it was from a real documentation website. Use a format and approach similar to MDN pages depending on what we're documenting (eg. a stdlib method, a class or global, or a framework or concept). Make sure you double-check things and note where things aren't clear."
         }
     }
 }
