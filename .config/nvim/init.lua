@@ -194,6 +194,7 @@ require('mason').setup({})
 local lsps = {
     { "ts_ls" },
     { "eslint" },
+    { "jsonls" },
     { "phpactor",
         {
             filetypes = { "php", "blade" },

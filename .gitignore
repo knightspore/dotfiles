@@ -68,6 +68,11 @@
 !/.config/nvim/lua/plugins/gen.lua
 !/.config/nvim/lua/plugins/dap.lua
 
+# opencode
+!/.config/opencode
+/.config/opencode/*
+!/.config/opencode/opencode.json
+
 # polybar
 !/.config/polybar
 /.config/polybar/*
