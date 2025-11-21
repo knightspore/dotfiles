@@ -64,7 +64,7 @@ require('packer').startup(function(use)
     -- Visual
     use { "catppuccin/nvim", as = "catppuccin", config = function()
         require("catppuccin").setup({
-            flavour = "latte",
+            flavour = "mocha",
             transparent_background = true,
             styles = { comments = { "italic" } },
             integrations = {
@@ -192,6 +192,7 @@ require('mason').setup({})
 -- === NATIVE LSP ===
 
 local lsps = {
+    { "clangd" },
     { "ts_ls" },
     { "eslint" },
     { "jsonls" },
