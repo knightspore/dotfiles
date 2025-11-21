@@ -120,5 +120,7 @@ fi
 [ -s "/Users/c/.bun/_bun" ] && source "/Users/c/.bun/_bun"
 
 # opencode
-export PATH=/Users/c/.opencode/bin:$PATH
-export PATH=/home/c/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
+
+# Created by `pipx` on 2025-11-21 11:27:23
+export PATH="$PATH:/Users/c/.local/bin"
