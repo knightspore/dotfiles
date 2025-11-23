@@ -63,12 +63,30 @@
                 "mcp"
             ],
             "enabled": true
+        },
+        "knowledge-graph": {
+            "type": "local",
+            "command": [
+                "bunx",
+                "-y",
+                "@modelcontextprotocol/server-memory"
+            ],
+            "enabled": true
+        },
+        "octocode": {
+            "type": "local",
+            "command": [
+                "bunx",
+                "-y",
+                "octocode-mcp@latest"
+            ],
+            "enabled": true
         }
     },
     "agent": {
         "pair-programmer": {
             "description": "Explores codebases, reviews code quality, and explains patterns with comprehensive analysis",
-            "mode": "subagent",
+            "mode": "all",
             "tools": {
                 "bash": true
             },
@@ -76,7 +94,7 @@
         },
         "committer": {
             "description": "Generates conventional commit messages for GitHub",
-            "mode": "subagent",
+            "mode": "all",
             "tools": {
                 "bash": true
             },
@@ -84,13 +102,21 @@
         },
         "news-agent": {
             "description": "Gets the latest news from the web on a variety of topics",
-            "mode": "subagent",
+            "mode": "all",
             "prompt": "Find the top headlines for the last 3-5 days for the requested topics, providing an overview of each relevant story that can be summarized. If no topics are provided, you can default to: World News, Tech News, Africa / South Africa, Music and Philosophy."
         },
         "documenter": {
             "description": "Writes documentation snippets by searching codebases",
-            "mode": "subagent",
+            "mode": "all",
             "prompt": "Write a documentation topic relevant to the question as if it was from a real documentation website. Use a format and approach similar to MDN pages depending on what we're documenting (eg. a stdlib method, a class or global, or a framework or concept). Make sure you double-check things and note where things aren't clear."
+        },
+        "researcher": {
+            "description": "Does deep research on codebases to prep for upcoming work, or in prep for writing documentation",
+            "mode": "all",
+            "tools": {
+                "bash": true,
+            },
+            "prompt": "You are a research agent that explores codebases to gain insights into how how they work, by reading the code, project docs and online documentation. You have @pair-programmer who you can use to bounce ideas off, as well as Quibbler and other MCPs. Structure your research in a single document with one level of headings. Think carefull about the table of contents and flow of the document. Do NOT edit the code at all, just produce a doc explaining your ideas"
         }
     }
 }
