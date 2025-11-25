@@ -192,30 +192,15 @@ require('mason').setup({})
 -- === NATIVE LSP ===
 
 local lsps = {
+    { "bashls" },
     { "clangd" },
-    { "ts_ls" },
+    { "cssls" },
+    { "emmet_ls" },
     { "eslint" },
     { "jsonls" },
-    { "phpactor",
-        {
-            filetypes = { "php", "blade" },
-            -- root_dir = require('lspconfig/util').root_pattern("composer.json", ".git"),
-            -- init_options = {
-            --     ["language_server_worse_reflection.inlay_hints.enable"] = true,
-            --     ["language_server_worse_reflection.inlay_hints.types"] = true,
-            --     ["language_server_configuration.auto_config"] = false,
-            --     ["code_transform.import_globals"] = true,
-            --     ["language_server_php_cs_fixer.enabled"] = true,
-            --     ["language_server_php_cs_fixer.bin"] = "/opt/homebrew/bin/php-cs-fixer",
-            --     ["language_server_php_cs_fixer.config"] = os.getenv("HOME") .. "/Developer/stack/utilities/php-cs-fixer/.php-cs-fixer.dist.php",
-            --     ["symfony.enabled"] = true,
-            -- }
-        }
-    },
-    { "emmet_ls" },
-    { "cssls" },
+    { "marksman" },
     { "tailwindcss" },
-    { "bashls" },
+    { "ts_ls" },
     { "lua_ls",
         {
             settings = {
@@ -234,6 +219,22 @@ local lsps = {
                         library = vim.api.nvim_get_runtime_file("", true),
                     },
                 },
+            }
+        }
+    },
+    { "phpactor",
+        {
+            filetypes = { "php", "blade" },
+            -- root_dir = require('lspconfig/util').root_pattern("composer.json", ".git"),
+            init_options = {
+                ["language_server_worse_reflection.inlay_hints.enable"] = true,
+                ["language_server_worse_reflection.inlay_hints.types"] = true,
+                ["language_server_configuration.auto_config"] = false,
+                ["code_transform.import_globals"] = true,
+                -- ["language_server_php_cs_fixer.enabled"] = true,
+                -- ["language_server_php_cs_fixer.bin"] = "/opt/homebrew/bin/php-cs-fixer",
+                -- ["language_server_php_cs_fixer.config"] = os.getenv("HOME") .. "/Developer/stack/utilities/php-cs-fixer/.php-cs-fixer.dist.php",
+                ["symfony.enabled"] = true,
             }
         }
     },
