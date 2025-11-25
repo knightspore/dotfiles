@@ -91,8 +91,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="/Users/c/Developer/stack/.bin:$PATH"
 
 ## Composer
-
-export PATH="/Users/c/.composer/vendor/bin:$PATH"
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 ## FZF
 
@@ -124,3 +124,4 @@ export PATH="$HOME/.opencode/bin:$PATH"
 
 # Created by `pipx` on 2025-11-21 11:27:23
 export PATH="$PATH:/Users/c/.local/bin"
+
