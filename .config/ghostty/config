@@ -1,11 +1,5 @@
 font-thicken = false
 font-family = "VictorMono Nerd Font Mono"
-# font-family = "Iosevka Nerd Font Mono"
-# font-family = "DepartureMono Nerd Font"
-# font-family = "CommitMono Nerd Font Mono"
-# font-family = "BlexMono Nerd Font Mono"
-# font-family = "Agave Nerd Font Mono"
-# font-family = "FantasqueSansM Nerd Font Mono"
 font-size = 16
 cursor-style = block
 background-opacity = 0.9
