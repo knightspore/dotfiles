@@ -64,7 +64,7 @@ require('packer').startup(function(use)
     -- Visual
     use { "catppuccin/nvim", as = "catppuccin", config = function()
         require("catppuccin").setup({
-            flavour = "mocha",
+            flavour = "latte",
             transparent_background = true,
             styles = { comments = { "italic" } },
             integrations = {
@@ -100,41 +100,10 @@ require('packer').startup(function(use)
         vim.keymap.set('n', '<leader><S-w>', ':NERDTreeFind<CR>', {}) -- Open NERDTree on current file
     end }
     use { 'tpope/vim-fugitive', config = function() vim.keymap.set('n', '<leader><S-g>', ':G ', {}) end }
-    -- use { 'github/copilot.vim', config = function()
-    --     vim.g.copilot_assume_mapped = true
-    --     vim.keymap.set('n', '<leader>ai', ':Copilot disable<CR>', {})        -- Copilot Disable
-    --     vim.keymap.set('n', '<leader><S-a><S-i>', ':Copilot enable<CR>', {}) -- Copilot Enable
-    -- end }
     use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
     use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
-    use { 'David-Kunz/gen.nvim', config = function()
-        require('gen').setup({
-            model = "deepseek-r1:8b",
-            display_mode = "split",
-            show_model = true,
-            show_prompt = true,
-            no_auto_close = true,
-        })
-        vim.keymap.set('n', '<leader>g', ':Gen ', {}) -- Launch Gen LLM
-    end }
     use { 'fei6409/log-highlight.nvim', config = function() require('log-highlight').setup { extension = "log" } end }
     use { 'folke/trouble.nvim', config = function() require('trouble').setup {} end }
-    -- Debug Adapter Protocol
-    use "mfussenegger/nvim-dap"
-    use { 'jay-babu/mason-nvim-dap.nvim', opts = {
-        handlers = {},
-        automatic_installation = { exclude = { "delve" } },
-        ensure_installed = { "bash", "codelldb", "php", "python", "node", "typescript" },
-        requires = { "mfussenegger/nvim-dap", "williamboman/mason.nvim" }
-    } }
-    use { 'theHamsta/nvim-dap-virtual-text', requires = { 'mfussenegger/nvim-dap' } }
-    use { "rcarriga/nvim-dap-ui", requires = {
-        "jay-babu/mason-nvim-dap.nvim",
-        "leoluz/nvim-dap-go",
-        "mfussenegger/nvim-dap-python",
-        "nvim-neotest/nvim-nio",
-        "theHamsta/nvim-dap-virtual-text",
-    } }
 end)
 
 -- LSP
@@ -181,13 +150,6 @@ lsp_zero.set_sign_icons({
 })
 
 require('mason').setup({})
--- require('mason-lspconfig').setup({
---     handlers = {
---         function(server_name)
---             require('lspconfig')[server_name].setup({})
---         end,
---     }
--- })
 
 -- === NATIVE LSP ===
 
@@ -238,6 +200,7 @@ local lsps = {
             }
         }
     },
+    { "phpstan" },
 }
 
 for _, lsp in pairs(lsps) do
@@ -296,34 +259,6 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
         vim.diagnostic.open_float(nil, { focusable = false })
     end,
 })
-
--- DAP
-local dap = require('dap');
-
--- Removed configs here
-
-require("nvim-dap-virtual-text").setup()
-require("mason-nvim-dap").setup()
-
-require("dapui").setup({ library = { "nvim-dap-ui" } })
-
-vim.keymap.set('n', '<leader>d', ":Dap", {}) -- DAP... prompt
-
-
-dap.adapters.php = {
-    type = "executable",
-    command = "node",
-    args = { os.getenv('HOME') .. '/Developer/tools/vscode-php-debug/out/phpDebug.js' },
-}
-
-dap.configurations.php = {
-    {
-        type = "php",
-        request = "launch",
-        name = "Listen for Xdebug",
-        port = 9004
-    }
-}
 
 -- TREESITTER
 require 'nvim-treesitter.configs'.setup {
