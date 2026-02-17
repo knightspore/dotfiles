@@ -157,8 +157,11 @@ local lsps = {
     { "bashls" },
     { "clangd" },
     { "cssls" },
-    { "emmet_ls" },
+    { "cssls" },
+    { "emmet_ls", { filetypes = { "html", "css" } } },
     { "eslint" },
+    { "gopls" },
+    { "html" },
     { "jsonls" },
     { "marksman" },
     { "tailwindcss" },
@@ -286,7 +289,7 @@ require 'nvim-treesitter.configs'.setup {
     auto_install = true,
     highlight = {
         enable = true,
-        additional_vim_regex_highlighting = { "php" },
+        additional_vim_regex_highlighting = { "php", "markdown" },
     },
     indent = {
         enable = true,
