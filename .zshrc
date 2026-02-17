@@ -3,7 +3,11 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 
-source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+if [ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" = "Dark" ]; then
+    source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+else
+    source ~/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh
+fi
 
 plugins=(
   zsh-autocomplete
