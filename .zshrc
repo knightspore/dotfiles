@@ -5,49 +5,28 @@ if [ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" = "Dark" ]; then
 else
     source ~/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh
 fi
-export ZSH="$HOME/.oh-my-zsh"
 
-plugins=(
-  zsh-autocomplete
-  zsh-syntax-highlighting
-)
-
-zstyle ':autocomplete:*' min-input 4
-source $ZSH/oh-my-zsh.sh
-
-## Prompt
-PT='%(?.%F{blue}[%T].%F{magenta}[%T])%f' # Time
-PD='%F{magenta}%~%f' # Directory
-PS='%(?.%F{green}$.%F{magenta}$)%f' # Formatted Prompt
-PROMPT='${PT} ${PD} ${PS} '
-
-export EDITOR='nvim'
-
-if [ "$(uname)" = "Darwin" ]; then
-  export BROWSER="/Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser"
-  export HOMEBREW_NO_AUTO_UPDATE=1
-fi
-
-alias c=clear
-alias cat="bat"
-alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-alias cfg="config"
-alias dl="cd ~/Downloads; clear; ls -a"
-alias dsk="cd ~/Desktop/"
-alias dev="cd ~/Developer"
+alias cfg="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias dl="cd ~/Downloads"
+alias dv="cd ~/Developer"
+alias dc="cd ~/Documents"
+alias dcp="cd ~/Documents/Planner"
 alias rgf='rg --files | rg'
 alias d1="/run/media/c/Slem1000/"
 alias d2="/run/media/c/Slem2000/"
+alias vc="nvim ~/.config/nvim/init.lua"
+alias zc="nvim ~/.zshrc"
+alias ac="nvim ~/.config/alacritty/alacritty.toml"
+alias gc="nvim ~/.config/ghostty/config"
+alias tc="nvim ~/.tmux.conf"
+
+alias c=clear
+alias cat="bat"
+alias nvm="fnm"
+alias pa="php artisan"
+alias sys="sudo systemctl"
 alias vi=nvim
 alias vim=nvim
-alias pa="php artisan"
-alias vimcnf="nvim ~/.config/nvim/init.lua"
-alias zshcnf="nvim ~/.zshrc"
-alias alacnf="nvim ~/.config/alacritty/alacritty.toml"
-alias ghocnf="nvim ~/.config/ghostty/config"
-alias tmucnf="nvim ~/.tmux.conf"
-alias nvm="fnm"
-alias sys="sudo systemctl"
 
 alias g=git
 alias ga='git add --verbose'
@@ -90,6 +69,14 @@ alias gstl='git stash list'
 alias gstp='git stash pop'
 alias gsw='git switch'
 
+## Prompt
+PT="%(?.%F{blue}[%T].%F{magenta}[%T])%f" # Time
+PD="%F{magenta}%~%f" # Directory
+PS="%(?.%F{green}$.%F{magenta}$)%f" # Formatted Prompt
+PROMPT="${PT} ${PD} ${PS} "
+
+export EDITOR='nvim'
+
 export DENO_INSTALL="/Users/c/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
@@ -99,15 +86,16 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 export PATH="/Users/c/Developer/stack/.bin:$HOME/.config/composer/vendor/bin:/Users/c/.composer/vendor/bin:/opt/homebrew/opt/util-linux/bin:/opt/homebrew/opt/util-linux/sbin:$PATH"
 
-eval "$(fzf --zsh)"
 
-if [ -d "$HOME/.local/share/fnm" ]; then
-  export PATH="$HOME/.local/share/fnm:$PATH"
-  eval "$(fnm env)"
-fi
+export PATH="$HOME/.local/share/fnm:$PATH"
+eval "$(fnm env)"
 
 export PATH="$HOME/.opencode/bin:$PATH"
 
 export PATH="$PATH:/Users/c/.local/bin"
+
+source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+eval "$(fzf --zsh)"
 
 # zprof
