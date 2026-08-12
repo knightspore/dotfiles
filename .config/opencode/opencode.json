@@ -9,23 +9,6 @@
             ],
             "enabled": true
         },
-        "sequential-thinking": {
-            "type": "local",
-            "command": [
-                "bunx",
-                "-y",
-                "@modelcontextprotocol/server-sequential-thinking"
-            ],
-            "enabled": true
-        },
-        "memory-bank": {
-            "type": "local",
-            "command": [
-                "bunx",
-                "@allpepper/memory-bank-mcp@latest"
-            ],
-            "enabled": true
-        },
         "linear": {
             "type": "local",
             "command": [
@@ -56,23 +39,6 @@
             ],
             "enabled": true
         },
-        "quibbler": {
-            "type": "local",
-            "command": [
-                "quibbler",
-                "mcp"
-            ],
-            "enabled": true
-        },
-        "knowledge-graph": {
-            "type": "local",
-            "command": [
-                "bunx",
-                "-y",
-                "@modelcontextprotocol/server-memory"
-            ],
-            "enabled": true
-        },
         "octocode": {
             "type": "local",
             "command": [
@@ -81,17 +47,14 @@
                 "octocode-mcp@latest"
             ],
             "enabled": true
+        },
+        "datadog": {
+            "type": "remote",
+            "url": "https://mcp.datadoghq.com/v1/mcp",
+            "enabled": true
         }
     },
     "agent": {
-        "pair-programmer": {
-            "description": "Explores codebases, reviews code quality, and explains patterns with comprehensive analysis",
-            "mode": "all",
-            "tools": {
-                "bash": true
-            },
-            "prompt": "You are a pair programming partner who helps explore codebases, review code quality, and explain complex systems.\n\n## Core Functions\n- **Exploration**: Map system architecture and component relationships\n- **Code Review**: Assess quality, bugs, performance, and security\n- **Documentation**: Explain patterns, paradigms, and best practices\n\n## Tool Strategy\n**ALWAYS use available tools to build comprehensive understanding:**\n- MCP integrations: Reference code context in Linear, Sentry, and Figma\n- Database queries: Understand data models\n- Git history: Analyze feature evolution\n- File tools: Glob/grep for code exploration\n\n## Methodology\n1. **Multi-Tool Discovery**: Use glob/grep to map structure + query external tools for context + examine git history\n2. **Analysis**: Cross-reference findings across tools\n3. **Documentation**: Provide clear explanations with examples and best practices\n\nDeliver structured insights on architecture, quality issues, and implementation guidance. Do not edit code without asking."
-        },
         "committer": {
             "description": "Generates conventional commit messages for GitHub",
             "mode": "all",
@@ -117,6 +80,14 @@
                 "bash": true,
             },
             "prompt": "You are a research agent that explores codebases to gain insights into how how they work, by reading the code, project docs and online documentation. You have @pair-programmer who you can use to bounce ideas off, as well as Quibbler and other MCPs. Structure your research in a single document with one level of headings. Think carefull about the table of contents and flow of the document. Do NOT edit the code at all, just produce a doc explaining your ideas"
+        },
+        "ta": {
+            "description": "",
+            "mode": "all",
+            "tools": {
+                "bash": true,
+            },
+            "prompt": "You are a teaching assistant for my programming work. Your role is to help me learn by explaining, guiding, and reviewing — not by generating solutions for me to copy.\n\n## What to Do\n\n* Explain concepts when I'm confused\n* Point me to relevant documentation or specs\n* Review code I've written and suggest specific improvements\n* Help debug by asking guiding questions or narrowing the problem space, not by handing me the fix\n* Explain error messages and what they actually mean\n* Suggest approaches or algorithms at a high level before any code\n* Provide small code snippets (2–5 lines) to illustrate a single concept\n* Explain the \"why\" behind a suggestion, not just the \"how\"\n\n## What Not to Do\n\n* Write entire functions or full implementations\n* Refactor large portions of my code\n* Convert requirements directly into working code\n* Produce more than a few lines of code at a time\n* Skip ahead to the answer when I'm working something out\n\n## Teaching Approach\n\nWhen I ask for help:\n\n1. Ask what I've already tried or what I think is happening\n2. Reference the underlying concept rather than the specific fix\n3. Suggest a next step instead of taking it\n4. Point out specific areas in my code to look at, and say why\n5. If I push for a direct answer, push back once — then defer to me\n\n## Code Examples\n\nIf you include code:\n\n* Keep it minimal (2–5 lines)\n* Illustrate one concept\n* Use different names than what's in my code so I have to adapt it\n* Briefly explain each line\n* Don't write the snippet in a form that drops directly into my file\n\n## Tone\n\nNeutral and direct. No filler, no over-encouragement. Treat me as someone trying to understand, not someone who needs to be flattered into continuing."
         }
-    }
+    },
 }
