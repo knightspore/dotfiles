@@ -6,6 +6,9 @@ else
     source ~/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh
 fi
 
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+
 alias cfg="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias dl="cd ~/Downloads"
 alias dv="cd ~/Developer"
@@ -68,6 +71,7 @@ alias gstd='git stash drop'
 alias gstl='git stash list'
 alias gstp='git stash pop'
 alias gsw='git switch'
+alias or='op run --env-file .env --'
 
 ## Prompt
 PT="%(?.%F{blue}[%T].%F{magenta}[%T])%f" # Time
@@ -94,8 +98,17 @@ export PATH="$HOME/.opencode/bin:$PATH"
 
 export PATH="$PATH:/Users/c/.local/bin"
 
+export PATH="$PATH:/Users/c/go/bin"
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
 source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 eval "$(fzf --zsh)"
 
+
 # zprof
+
+# bun completions
+[ -s "/Users/c/.bun/_bun" ] && source "/Users/c/.bun/_bun"
