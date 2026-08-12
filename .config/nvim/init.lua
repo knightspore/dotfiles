@@ -22,7 +22,7 @@ vim.opt.termguicolors = true
 vim.o.termguicolors = true
 vim.o.hlsearch = true
 vim.g.airline_powerline_fonts = 1
-vim.g.airline_theme = 'catppuccin'
+vim.g.airline_theme = 'catppuccin_latte'
 
 vim.keymap.set('i', 'jj', '<Esc>')                             -- JJ -> Esc
 vim.keymap.set('n', '<leader>s', ':w<CR>')                     -- Save file
@@ -80,6 +80,7 @@ require('packer').startup(function(use)
         })
         vim.cmd.colorscheme "catppuccin"
     end }
+    use 'catppuccin/vim'
     use 'bling/vim-airline'
     use 'vim-airline/vim-airline-themes'
     use { 'brenoprata10/nvim-highlight-colors', config = function() require('nvim-highlight-colors').setup({ enable_tailwind = true }) end }
@@ -89,11 +90,11 @@ require('packer').startup(function(use)
     use 'jremmen/vim-ripgrep'
     use "folke/which-key.nvim"
     use "tpope/vim-surround"
-    use { 'nvim-telescope/telescope.nvim', tag = '0.1.8' }
+    use { 'nvim-telescope/telescope.nvim', branch = "master" }
     use 'nvim-telescope/telescope-ui-select.nvim'
     use 'nvim-telescope/telescope-dap.nvim'
-    use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
-    use "nvim-treesitter/nvim-treesitter-textobjects"
+    use { 'nvim-treesitter/nvim-treesitter', branch = "main", build = ':TSUpdate' }
+    use { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" }
     use "nvim-treesitter/nvim-treesitter-context"
     use { 'preservim/nerdtree', config = function()
         vim.keymap.set('n', '<leader>w', ':NERDTreeToggle<CR>', {})   -- Open NERDTree
@@ -166,6 +167,7 @@ local lsps = {
     { "marksman" },
     { "tailwindcss" },
     { "ts_ls" },
+    { "yaml" },
     { "lua_ls",
         {
             settings = {
@@ -264,8 +266,7 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 })
 
 -- TREESITTER
-require 'nvim-treesitter.configs'.setup {
-    ensure_installed = {
+local parsers = {
         "bash",
         "c",
         "comment",
@@ -277,76 +278,72 @@ require 'nvim-treesitter.configs'.setup {
         "lua",
         "markdown",
         "php",
+        "python",
+        "react",
         "rust",
         "sql",
         "twig",
+        "tsx",
         "typescript",
         "vim",
         "vimdoc",
         "yaml"
-    },
-    sync_install = false,
-    auto_install = true,
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { "php", "markdown" },
-    },
-    indent = {
-        enable = true,
-    },
-    textobjects = {
-        select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-                -- function
-                ["af"] = "@call.outer",
-                ["if"] = "@call.inner",
-                ["am"] = "@function.outer",
-                ["im"] = "@function.inner",
-                -- class
-                ["ac"] = "@class.outer",
-                ["ic"] = "@class.inner",
-                -- block
-                ["ab"] = "@block.outer",
-                ["ib"] = "@block.inner",
-                -- loop
-                ["al"] = "@loop.outer",
-                ["il"] = "@loop.inner",
-                -- parameter
-                ["ap"] = "@parameter.outer",
-                ["ip"] = "@parameter.inner",
-                -- statement
-                ["as"] = "@statement.outer",
-                ["is"] = "@statement.inner",
-                -- comment
-                ["aa"] = "@comment.outer",
-                ["ia"] = "@comment.inner",
-                -- assignment
-                ["a="] = "@assignment.outer",
-                ["i="] = "@assignment.inner",
-                ["l="] = "@assignment.lhs",
-                ["r="] = "@assignment.rhs",
-            },
-            selection_modes = {
-                ['@function.inner'] = 'v',
-                ['@function.outer'] = 'V',
-                ['@class.inner'] = 'v',
-                ['@class.outer'] = 'V',
-                ['@block.inner'] = 'v',
-                ['@block.outer'] = 'V',
-                ['@loop.inner'] = 'v',
-                ['@loop.outer'] = 'V',
-                ['@parameter.inner'] = 'v',
-                ['@parameter.outer'] = 'V',
-                ['@statement.inner'] = 'v',
-                ['@statement.outer'] = 'V',
-                ['@comment.inner'] = 'v',
-                ['@comment.outer'] = 'V',
-            }
-        }
-    }
 }
+
+require("nvim-treesitter").install(parsers)
+
+-- highlight + indent, per buffer
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function(args)
+        local ok = pcall(vim.treesitter.start, args.buf)
+        if ok then
+            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+    end,
+})
+
+-- additional_vim_regex_highlighting equivalent for php/markdown
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "php", "markdown" },
+    callback = function(args)
+        vim.bo[args.buf].syntax = "on"
+    end,
+})
+
+-- TEXTOBJECTS
+require("nvim-treesitter-textobjects").setup({
+    select = {
+        lookahead = true,
+        selection_modes = {
+            ['@function.inner'] = 'v',  ['@function.outer'] = 'V',
+            ['@class.inner'] = 'v',     ['@class.outer'] = 'V',
+            ['@block.inner'] = 'v',     ['@block.outer'] = 'V',
+            ['@loop.inner'] = 'v',      ['@loop.outer'] = 'V',
+            ['@parameter.inner'] = 'v', ['@parameter.outer'] = 'V',
+            ['@statement.inner'] = 'v', ['@statement.outer'] = 'V',
+            ['@comment.inner'] = 'v',   ['@comment.outer'] = 'V',
+        },
+    },
+})
+
+local select = require("nvim-treesitter-textobjects.select")
+local objects = {
+    ["af"] = "@call.outer",      ["if"] = "@call.inner",
+    ["am"] = "@function.outer",  ["im"] = "@function.inner",
+    ["ac"] = "@class.outer",     ["ic"] = "@class.inner",
+    ["ab"] = "@block.outer",     ["ib"] = "@block.inner",
+    ["al"] = "@loop.outer",      ["il"] = "@loop.inner",
+    ["ap"] = "@parameter.outer", ["ip"] = "@parameter.inner",
+    ["as"] = "@statement.outer", ["is"] = "@statement.inner",
+    ["aa"] = "@comment.outer",   ["ia"] = "@comment.inner",
+    ["a="] = "@assignment.outer",["i="] = "@assignment.inner",
+    ["l="] = "@assignment.lhs",  ["r="] = "@assignment.rhs",
+}
+for lhs, query in pairs(objects) do
+    vim.keymap.set({ "x", "o" }, lhs, function()
+        select.select_textobject(query, "textobjects")
+    end, { desc = query })
+end
 
 -- TELESCOPE
 local open_with_trouble = require('trouble.sources.telescope').open
