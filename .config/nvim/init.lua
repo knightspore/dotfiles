@@ -1,30 +1,25 @@
 -- GLOBAL OPTIONS
+local is_dark = vim.fn.system("defaults read -g AppleInterfaceStyle 2>/dev/null"):match("Dark") ~= nil
+local flavour = is_dark and "mocha" or "latte"
+--
 vim.g.mapleader = " "
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt.autoindent = true
-vim.opt.smartindent = true
 vim.opt.relativenumber = true
 vim.opt.nu = true
 vim.opt.numberwidth = 1
 vim.opt.wrap = false
-vim.opt.undodir = os.getenv("HOME") .. '/.vim/undodir'
 vim.opt.undofile = true
 vim.opt.undolevels = 5000
 vim.opt.scrolloff = 8
-vim.opt.incsearch = true
 vim.opt.updatetime = 200
 vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
-vim.opt.termguicolors = true
-vim.o.termguicolors = true
-vim.o.hlsearch = true
 vim.g.airline_powerline_fonts = 1
-vim.g.airline_theme = 'catppuccin_latte'
+vim.g.airline_theme = 'catppuccin_' .. flavour
 
-vim.keymap.set('i', 'jj', '<Esc>')                             -- JJ -> Esc
 vim.keymap.set('n', '<leader>s', ':w<CR>')                     -- Save file
 vim.keymap.set('n', '<leader>q', ':q<CR>')                     -- Quit
 vim.keymap.set('n', '<leader>z', ':set wrap!<CR>')             -- Toggle Wrap
@@ -32,14 +27,9 @@ vim.keymap.set('n', ']t', ':tabnext<CR>')                      -- Tab Next
 vim.keymap.set('n', '[t', ':tabprev<CR>')                      -- Tab Prev
 vim.keymap.set('n', "n", "nzzzv")                              -- Center Next Search
 vim.keymap.set('n', "N", "Nzzzv")                              -- Center Prev Search
-vim.keymap.set('n', '<leader>b', ":Trouble qflist toggle<CR>") -- Open Quickfix
-vim.keymap.set('n', '[e', ":cp<CR>")                           -- Next Error
-vim.keymap.set('n', ']e', ":cn<CR>")                           -- Prev Error
 vim.keymap.set('n', "<leader>y", "\"+y")                       -- Copy to System Clipboard
 vim.keymap.set('v', "<leader>y", "\"+y")                       -- Copy to System Clipboard
 vim.keymap.set('n', "<leader>Y", "\"+Y")                       -- Copy to System Clipboard
-vim.keymap.set('n', "<leader>J", ":cn<CR>")                    -- Next Quickfix
-vim.keymap.set('n', "<leader>K", ":cp<CR>")                    -- Prev Quickfix
 
 -- PLUGINS
 require('packer').startup(function(use)
@@ -48,7 +38,7 @@ require('packer').startup(function(use)
     use { 'VonHeikemen/lsp-zero.nvim', branch = 'v2.x', requires = {
         -- LSP Support
         { 'neovim/nvim-lspconfig' },
-        { 'williamboman/mason.nvim',          opts = { ensure_installed = { "gopls" } } },
+        { 'williamboman/mason.nvim' },
         { 'williamboman/mason-lspconfig.nvim' },
         -- Autocompletion
         { 'hrsh7th/nvim-cmp' },
@@ -56,30 +46,12 @@ require('packer').startup(function(use)
         { 'hrsh7th/cmp-path' },
         { 'saadparwaiz1/cmp_luasnip' },
         { 'hrsh7th/cmp-nvim-lsp' },
-        { 'hrsh7th/cmp-nvim-lua' },
         { 'L3MON4D3/LuaSnip' },
         { 'rafamadriz/friendly-snippets' },
     } }
 
     -- Visual
-    use { "catppuccin/nvim", as = "catppuccin", config = function()
-        require("catppuccin").setup({
-            flavour = "latte",
-            transparent_background = true,
-            styles = { comments = { "italic" } },
-            integrations = {
-                cmp = true,
-                fzf = true,
-                gitsigns = true,
-                markdown = true,
-                mason = true,
-                treesitter = true,
-                lsp_trouble = true,
-                telescope = { enabled = true },
-            },
-        })
-        vim.cmd.colorscheme "catppuccin"
-    end }
+    use { "catppuccin/nvim", as = "catppuccin" }
     use 'catppuccin/vim'
     use 'bling/vim-airline'
     use 'vim-airline/vim-airline-themes'
@@ -92,7 +64,6 @@ require('packer').startup(function(use)
     use "tpope/vim-surround"
     use { 'nvim-telescope/telescope.nvim', branch = "master" }
     use 'nvim-telescope/telescope-ui-select.nvim'
-    use 'nvim-telescope/telescope-dap.nvim'
     use { 'nvim-treesitter/nvim-treesitter', branch = "main", build = ':TSUpdate' }
     use { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" }
     use "nvim-treesitter/nvim-treesitter-context"
@@ -158,8 +129,7 @@ local lsps = {
     { "bashls" },
     { "clangd" },
     { "cssls" },
-    { "cssls" },
-    { "emmet_ls", { filetypes = { "html", "css" } } },
+    { "emmet_ls", { filetypes = { "html", "css", "typescriptreact", "typescript" } } },
     { "eslint" },
     { "gopls" },
     { "html" },
@@ -275,15 +245,16 @@ local parsers = {
         "html",
         "javascript",
         "jsdoc",
+        "json",
+        "jsx",
         "lua",
         "markdown",
         "php",
         "python",
-        "react",
         "rust",
         "sql",
-        "twig",
         "tsx",
+        "twig",
         "typescript",
         "vim",
         "vimdoc",
@@ -291,6 +262,9 @@ local parsers = {
 }
 
 require("nvim-treesitter").install(parsers)
+
+vim.treesitter.language.register("tsx", "javascriptreact")
+vim.treesitter.language.register("tsx", "typescriptreact")
 
 -- highlight + indent, per buffer
 vim.api.nvim_create_autocmd("FileType", {
@@ -344,6 +318,23 @@ for lhs, query in pairs(objects) do
         select.select_textobject(query, "textobjects")
     end, { desc = query })
 end
+
+-- THEME 
+require("catppuccin").setup({
+    flavour = flavour,
+    transparent_background = true,
+    styles = { comments = { "italic" } },
+    integrations = {
+        cmp = true,
+        gitsigns = true,
+        markdown = true,
+        mason = true,
+        treesitter = true,
+        lsp_trouble = true,
+        telescope = { enabled = true },
+    },
+})
+vim.cmd.colorscheme "catppuccin"
 
 -- TELESCOPE
 local open_with_trouble = require('trouble.sources.telescope').open

@@ -1,8 +1,8 @@
-font-thicken = false
+font-thicken = true
 font-family = "VictorMono Nerd Font Mono"
-font-size = 17
+font-size = 16
 cursor-style = block
-background-opacity = 0.9
+background-opacity = 1
 window-decoration = none
 window-step-resize = true
 theme = dark:catppuccin-macchiato.conf,light:catppuccin-latte.conf

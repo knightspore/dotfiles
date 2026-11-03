@@ -72,6 +72,9 @@ alias gstl='git stash list'
 alias gstp='git stash pop'
 alias gsw='git switch'
 alias or='op run --env-file .env --'
+tinker() {
+  tl cmd exec travel "/bin/sh -c 'cd lavender && DD_TRACE_ENABLED=0 XDG_CONFIG_HOME=./ php artisan tinker'"
+}
 
 ## Prompt
 PT="%(?.%F{blue}[%T].%F{magenta}[%T])%f" # Time
