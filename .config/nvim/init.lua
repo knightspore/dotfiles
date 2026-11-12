@@ -39,7 +39,6 @@ require('packer').startup(function(use)
         -- LSP Support
         { 'neovim/nvim-lspconfig' },
         { 'williamboman/mason.nvim' },
-        { 'williamboman/mason-lspconfig.nvim' },
         -- Autocompletion
         { 'hrsh7th/nvim-cmp' },
         { 'hrsh7th/cmp-buffer' },
@@ -47,14 +46,12 @@ require('packer').startup(function(use)
         { 'saadparwaiz1/cmp_luasnip' },
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'L3MON4D3/LuaSnip' },
-        { 'rafamadriz/friendly-snippets' },
     } }
 
     -- Visual
     use { "catppuccin/nvim", as = "catppuccin" }
     use 'catppuccin/vim'
     use 'bling/vim-airline'
-    use 'vim-airline/vim-airline-themes'
     use { 'brenoprata10/nvim-highlight-colors', config = function() require('nvim-highlight-colors').setup({ enable_tailwind = true }) end }
 
     -- Utilities
