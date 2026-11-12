@@ -86,6 +86,11 @@
 !/.config/polybar/scripts/player.py
 !/.config/polybar/scripts/redshift.sh
 
+# rex
+!/.config/rex/
+/.config/rex/*
+!/.config/rex/init.lua
+
 # rofi
 !/.config/rofi
 /.config/rofi/*

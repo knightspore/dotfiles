@@ -22,6 +22,7 @@ alias zc="nvim ~/.zshrc"
 alias ac="nvim ~/.config/alacritty/alacritty.toml"
 alias gc="nvim ~/.config/ghostty/config"
 alias tc="nvim ~/.tmux.conf"
+alias rc="nvim ~/.config/rex/init.lua"
 
 alias c=clear
 alias cat="bat"
