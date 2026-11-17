@@ -60,6 +60,20 @@
                 "clientId": "1601185624273.8899143856786",
                 "callbackPort": 3118
             },
+        },
+        "servers": {
+          "browse": {
+            "type": "local",
+            "command": [
+              "/Users/c/.local/bin/browse",
+              "mcp"
+            ],
+            "cwd": "/Users/c",
+            "pool": true,
+            "environment": {
+              "OPENCODE_BROWSER_RUNTIME": "auto-update"
+            }
+          }
         }
     },
     "agent": {
