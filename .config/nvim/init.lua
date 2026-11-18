@@ -17,8 +17,6 @@ vim.opt.scrolloff = 8
 vim.opt.updatetime = 200
 vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
-vim.g.airline_powerline_fonts = 1
-vim.g.airline_theme = 'catppuccin_' .. flavour
 
 vim.keymap.set('n', '<leader>s', ':w<CR>')                     -- Save file
 vim.keymap.set('n', '<leader>q', ':q<CR>')                     -- Quit
@@ -50,13 +48,10 @@ require('packer').startup(function(use)
 
     -- Visual
     use { "catppuccin/nvim", as = "catppuccin" }
-    use 'catppuccin/vim'
-    use 'bling/vim-airline'
     use { 'brenoprata10/nvim-highlight-colors', config = function() require('nvim-highlight-colors').setup({ enable_tailwind = true }) end }
 
     -- Utilities
     use "nvim-lua/plenary.nvim"
-    use 'jremmen/vim-ripgrep'
     use "folke/which-key.nvim"
     use "tpope/vim-surround"
     use { 'nvim-telescope/telescope.nvim', branch = "master" }
@@ -323,7 +318,6 @@ require("catppuccin").setup({
     styles = { comments = { "italic" } },
     integrations = {
         cmp = true,
-        gitsigns = true,
         markdown = true,
         mason = true,
         treesitter = true,
