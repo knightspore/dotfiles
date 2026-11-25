@@ -52,6 +52,7 @@ for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
+for_window [class="Polkit-gnome-authentication-agent-1"] floating enable, focus
 
 ## 
 ## Autostart
