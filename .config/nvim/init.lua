@@ -59,8 +59,7 @@ end)
 
 -- THEME
 require("catppuccin").setup({
-    flavour = vim.fn.system("defaults read -g AppleInterfaceStyle 2>/dev/null"):match("Dark") ~= nil and "matcha" or
-        "latte", -- Dark Mode Detect
+    flavour = vim.o.background == "dark" and "mocha" or "latte",
     transparent_background = true,
     styles = { comments = { "italic" } },
     integrations = {
