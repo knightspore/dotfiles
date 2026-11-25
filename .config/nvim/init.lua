@@ -1,7 +1,4 @@
 -- GLOBAL OPTIONS
-local is_dark = vim.fn.system("defaults read -g AppleInterfaceStyle 2>/dev/null"):match("Dark") ~= nil
-local flavour = is_dark and "mocha" or "latte"
---
 vim.g.mapleader = " "
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -18,6 +15,7 @@ vim.opt.updatetime = 200
 vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
 
+-- KEYMAPS
 vim.keymap.set('n', '<leader>s', ':w<CR>')         -- Save file
 vim.keymap.set('n', '<leader>q', ':q<CR>')         -- Quit
 vim.keymap.set('n', '<leader>z', ':set wrap!<CR>') -- Toggle Wrap
@@ -59,8 +57,25 @@ require('packer').startup(function(use)
     use { 'folke/trouble.nvim', config = function() require('trouble').setup {} end }
 end)
 
--- LSP
+-- THEME
+require("catppuccin").setup({
+    flavour = vim.fn.system("defaults read -g AppleInterfaceStyle 2>/dev/null"):match("Dark") ~= nil and "matcha" or
+        "latte", -- Dark Mode Detect
+    transparent_background = true,
+    styles = { comments = { "italic" } },
+    integrations = {
+        cmp = true,
+        markdown = true,
+        mason = true,
+        treesitter = true,
+        lsp_trouble = true,
+        telescope = { enabled = true },
+    },
+})
 
+vim.cmd.colorscheme "catppuccin"
+
+-- LSP
 vim.lsp.config("*", {
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
 })
@@ -101,57 +116,31 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 require('mason').setup({})
 
--- === NATIVE LSP ===
-
 local lsps = {
-    { "bashls" },
-    { "clangd" },
-    { "cssls" },
-    { "emmet_ls",   { filetypes = { "html", "css", "typescriptreact", "typescript" } } },
-    { "eslint" },
-    { "gopls" },
-    { "html" },
-    { "jsonls" },
-    { "marksman" },
-    { "tailwindcss" },
-    { "ts_ls" },
-    { "yamlls" },
-    { "lua_ls",
-        {
-            settings = {
-                Lua = {
-                    runtime = {
-                        version = 'LuaJIT',
-                    },
-                    diagnostics = {
-                        globals = {
-                            'vim',
-                            'require'
-                        },
-                    },
-                    workspace = {
-                        -- Make the server aware of Neovim runtime files
-                        library = vim.api.nvim_get_runtime_file("", true),
-                    },
-                },
-            }
-        }
+    { "bashls" }, { "clangd" }, { "cssls" }, { "eslint" }, { "gopls" }, { "html" }, { "jsonls" }, { "marksman" }, { "tailwindcss" }, { "ts_ls" }, { "yamlls" },
+    { "emmet_ls", {
+        filetypes = { "html", "css", "markdown", "php", "blade", "typescriptreact", "typescript" } }
     },
-    { "phpactor",
-        {
-            filetypes = { "php", "blade" },
-            -- root_dir = require('lspconfig/util').root_pattern("composer.json", ".git"),
-            init_options = {
-                ["language_server_worse_reflection.inlay_hints.enable"] = true,
-                ["language_server_worse_reflection.inlay_hints.types"] = true,
-                ["language_server_configuration.auto_config"] = false,
-                ["code_transform.import_globals"] = true,
-                -- ["language_server_php_cs_fixer.enabled"] = true,
-                -- ["language_server_php_cs_fixer.bin"] = "/opt/homebrew/bin/php-cs-fixer",
-                -- ["language_server_php_cs_fixer.config"] = os.getenv("HOME") .. "/Developer/stack/utilities/php-cs-fixer/.php-cs-fixer.dist.php",
-                ["symfony.enabled"] = true,
-            }
+    { "lua_ls", {
+        settings = {
+            Lua = {
+                runtime = { version = 'LuaJIT' },
+                workspace = { library = { vim.env.VIMRUNTIME }, checkThirdParty = false, },
+                telemetry = { enable = false }
+            },
         }
+    }
+    },
+    { "phpactor", {
+        filetypes = { "php", "blade" },
+        init_options = {
+            ["language_server_worse_reflection.inlay_hints.enable"] = true,
+            ["language_server_worse_reflection.inlay_hints.types"] = true,
+            ["language_server_configuration.auto_config"] = false,
+            ["code_transform.import_globals"] = true,
+            ["symfony.enabled"] = true,
+        }
+    }
     },
 }
 
@@ -168,28 +157,6 @@ vim.keymap.set('n', 'gd', ':Trouble lsp_definitions<CR>', {})     -- LSP Definit
 vim.keymap.set('n', 'gD', ':Trouble diagnostics<CR>', {})         -- LSP Diagnostics
 vim.keymap.set('n', 'gI', ':Trouble lsp_implementations<CR>', {}) -- LSP Implementations
 vim.keymap.set('n', '<leader>t', ':Trouble<CR>', {})              -- Trouble open command
-
-local cmp = require('cmp')
-
-cmp.setup({
-    sources = {
-        { name = 'path' },
-        { name = 'nvim_lsp' },
-        { name = 'buffer',  keyword_length = 3 },
-    },
-    snippet = {
-        expand = function(args)
-            vim.snippet.expand(args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert({
-        -- Autocompletion
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-    }),
-})
 
 vim.diagnostic.config({
     underline = true,
@@ -216,30 +183,26 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
     end,
 })
 
+
+-- COMPLETION
+
+local cmp = require('cmp')
+
+cmp.setup({
+    sources = { { name = 'path' }, { name = 'nvim_lsp' }, { name = 'buffer', keyword_length = 3 }, },
+    snippet = { expand = function(args) vim.snippet.expand(args.body) end },
+    mapping = cmp.mapping.preset.insert({
+        -- Autocompletion
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+    }),
+})
+
 -- TREESITTER
-local parsers = {
-    "bash",
-    "c",
-    "comment",
-    "css",
-    "go",
-    "html",
-    "javascript",
-    "jsdoc",
-    "json",
-    "lua",
-    "markdown",
-    "php",
-    "python",
-    "rust",
-    "sql",
-    "tsx",
-    "twig",
-    "typescript",
-    "vim",
-    "vimdoc",
-    "yaml"
-}
+local parsers = { "bash", "c", "comment", "css", "go", "html", "javascript", "jsdoc", "json", "lua", "markdown", "php",
+    "python", "rust", "sql", "tsx", "twig", "typescript", "vim", "vimdoc", "yaml" }
 
 require("nvim-treesitter").install(parsers)
 
@@ -264,79 +227,65 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- TEXTOBJECTS
-require("nvim-treesitter-textobjects").setup({
-    select = {
-        lookahead = true,
-        selection_modes = {
-            ['@function.inner'] = 'v',
-            ['@function.outer'] = 'V',
-            ['@class.inner'] = 'v',
-            ['@class.outer'] = 'V',
-            ['@block.inner'] = 'v',
-            ['@block.outer'] = 'V',
-            ['@loop.inner'] = 'v',
-            ['@loop.outer'] = 'V',
-            ['@parameter.inner'] = 'v',
-            ['@parameter.outer'] = 'V',
-            ['@statement.inner'] = 'v',
-            ['@statement.outer'] = 'V',
-            ['@comment.inner'] = 'v',
-            ['@comment.outer'] = 'V',
-        },
-    },
-})
+-- DISABLED TO SEE IF I STILL USE IT 
+-- require("nvim-treesitter-textobjects").setup({
+--     select = {
+--         lookahead = true,
+--         selection_modes = {
+--             ['@function.inner'] = 'v',
+--             ['@function.outer'] = 'V',
+--             ['@class.inner'] = 'v',
+--             ['@class.outer'] = 'V',
+--             ['@block.inner'] = 'v',
+--             ['@block.outer'] = 'V',
+--             ['@loop.inner'] = 'v',
+--             ['@loop.outer'] = 'V',
+--             ['@parameter.inner'] = 'v',
+--             ['@parameter.outer'] = 'V',
+--             ['@statement.inner'] = 'v',
+--             ['@statement.outer'] = 'V',
+--             ['@comment.inner'] = 'v',
+--             ['@comment.outer'] = 'V',
+--         },
+--     },
+-- })
+--
+-- local ts_select = require("nvim-treesitter-textobjects.select")
+-- local objects = {
+--     ["af"] = "@call.outer",
+--     ["if"] = "@call.inner",
+--     ["am"] = "@function.outer",
+--     ["im"] = "@function.inner",
+--     ["ac"] = "@class.outer",
+--     ["ic"] = "@class.inner",
+--     ["ab"] = "@block.outer",
+--     ["ib"] = "@block.inner",
+--     ["al"] = "@loop.outer",
+--     ["il"] = "@loop.inner",
+--     ["ap"] = "@parameter.outer",
+--     ["ip"] = "@parameter.inner",
+--     ["as"] = "@statement.outer",
+--     ["is"] = "@statement.inner",
+--     ["aa"] = "@comment.outer",
+--     ["ia"] = "@comment.inner",
+--     ["a="] = "@assignment.outer",
+--     ["i="] = "@assignment.inner",
+--     ["l="] = "@assignment.lhs",
+--     ["r="] = "@assignment.rhs",
+-- }
+-- for lhs, query in pairs(objects) do
+--     vim.keymap.set({ "x", "o" }, lhs, function()
+--         ts_select.select_textobject(query, "textobjects")
+--     end, { desc = query })
+-- end
 
-local ts_select = require("nvim-treesitter-textobjects.select")
-local objects = {
-    ["af"] = "@call.outer",
-    ["if"] = "@call.inner",
-    ["am"] = "@function.outer",
-    ["im"] = "@function.inner",
-    ["ac"] = "@class.outer",
-    ["ic"] = "@class.inner",
-    ["ab"] = "@block.outer",
-    ["ib"] = "@block.inner",
-    ["al"] = "@loop.outer",
-    ["il"] = "@loop.inner",
-    ["ap"] = "@parameter.outer",
-    ["ip"] = "@parameter.inner",
-    ["as"] = "@statement.outer",
-    ["is"] = "@statement.inner",
-    ["aa"] = "@comment.outer",
-    ["ia"] = "@comment.inner",
-    ["a="] = "@assignment.outer",
-    ["i="] = "@assignment.inner",
-    ["l="] = "@assignment.lhs",
-    ["r="] = "@assignment.rhs",
-}
-for lhs, query in pairs(objects) do
-    vim.keymap.set({ "x", "o" }, lhs, function()
-        ts_select.select_textobject(query, "textobjects")
-    end, { desc = query })
-end
-
--- THEME
-require("catppuccin").setup({
-    flavour = flavour,
-    transparent_background = true,
-    styles = { comments = { "italic" } },
-    integrations = {
-        cmp = true,
-        markdown = true,
-        mason = true,
-        treesitter = true,
-        lsp_trouble = true,
-        telescope = { enabled = true },
-    },
-})
-vim.cmd.colorscheme "catppuccin"
 
 -- TELESCOPE
 local open_with_trouble = require('trouble.sources.telescope').open
 local add_to_trouble = require("trouble.sources.telescope").add
 require('telescope').setup({
     defaults = {
+        layout_strategy = "vertical",
         mappings = {
             i = {
                 ["<C-b>"] = open_with_trouble,
@@ -359,3 +308,4 @@ vim.keymap.set('n', '<leader>fg', telescope.live_grep, {})
 vim.keymap.set('n', '<leader>fb', telescope.buffers, {})
 vim.keymap.set('n', '<leader>fd', telescope.diagnostics, {})
 vim.keymap.set('n', '<leader>hi', telescope.oldfiles, {})
+vim.keymap.set('n', '<leader>fl', telescope.lsp_references, {})
