@@ -18,31 +18,24 @@ vim.opt.updatetime = 200
 vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
 
-vim.keymap.set('n', '<leader>s', ':w<CR>')                     -- Save file
-vim.keymap.set('n', '<leader>q', ':q<CR>')                     -- Quit
-vim.keymap.set('n', '<leader>z', ':set wrap!<CR>')             -- Toggle Wrap
-vim.keymap.set('n', ']t', ':tabnext<CR>')                      -- Tab Next
-vim.keymap.set('n', '[t', ':tabprev<CR>')                      -- Tab Prev
-vim.keymap.set('n', "n", "nzzzv")                              -- Center Next Search
-vim.keymap.set('n', "N", "Nzzzv")                              -- Center Prev Search
-vim.keymap.set('n', "<leader>y", "\"+y")                       -- Copy to System Clipboard
-vim.keymap.set('v', "<leader>y", "\"+y")                       -- Copy to System Clipboard
-vim.keymap.set('n', "<leader>Y", "\"+Y")                       -- Copy to System Clipboard
+vim.keymap.set('n', '<leader>s', ':w<CR>')         -- Save file
+vim.keymap.set('n', '<leader>q', ':q<CR>')         -- Quit
+vim.keymap.set('n', '<leader>z', ':set wrap!<CR>') -- Toggle Wrap
+vim.keymap.set('n', ']t', ':tabnext<CR>')          -- Tab Next
+vim.keymap.set('n', '[t', ':tabprev<CR>')          -- Tab Prev
+vim.keymap.set('n', "n", "nzzzv")                  -- Center Next Search
+vim.keymap.set('n', "N", "Nzzzv")                  -- Center Prev Search
+vim.keymap.set('n', "<leader>y", "\"+y")           -- Copy to System Clipboard
+vim.keymap.set('v', "<leader>y", "\"+y")           -- Copy to System Clipboard
+vim.keymap.set('n', "<leader>Y", "\"+Y")           -- Copy to System Clipboard
 
 -- PLUGINS
 require('packer').startup(function(use)
     -- Base
     use 'wbthomason/packer.nvim'
-    use { 'VonHeikemen/lsp-zero.nvim', branch = 'v2.x', requires = {
-        -- LSP Support
-        { 'neovim/nvim-lspconfig' },
-        { 'williamboman/mason.nvim' },
-        -- Autocompletion
-        { 'hrsh7th/nvim-cmp' },
-        { 'hrsh7th/cmp-buffer' },
-        { 'hrsh7th/cmp-path' },
-        { 'hrsh7th/cmp-nvim-lsp' },
-    } }
+    use 'neovim/nvim-lspconfig'
+    use 'williamboman/mason.nvim'
+    use { 'hrsh7th/nvim-cmp', requires = { { 'hrsh7th/cmp-buffer' }, { 'hrsh7th/cmp-path' }, { 'hrsh7th/cmp-nvim-lsp' }, } }
 
     -- Visual
     use { "catppuccin/nvim", as = "catppuccin" }
@@ -57,8 +50,8 @@ require('packer').startup(function(use)
     use { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" }
     use "nvim-treesitter/nvim-treesitter-context"
     use { 'preservim/nerdtree', config = function()
-        vim.keymap.set('n', '<leader>w', ':NERDTreeToggle<CR>', {})   -- Open NERDTree
-        vim.keymap.set('n', '<leader><S-w>', ':NERDTreeFind<CR>', {}) -- Open NERDTree on current file
+        vim.keymap.set('n', '<leader>w', ':NERDTreeToggle<CR>', {}); vim.keymap.set('n', '<leader><S-w>',
+            ':NERDTreeFind<CR>', {})
     end }
     use { 'tpope/vim-fugitive', config = function() vim.keymap.set('n', '<leader><S-g>', ':G ', {}) end }
     use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
@@ -67,47 +60,44 @@ require('packer').startup(function(use)
 end)
 
 -- LSP
-local lsp_zero = require('lsp-zero')
 
-lsp_zero.on_attach(function(client, bufnr)
-    lsp_zero.default_keymaps({ buffer = bufnr })
-    local opts = { buffer = bufnr }
-    vim.keymap.set({ "n", "x" }, "<leader>p", function()
-        -- Get file type
-        local ft = vim.bo.filetype
-        local filepath = vim.fn.expand("%:p")
-
-        -- Custom Formatter Commands
-        local commands = {
-            php = function()
-                if filepath:find("/services/travel/lavender/") then
-                    -- Laravel - Pint
-                    local config = os.getenv("HOME") ..
-                        "/Developer/stack/services/travel/lavender/pint.json"
-                    vim.cmd("!pint --config=" .. config .. " " .. filepath)
-                elseif filepath:find("/services/travel/") then
-                    -- Travel - PHP-CS-Fixer
-                    local config = os.getenv("HOME") ..
-                        "/Developer/stack/utilities/php-cs-fixer/.php-cs-fixer.dist.php"
-                    vim.cmd("!PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --config=" .. config .. " " .. filepath)
-                end
-            end,
-        }
-
-        if commands[ft] then
-            commands[ft]()
-        else
-            vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
-        end
-    end, opts)
-end)
-
-lsp_zero.set_sign_icons({
-    error = '✘',
-    warn = ' ⚠',
-    hint = ' ⚑',
-    info = ' »'
+vim.lsp.config("*", {
+    capabilities = require('cmp_nvim_lsp').default_capabilities(),
 })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        vim.keymap.set({ "n", "x" }, "<leader>p", function()
+            -- Get file type
+            local ft = vim.bo.filetype
+            local filepath = vim.fn.expand("%:p")
+
+            -- Custom Formatter Commands
+            local commands = {
+                php = function()
+                    if filepath:find("/services/travel/lavender/") then
+                        -- Laravel - Pint
+                        local config = os.getenv("HOME") ..
+                            "/Developer/stack/services/travel/lavender/pint.json"
+                        vim.cmd("!pint --config=" .. config .. " " .. filepath)
+                    elseif filepath:find("/services/travel/") then
+                        -- Travel - PHP-CS-Fixer
+                        local config = os.getenv("HOME") ..
+                            "/Developer/stack/utilities/php-cs-fixer/.php-cs-fixer.dist.php"
+                        vim.cmd("!PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --config=" .. config .. " " .. filepath)
+                    end
+                end,
+            }
+
+            if commands[ft] then
+                commands[ft]()
+            else
+                vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
+            end
+        end, { buffer = args.buf })
+        vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { buffer = args.buf })
+    end,
+});
 
 require('mason').setup({})
 
@@ -117,7 +107,7 @@ local lsps = {
     { "bashls" },
     { "clangd" },
     { "cssls" },
-    { "emmet_ls", { filetypes = { "html", "css", "typescriptreact", "typescript" } } },
+    { "emmet_ls",   { filetypes = { "html", "css", "typescriptreact", "typescript" } } },
     { "eslint" },
     { "gopls" },
     { "html" },
@@ -173,8 +163,6 @@ for _, lsp in pairs(lsps) do
     end
 end
 
-lsp_zero.setup()
-
 vim.keymap.set('n', 'gr', ':Trouble lsp_references<CR>', {})      -- LSP References
 vim.keymap.set('n', 'gd', ':Trouble lsp_definitions<CR>', {})     -- LSP Definitions
 vim.keymap.set('n', 'gD', ':Trouble diagnostics<CR>', {})         -- LSP Diagnostics
@@ -201,7 +189,6 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
     }),
-    formatting = lsp_zero.cmp_format({ details = true }),
 })
 
 vim.diagnostic.config({
@@ -211,6 +198,14 @@ vim.diagnostic.config({
     float = {
         show_header = true,
         border = "single",
+    },
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = ' ✘',
+            [vim.diagnostic.severity.WARN] = ' ⚠',
+            [vim.diagnostic.severity.HINT] = ' ⚑',
+            [vim.diagnostic.severity.INFO] = ' ℹ'
+        }
     }
 })
 
@@ -223,27 +218,27 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 
 -- TREESITTER
 local parsers = {
-        "bash",
-        "c",
-        "comment",
-        "css",
-        "go",
-        "html",
-        "javascript",
-        "jsdoc",
-        "json",
-        "lua",
-        "markdown",
-        "php",
-        "python",
-        "rust",
-        "sql",
-        "tsx",
-        "twig",
-        "typescript",
-        "vim",
-        "vimdoc",
-        "yaml"
+    "bash",
+    "c",
+    "comment",
+    "css",
+    "go",
+    "html",
+    "javascript",
+    "jsdoc",
+    "json",
+    "lua",
+    "markdown",
+    "php",
+    "python",
+    "rust",
+    "sql",
+    "tsx",
+    "twig",
+    "typescript",
+    "vim",
+    "vimdoc",
+    "yaml"
 }
 
 require("nvim-treesitter").install(parsers)
@@ -274,29 +269,46 @@ require("nvim-treesitter-textobjects").setup({
     select = {
         lookahead = true,
         selection_modes = {
-            ['@function.inner'] = 'v',  ['@function.outer'] = 'V',
-            ['@class.inner'] = 'v',     ['@class.outer'] = 'V',
-            ['@block.inner'] = 'v',     ['@block.outer'] = 'V',
-            ['@loop.inner'] = 'v',      ['@loop.outer'] = 'V',
-            ['@parameter.inner'] = 'v', ['@parameter.outer'] = 'V',
-            ['@statement.inner'] = 'v', ['@statement.outer'] = 'V',
-            ['@comment.inner'] = 'v',   ['@comment.outer'] = 'V',
+            ['@function.inner'] = 'v',
+            ['@function.outer'] = 'V',
+            ['@class.inner'] = 'v',
+            ['@class.outer'] = 'V',
+            ['@block.inner'] = 'v',
+            ['@block.outer'] = 'V',
+            ['@loop.inner'] = 'v',
+            ['@loop.outer'] = 'V',
+            ['@parameter.inner'] = 'v',
+            ['@parameter.outer'] = 'V',
+            ['@statement.inner'] = 'v',
+            ['@statement.outer'] = 'V',
+            ['@comment.inner'] = 'v',
+            ['@comment.outer'] = 'V',
         },
     },
 })
 
 local ts_select = require("nvim-treesitter-textobjects.select")
 local objects = {
-    ["af"] = "@call.outer",      ["if"] = "@call.inner",
-    ["am"] = "@function.outer",  ["im"] = "@function.inner",
-    ["ac"] = "@class.outer",     ["ic"] = "@class.inner",
-    ["ab"] = "@block.outer",     ["ib"] = "@block.inner",
-    ["al"] = "@loop.outer",      ["il"] = "@loop.inner",
-    ["ap"] = "@parameter.outer", ["ip"] = "@parameter.inner",
-    ["as"] = "@statement.outer", ["is"] = "@statement.inner",
-    ["aa"] = "@comment.outer",   ["ia"] = "@comment.inner",
-    ["a="] = "@assignment.outer",["i="] = "@assignment.inner",
-    ["l="] = "@assignment.lhs",  ["r="] = "@assignment.rhs",
+    ["af"] = "@call.outer",
+    ["if"] = "@call.inner",
+    ["am"] = "@function.outer",
+    ["im"] = "@function.inner",
+    ["ac"] = "@class.outer",
+    ["ic"] = "@class.inner",
+    ["ab"] = "@block.outer",
+    ["ib"] = "@block.inner",
+    ["al"] = "@loop.outer",
+    ["il"] = "@loop.inner",
+    ["ap"] = "@parameter.outer",
+    ["ip"] = "@parameter.inner",
+    ["as"] = "@statement.outer",
+    ["is"] = "@statement.inner",
+    ["aa"] = "@comment.outer",
+    ["ia"] = "@comment.inner",
+    ["a="] = "@assignment.outer",
+    ["i="] = "@assignment.inner",
+    ["l="] = "@assignment.lhs",
+    ["r="] = "@assignment.rhs",
 }
 for lhs, query in pairs(objects) do
     vim.keymap.set({ "x", "o" }, lhs, function()
@@ -304,7 +316,7 @@ for lhs, query in pairs(objects) do
     end, { desc = query })
 end
 
--- THEME 
+-- THEME
 require("catppuccin").setup({
     flavour = flavour,
     transparent_background = true,
