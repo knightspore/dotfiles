@@ -117,7 +117,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 require('mason').setup({})
 
 local lsps = {
-    { "bashls" }, { "clangd" }, { "cssls" }, { "eslint" }, { "gopls" }, { "html" }, { "jsonls" }, { "marksman" }, { "tailwindcss" }, { "ts_ls" }, { "yamlls" },
+    { "bashls" }, { "clangd" }, { "cssls" }, { "dockerls" }, { "eslint" }, { "gopls" }, { "html" }, { "jsonls" }, { "marksman" }, { "tailwindcss" }, { "ts_ls" }, { "yamlls" },
     { "emmet_ls", {
         filetypes = { "html", "css", "markdown", "php", "blade", "typescriptreact", "typescript" } }
     },
