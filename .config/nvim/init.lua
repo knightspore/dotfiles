@@ -41,9 +41,7 @@ require('packer').startup(function(use)
         { 'hrsh7th/nvim-cmp' },
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-path' },
-        { 'saadparwaiz1/cmp_luasnip' },
         { 'hrsh7th/cmp-nvim-lsp' },
-        { 'L3MON4D3/LuaSnip' },
     } }
 
     -- Visual
@@ -51,10 +49,9 @@ require('packer').startup(function(use)
     use { 'brenoprata10/nvim-highlight-colors', config = function() require('nvim-highlight-colors').setup({ enable_tailwind = true }) end }
 
     -- Utilities
-    use "nvim-lua/plenary.nvim"
     use "folke/which-key.nvim"
     use "tpope/vim-surround"
-    use { 'nvim-telescope/telescope.nvim', branch = "master" }
+    use { 'nvim-telescope/telescope.nvim', branch = "master", requires = { 'nvim-lua/plenary.nvim' } }
     use 'nvim-telescope/telescope-ui-select.nvim'
     use { 'nvim-treesitter/nvim-treesitter', branch = "main", build = ':TSUpdate' }
     use { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" }
@@ -64,7 +61,6 @@ require('packer').startup(function(use)
         vim.keymap.set('n', '<leader><S-w>', ':NERDTreeFind<CR>', {}) -- Open NERDTree on current file
     end }
     use { 'tpope/vim-fugitive', config = function() vim.keymap.set('n', '<leader><S-g>', ':G ', {}) end }
-    use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
     use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
     use { 'fei6409/log-highlight.nvim', config = function() require('log-highlight').setup { extension = "log" } end }
     use { 'folke/trouble.nvim', config = function() require('trouble').setup {} end }
@@ -107,7 +103,7 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 
 lsp_zero.set_sign_icons({
-    error = ' ✘',
+    error = '✘',
     warn = ' ⚠',
     hint = ' ⚑',
     info = ' »'
@@ -129,7 +125,7 @@ local lsps = {
     { "marksman" },
     { "tailwindcss" },
     { "ts_ls" },
-    { "yaml" },
+    { "yamlls" },
     { "lua_ls",
         {
             settings = {
@@ -167,7 +163,6 @@ local lsps = {
             }
         }
     },
-    { "phpstan" },
 }
 
 for _, lsp in pairs(lsps) do
@@ -192,12 +187,11 @@ cmp.setup({
     sources = {
         { name = 'path' },
         { name = 'nvim_lsp' },
-        { name = 'luasnip', keyword_length = 2 },
         { name = 'buffer',  keyword_length = 3 },
     },
     snippet = {
         expand = function(args)
-            require('luasnip').lsp_expand(args.body)
+            vim.snippet.expand(args.body)
         end,
     },
     mapping = cmp.mapping.preset.insert({
@@ -238,7 +232,6 @@ local parsers = {
         "javascript",
         "jsdoc",
         "json",
-        "jsx",
         "lua",
         "markdown",
         "php",
@@ -292,7 +285,7 @@ require("nvim-treesitter-textobjects").setup({
     },
 })
 
-local select = require("nvim-treesitter-textobjects.select")
+local ts_select = require("nvim-treesitter-textobjects.select")
 local objects = {
     ["af"] = "@call.outer",      ["if"] = "@call.inner",
     ["am"] = "@function.outer",  ["im"] = "@function.inner",
@@ -307,7 +300,7 @@ local objects = {
 }
 for lhs, query in pairs(objects) do
     vim.keymap.set({ "x", "o" }, lhs, function()
-        select.select_textobject(query, "textobjects")
+        ts_select.select_textobject(query, "textobjects")
     end, { desc = query })
 end
 
