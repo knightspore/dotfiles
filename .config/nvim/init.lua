@@ -138,10 +138,12 @@ local lsps = {
             ["language_server_worse_reflection.inlay_hints.types"] = true,
             ["language_server_configuration.auto_config"] = false,
             ["code_transform.import_globals"] = true,
+            ["language_server_phpstan.enabled"] = true,
+            ["language_server_phpstan.bin"] = os.getenv("HOME") .. "/.config/composer/vendor/bin/phpstan",
             ["symfony.enabled"] = true,
         }
     }
-    },
+    }
 }
 
 for _, lsp in pairs(lsps) do
