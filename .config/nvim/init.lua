@@ -18,27 +18,18 @@ vim.opt.cursorline = true
 
 -- KEYMAPS
 
-vim.keymap.set('n', '<leader>z', ':set wrap!<CR>')                     -- Toggle Wrap
-vim.keymap.set('n', "n", "nzzzv")                                      -- Center Next Search
-vim.keymap.set('n', "N", "Nzzzv")                                      -- Center Prev Search
-vim.keymap.set('n', "<leader>y", "\"+y")                               -- Copy to System Clipboard
-vim.keymap.set('v', "<leader>y", "\"+y")                               -- Copy to System Clipboard
-vim.keymap.set('n', "<leader>Y", "\"+Y")                               -- Copy to System Clipboard
-vim.keymap.set('n', '<leader>w', ':NERDTreeToggle<CR>', {})            -- Toggle File Manager
-vim.keymap.set('n', '<leader><S-w>', ':NERDTreeFind<CR>', {})          -- Open File Manager on Current File
-vim.keymap.set('n', '<leader><S-g>', ':G ', {})                        -- Git prefix
-vim.keymap.set('n', '<leader>f', ":Telescope git_files<CR>", {})       -- File Browser (Git)
-vim.keymap.set('n', '<leader><S-f>', ":Telescope find_files<CR>", {})  -- File Browser
-vim.keymap.set('n', '<leader>fg', ":Telescope live_grep<CR>", {})      -- File Browser (RipGrep)
-vim.keymap.set('n', '<leader>fb', ":Telescope buffers<CR>", {})        -- Buffer Browser
-vim.keymap.set('n', '<leader>fd', ":Telescope diagnostics<CR>", {})    -- Diagnostic Browser
-vim.keymap.set('n', '<leader>hi', ":Telescope oldfiles<CR>", {})       -- Recent File Browser
-vim.keymap.set('n', '<leader>fl', ":Telescope lsp_references<CR>", {}) -- LSP Reference Browser
-vim.keymap.set('n', 'gr', ':Trouble lsp_references<CR>', {})           -- LSP References
-vim.keymap.set('n', 'gd', ':Trouble lsp_definitions<CR>', {})          -- LSP Definitions
-vim.keymap.set('n', 'gD', ':Trouble diagnostics<CR>', {})              -- LSP Diagnostics
-vim.keymap.set('n', 'gI', ':Trouble lsp_implementations<CR>', {})      -- LSP Implementations
-vim.keymap.set('n', '<leader>t', ':Trouble<CR>', {})                   -- Trouble open command
+vim.keymap.set('n', '<leader>s', ':w<CR>', { desc = "Save File" })
+vim.keymap.set('n', '<leader>z', ':set wrap!<CR>', { desc = "Toggle Wrap" })
+vim.keymap.set('n', "n", "nzzzv", { desc = "Center Next Search" })
+vim.keymap.set('n', "N", "Nzzzv", { desc = "Center Prev Search" })
+vim.keymap.set('n', "<leader>y", "\"+y", { desc = "Copy to System Clipboard" })
+vim.keymap.set('v', "<leader>y", "\"+y", { desc = "Copy to System Clipboard" })
+vim.keymap.set('n', "<leader>Y", "\"+Y", { desc = "Copy to System Clipboard" })
+vim.keymap.set('n', '<leader>w', ':NERDTreeToggle<CR>', { desc = "Toggle File Manager" })
+vim.keymap.set('n', '<leader><S-w>', ':NERDTreeFind<CR>', { desc = "Open File Manager on Current File" })
+vim.keymap.set('n', '<leader><S-g>', ':G ', { desc = "Git prefix" })
+vim.keymap.set('n', '<leader>ff', ":Telescope<CR>", { desc = "Open Telescope" })
+vim.keymap.set('n', '<leader>tt', ':Trouble<CR>', { desc = "Open Trouble" })
 
 -- PLUGINS
 
@@ -239,15 +230,8 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- additional_vim_regex_highlighting equivalent for php/markdown
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "php", "markdown" },
-    callback = function(args)
-        vim.bo[args.buf].syntax = "on"
-    end,
-})
-
 -- TELESCOPE
+
 require('trouble').setup({})
 local open_with_trouble = require('trouble.sources.telescope').open
 local add_to_trouble = require("trouble.sources.telescope").add
