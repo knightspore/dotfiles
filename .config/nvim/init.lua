@@ -18,19 +18,27 @@ vim.opt.cursorline = true
 
 -- KEYMAPS
 
-vim.keymap.set('n', '<leader>s', ':w<CR>')                    -- Save file
-vim.keymap.set('n', '<leader>q', ':q<CR>')                    -- Quit
-vim.keymap.set('n', '<leader>z', ':set wrap!<CR>')            -- Toggle Wrap
-vim.keymap.set('n', ']t', ':tabnext<CR>')                     -- Tab Next
-vim.keymap.set('n', '[t', ':tabprev<CR>')                     -- Tab Prev
-vim.keymap.set('n', "n", "nzzzv")                             -- Center Next Search
-vim.keymap.set('n', "N", "Nzzzv")                             -- Center Prev Search
-vim.keymap.set('n', "<leader>y", "\"+y")                      -- Copy to System Clipboard
-vim.keymap.set('v', "<leader>y", "\"+y")                      -- Copy to System Clipboard
-vim.keymap.set('n', "<leader>Y", "\"+Y")                      -- Copy to System Clipboard
-vim.keymap.set('n', '<leader>w', ':NERDTreeToggle<CR>', {})   -- Toggle File Manager
-vim.keymap.set('n', '<leader><S-w>', ':NERDTreeFind<CR>', {}) -- Open File Manager on Current File
-vim.keymap.set('n', '<leader><S-g>', ':G ', {})               -- Git prefix
+vim.keymap.set('n', '<leader>z', ':set wrap!<CR>')                     -- Toggle Wrap
+vim.keymap.set('n', "n", "nzzzv")                                      -- Center Next Search
+vim.keymap.set('n', "N", "Nzzzv")                                      -- Center Prev Search
+vim.keymap.set('n', "<leader>y", "\"+y")                               -- Copy to System Clipboard
+vim.keymap.set('v', "<leader>y", "\"+y")                               -- Copy to System Clipboard
+vim.keymap.set('n', "<leader>Y", "\"+Y")                               -- Copy to System Clipboard
+vim.keymap.set('n', '<leader>w', ':NERDTreeToggle<CR>', {})            -- Toggle File Manager
+vim.keymap.set('n', '<leader><S-w>', ':NERDTreeFind<CR>', {})          -- Open File Manager on Current File
+vim.keymap.set('n', '<leader><S-g>', ':G ', {})                        -- Git prefix
+vim.keymap.set('n', '<leader>f', ":Telescope git_files<CR>", {})       -- File Browser (Git)
+vim.keymap.set('n', '<leader><S-f>', ":Telescope find_files<CR>", {})  -- File Browser
+vim.keymap.set('n', '<leader>fg', ":Telescope live_grep<CR>", {})      -- File Browser (RipGrep)
+vim.keymap.set('n', '<leader>fb', ":Telescope buffers<CR>", {})        -- Buffer Browser
+vim.keymap.set('n', '<leader>fd', ":Telescope diagnostics<CR>", {})    -- Diagnostic Browser
+vim.keymap.set('n', '<leader>hi', ":Telescope oldfiles<CR>", {})       -- Recent File Browser
+vim.keymap.set('n', '<leader>fl', ":Telescope lsp_references<CR>", {}) -- LSP Reference Browser
+vim.keymap.set('n', 'gr', ':Trouble lsp_references<CR>', {})           -- LSP References
+vim.keymap.set('n', 'gd', ':Trouble lsp_definitions<CR>', {})          -- LSP Definitions
+vim.keymap.set('n', 'gD', ':Trouble diagnostics<CR>', {})              -- LSP Diagnostics
+vim.keymap.set('n', 'gI', ':Trouble lsp_implementations<CR>', {})      -- LSP Implementations
+vim.keymap.set('n', '<leader>t', ':Trouble<CR>', {})                   -- Trouble open command
 
 -- PLUGINS
 
@@ -65,10 +73,9 @@ vim.pack.add({
     'https://github.com/preservim/nerdtree',
     'https://github.com/tpope/vim-fugitive',
     'https://github.com/tpope/vim-surround',
-    { src = 'https://github.com/nvim-telescope/telescope.nvim',               version = "master" },
-    { src = 'https://github.com/nvim-treesitter/nvim-treesitter',             version = "main" },
-    { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = "main" },
-    { src = 'https://github.com/catppuccin/nvim',                             name = "catppuccin" },
+    { src = 'https://github.com/nvim-telescope/telescope.nvim',   version = "master" },
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = "main" },
+    { src = 'https://github.com/catppuccin/nvim',                 name = "catppuccin" },
 })
 
 -- THEME
@@ -171,12 +178,6 @@ for _, lsp in pairs(lsps) do
     end
 end
 
-vim.keymap.set('n', 'gr', ':Trouble lsp_references<CR>', {})      -- LSP References
-vim.keymap.set('n', 'gd', ':Trouble lsp_definitions<CR>', {})     -- LSP Definitions
-vim.keymap.set('n', 'gD', ':Trouble diagnostics<CR>', {})         -- LSP Diagnostics
-vim.keymap.set('n', 'gI', ':Trouble lsp_implementations<CR>', {}) -- LSP Implementations
-vim.keymap.set('n', '<leader>t', ':Trouble<CR>', {})              -- Trouble open command
-
 vim.diagnostic.config({
     underline = true,
     update_in_insert = false,
@@ -246,59 +247,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- DISABLED TO SEE IF I STILL USE IT
--- require("nvim-treesitter-textobjects").setup({
---     select = {
---         lookahead = true,
---         selection_modes = {
---             ['@function.inner'] = 'v',
---             ['@function.outer'] = 'V',
---             ['@class.inner'] = 'v',
---             ['@class.outer'] = 'V',
---             ['@block.inner'] = 'v',
---             ['@block.outer'] = 'V',
---             ['@loop.inner'] = 'v',
---             ['@loop.outer'] = 'V',
---             ['@parameter.inner'] = 'v',
---             ['@parameter.outer'] = 'V',
---             ['@statement.inner'] = 'v',
---             ['@statement.outer'] = 'V',
---             ['@comment.inner'] = 'v',
---             ['@comment.outer'] = 'V',
---         },
---     },
--- })
---
--- local ts_select = require("nvim-treesitter-textobjects.select")
--- local objects = {
---     ["af"] = "@call.outer",
---     ["if"] = "@call.inner",
---     ["am"] = "@function.outer",
---     ["im"] = "@function.inner",
---     ["ac"] = "@class.outer",
---     ["ic"] = "@class.inner",
---     ["ab"] = "@block.outer",
---     ["ib"] = "@block.inner",
---     ["al"] = "@loop.outer",
---     ["il"] = "@loop.inner",
---     ["ap"] = "@parameter.outer",
---     ["ip"] = "@parameter.inner",
---     ["as"] = "@statement.outer",
---     ["is"] = "@statement.inner",
---     ["aa"] = "@comment.outer",
---     ["ia"] = "@comment.inner",
---     ["a="] = "@assignment.outer",
---     ["i="] = "@assignment.inner",
---     ["l="] = "@assignment.lhs",
---     ["r="] = "@assignment.rhs",
--- }
--- for lhs, query in pairs(objects) do
---     vim.keymap.set({ "x", "o" }, lhs, function()
---         ts_select.select_textobject(query, "textobjects")
---     end, { desc = query })
--- end
-
-
 -- TELESCOPE
 require('trouble').setup({})
 local open_with_trouble = require('trouble.sources.telescope').open
@@ -321,11 +269,3 @@ require('telescope').setup({
     },
 })
 require('telescope').load_extension('ui-select')
-local telescope = require('telescope.builtin')
-vim.keymap.set('n', '<leader>f', telescope.git_files, {})
-vim.keymap.set('n', '<leader><S-f>', telescope.find_files, {})
-vim.keymap.set('n', '<leader>fg', telescope.live_grep, {})
-vim.keymap.set('n', '<leader>fb', telescope.buffers, {})
-vim.keymap.set('n', '<leader>fd', telescope.diagnostics, {})
-vim.keymap.set('n', '<leader>hi', telescope.oldfiles, {})
-vim.keymap.set('n', '<leader>fl', telescope.lsp_references, {})
