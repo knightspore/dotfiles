@@ -1,6 +1,6 @@
 font-thicken = true
-font-family = "VictorMono Nerd Font Mono"
-font-size = 16
+font-family = "Iosevka Nerd Font Mono"
+font-size = 14
 cursor-style = block
 background-opacity = 1
 window-decoration = none
