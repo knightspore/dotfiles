@@ -1,4 +1,5 @@
 -- GLOBAL OPTIONS
+
 vim.g.mapleader = " "
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -16,48 +17,62 @@ vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
 
 -- KEYMAPS
-vim.keymap.set('n', '<leader>s', ':w<CR>')         -- Save file
-vim.keymap.set('n', '<leader>q', ':q<CR>')         -- Quit
-vim.keymap.set('n', '<leader>z', ':set wrap!<CR>') -- Toggle Wrap
-vim.keymap.set('n', ']t', ':tabnext<CR>')          -- Tab Next
-vim.keymap.set('n', '[t', ':tabprev<CR>')          -- Tab Prev
-vim.keymap.set('n', "n", "nzzzv")                  -- Center Next Search
-vim.keymap.set('n', "N", "Nzzzv")                  -- Center Prev Search
-vim.keymap.set('n', "<leader>y", "\"+y")           -- Copy to System Clipboard
-vim.keymap.set('v', "<leader>y", "\"+y")           -- Copy to System Clipboard
-vim.keymap.set('n', "<leader>Y", "\"+Y")           -- Copy to System Clipboard
+
+vim.keymap.set('n', '<leader>s', ':w<CR>')                    -- Save file
+vim.keymap.set('n', '<leader>q', ':q<CR>')                    -- Quit
+vim.keymap.set('n', '<leader>z', ':set wrap!<CR>')            -- Toggle Wrap
+vim.keymap.set('n', ']t', ':tabnext<CR>')                     -- Tab Next
+vim.keymap.set('n', '[t', ':tabprev<CR>')                     -- Tab Prev
+vim.keymap.set('n', "n", "nzzzv")                             -- Center Next Search
+vim.keymap.set('n', "N", "Nzzzv")                             -- Center Prev Search
+vim.keymap.set('n', "<leader>y", "\"+y")                      -- Copy to System Clipboard
+vim.keymap.set('v', "<leader>y", "\"+y")                      -- Copy to System Clipboard
+vim.keymap.set('n', "<leader>Y", "\"+Y")                      -- Copy to System Clipboard
+vim.keymap.set('n', '<leader>w', ':NERDTreeToggle<CR>', {})   -- Toggle File Manager
+vim.keymap.set('n', '<leader><S-w>', ':NERDTreeFind<CR>', {}) -- Open File Manager on Current File
+vim.keymap.set('n', '<leader><S-g>', ':G ', {})               -- Git prefix
 
 -- PLUGINS
-require('packer').startup(function(use)
-    -- Base
-    use 'wbthomason/packer.nvim'
-    use 'neovim/nvim-lspconfig'
-    use 'williamboman/mason.nvim'
-    use { 'hrsh7th/nvim-cmp', requires = { { 'hrsh7th/cmp-buffer' }, { 'hrsh7th/cmp-path' }, { 'hrsh7th/cmp-nvim-lsp' }, } }
 
-    -- Visual
-    use { "catppuccin/nvim", as = "catppuccin" }
-    use { 'brenoprata10/nvim-highlight-colors', config = function() require('nvim-highlight-colors').setup({ enable_tailwind = true }) end }
+vim.api.nvim_create_autocmd('PackChanged', {
+    callback = function(ev)
+        local cmds = {
+            ['nvim-treesitter'] = 'TSUpdate',
+            ['vim-go'] = 'GoUpdateBinaries',
+        }
+        local cmd = cmds[ev.data.spec.name]
+        if cmd and (ev.data.kind == 'install' or ev.data.kind == 'update') then
+            if not ev.data.active then vim.cmd.packadd(ev.data.spec.name) end
+            vim.cmd(cmd)
+        end
+    end,
+})
 
-    -- Utilities
-    use "folke/which-key.nvim"
-    use "tpope/vim-surround"
-    use { 'nvim-telescope/telescope.nvim', branch = "master", requires = { 'nvim-lua/plenary.nvim' } }
-    use 'nvim-telescope/telescope-ui-select.nvim'
-    use { 'nvim-treesitter/nvim-treesitter', branch = "main", build = ':TSUpdate' }
-    use { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" }
-    use "nvim-treesitter/nvim-treesitter-context"
-    use { 'preservim/nerdtree', config = function()
-        vim.keymap.set('n', '<leader>w', ':NERDTreeToggle<CR>', {}); vim.keymap.set('n', '<leader><S-w>',
-            ':NERDTreeFind<CR>', {})
-    end }
-    use { 'tpope/vim-fugitive', config = function() vim.keymap.set('n', '<leader><S-g>', ':G ', {}) end }
-    use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
-    use { 'fei6409/log-highlight.nvim', config = function() require('log-highlight').setup { extension = "log" } end }
-    use { 'folke/trouble.nvim', config = function() require('trouble').setup {} end }
-end)
+vim.pack.add({
+    'https://github.com/brenoprata10/nvim-highlight-colors',
+    'https://github.com/fatih/vim-go',
+    'https://github.com/folke/trouble.nvim',
+    'https://github.com/folke/which-key.nvim',
+    'https://github.com/hrsh7th/cmp-buffer',
+    'https://github.com/hrsh7th/cmp-nvim-lsp',
+    'https://github.com/hrsh7th/cmp-path',
+    'https://github.com/hrsh7th/nvim-cmp',
+    'https://github.com/mason-org/mason.nvim',
+    'https://github.com/neovim/nvim-lspconfig',
+    'https://github.com/nvim-lua/plenary.nvim',
+    'https://github.com/nvim-telescope/telescope-ui-select.nvim',
+    'https://github.com/nvim-treesitter/nvim-treesitter-context',
+    'https://github.com/preservim/nerdtree',
+    'https://github.com/tpope/vim-fugitive',
+    'https://github.com/tpope/vim-surround',
+    { src = 'https://github.com/nvim-telescope/telescope.nvim',               version = "master" },
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter',             version = "main" },
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = "main" },
+    { src = 'https://github.com/catppuccin/nvim',                             name = "catppuccin" },
+})
 
 -- THEME
+
 require("catppuccin").setup({
     flavour = vim.o.background == "dark" and "mocha" or "latte",
     transparent_background = true,
@@ -72,9 +87,12 @@ require("catppuccin").setup({
     },
 })
 
+require('nvim-highlight-colors').setup({ enable_tailwind = true })
+
 vim.cmd.colorscheme "catppuccin"
 
 -- LSP
+
 vim.lsp.config("*", {
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
 })
@@ -116,7 +134,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 require('mason').setup({})
 
 local lsps = {
-    { "bashls" }, { "clangd" }, { "cssls" }, { "dockerls" }, { "eslint" }, { "gopls" }, { "html" }, { "jsonls" }, { "marksman" }, { "tailwindcss" }, { "ts_ls" }, { "yamlls" },
+    { "bashls" }, { "clangd" }, { "cssls" }, { "dockerls" }, { "eslint" }, { "gopls" }, { "gdscript" }, { "gdshader" }, { "html" }, { "jsonls" }, { "marksman" }, { "tailwindcss" }, { "ts_ls" }, { "yamlls" },
     { "emmet_ls", {
         filetypes = { "html", "css", "markdown", "php", "blade", "typescriptreact", "typescript" } }
     },
@@ -228,7 +246,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- DISABLED TO SEE IF I STILL USE IT 
+-- DISABLED TO SEE IF I STILL USE IT
 -- require("nvim-treesitter-textobjects").setup({
 --     select = {
 --         lookahead = true,
@@ -282,6 +300,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 -- TELESCOPE
+require('trouble').setup({})
 local open_with_trouble = require('trouble.sources.telescope').open
 local add_to_trouble = require("trouble.sources.telescope").add
 require('telescope').setup({
